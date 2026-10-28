@@ -434,6 +434,17 @@ footer{margin-top:clamp(64px,8vw,112px);border-top:1px solid var(--line);padding
 .slider.on-sky .arrow{color:#FFFFFF;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
 .photo-credit{opacity:.7}
 @media (max-width:860px){.slide.sky .slide-copy{width:100%!important;color:var(--fg)}.slide.sky::after{display:none!important}.slide.sky .slide-copy .eyebrow{color:var(--accent)}.slide.sky .slide-title em{color:var(--accent)}.slide.sky .slide-lede{color:#2B3740!important}.slide.sky .btn-glass{color:var(--fg);border-color:var(--fg)}.slider.on-sky .dot span{background:var(--line)}.slider.on-sky .dot span::after{background:var(--fg)}.slider.on-sky .arrow{color:var(--fg);border-color:var(--line);background:var(--bg)}}
+/* phone: skyline slide keeps its copy over the photo */
+@media (max-width:860px){
+  .slide.sky img{position:absolute!important;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:cover;object-position:72% 100%}
+  .slide.sky::after{display:block!important;z-index:1;background:linear-gradient(180deg,rgba(21,32,41,.25) 0%,rgba(21,32,41,.6) 30%,rgba(21,32,41,.7) 60%,rgba(21,32,41,.88) 100%)!important}
+  .slide.sky .slide-copy{color:#FFFFFF;padding-top:150px}
+  .slide.sky .slide-title em{color:#F1C970}
+  .slide.sky .std-when span{color:#E6EAEB}.slide.sky .std-when b{color:#FFFFFF}
+  .slide.sky .btn-glass{color:#FFFFFF;border-color:rgba(255,255,255,.8)}
+  .slider.on-sky .dot span{background:rgba(255,255,255,.35)}.slider.on-sky .dot span::after{background:#FFFFFF}
+  .slider.on-sky .arrow{color:#FFFFFF;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
+}
 /* case studies */
 .impact{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
 .impact-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
