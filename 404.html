@@ -674,41 +674,24 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .contact-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .contact-grid .cbox b{font-size:clamp(1.05rem,1.35vw,1.25rem)}
 
-.evening{position:relative;overflow:hidden;border-radius:28px;padding:clamp(120px,12vw,160px) clamp(20px,4vw,48px) 0;background:linear-gradient(100deg,#F1C970 0%,#E9BD29 18%,#C29A3B 34%,#02A169 58%,#006341 78%,#005335 100%);color:#fff;isolation:isolate}
-.ev-sky{position:absolute;inset:0;z-index:-1}
-.ev-sun{position:absolute;left:9%;top:22%;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle,#FFF4D0 0 45%,#F8DA7A 46% 70%,rgba(248,218,122,0) 71%);box-shadow:0 0 80px 30px rgba(255,236,170,.55);animation:evsun 9s ease-in-out infinite alternate}
-@keyframes evsun{to{transform:translate(18px,26px)}}
-.ev-moon{position:absolute;right:9%;top:16%;width:44px;height:44px;border-radius:50%;box-shadow:-11px 6px 0 0 #FFF4D0;transform:rotate(-20deg)}
-.ev-star{position:absolute;width:4px;height:4px;border-radius:50%;background:#FFF4D0;animation:tw 3s ease-in-out infinite}
-.ev-star:nth-child(odd){animation-delay:1.4s}
-@keyframes tw{50%{opacity:.25}}
-.ev-marina{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;z-index:-1}
-.ev-marina path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;vector-effect:non-scaling-stroke}
-.ev-marina .w{fill:rgba(0,83,53,.35);stroke:none}
-.ev-line{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);position:relative}
-.ev-line::before{content:"";position:absolute;left:28px;right:28px;top:28px;border-top:2px dashed rgba(255,255,255,.7)}
-.ev-stop{position:relative;display:grid;gap:6px;justify-items:start;padding-bottom:8px}
-.ev-ic{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.18);position:relative;z-index:1;margin-bottom:10px}
-.ev-ic svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ev-stop:nth-child(-n+2) .ev-ic svg{stroke:#8A6A1F}
-.ev-stop small{font:600 .7rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;opacity:.9}
-.ev-stop h3{margin:0;font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.2;color:#fff}
-.ev-stop:nth-child(1) small,.ev-stop:nth-child(1) h3,.ev-stop:nth-child(1) em{color:#3E2505}
-.ev-stop em{font-style:normal;font-size:.9rem;opacity:.9}
-.ev-axis{display:flex;justify-content:space-between;padding:56px 0 18px;font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85)}
-.ev-axis span:first-child{color:#3E2505}
-.evening .ev-stop{transition:opacity .6s ease,transform .6s ease;transition-delay:calc(.3s + var(--i)*.18s)}
-.evening.pre .ev-stop{opacity:0;transform:translateY(14px)}
-@media (max-width:760px){.evening{padding-top:120px;background:linear-gradient(180deg,#F1C970 0%,#E9BD29 18%,#C29A3B 34%,#02A169 60%,#005335 100%)}
-.ev-line{grid-template-columns:1fr;gap:22px}.ev-line::before{left:27px;right:auto;top:28px;bottom:28px;border-top:0;border-left:2px dashed rgba(255,255,255,.7)}
-.ev-stop{grid-template-columns:56px 1fr;column-gap:16px;align-items:center}.ev-stop .ev-ic{grid-row:span 3;margin:0}
-.ev-stop:nth-child(2) small,.ev-stop:nth-child(2) h3{color:#3E2505}
-.ev-moon{top:auto;bottom:150px}.ev-axis{padding-top:40px}}
-@media (prefers-reduced-motion:reduce){.ev-sun,.ev-star{animation:none}.evening .ev-stop{opacity:1;transform:none;transition:none}}
-.ev-stop{align-content:start}
-@media (max-width:760px){.ev-star{display:none}.ev-sun{left:auto;right:10%;top:5%;width:64px;height:64px}.ev-axis{display:none}.evening{padding-bottom:110px}}
-.ev-stop:nth-child(2) small,.ev-stop:nth-child(2) h3{color:#3E2505}
-@media (max-width:760px){.ev-moon{bottom:56px;right:12%}}
+.agenda{display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,5vw,64px);align-items:start}
+.ag-side{position:relative;overflow:hidden;background:var(--tint);border:1px solid var(--line);border-radius:26px;padding:clamp(28px,3.4vw,44px)}
+.ag-side::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,#E5243B,#DDA63A,#4C9F38,#C5192D,#FF3A21,#26BDE2,#FCC30B,#A21942,#FD6925,#DD1367,#FD9D24,#BF8B2E,#3F7E44,#0A97D9,#56C02B,#00689D,#19486A)}
+.ag-day{font-size:clamp(4rem,7vw,5.6rem);font-weight:700;line-height:1;margin-top:20px;background:linear-gradient(180deg,#E9BD29,#C29A3B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ag-month{font-size:1.3rem;font-weight:500;margin-top:6px}
+.ag-side p{color:var(--muted);margin:16px 0 0;line-height:1.7}
+.ag-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.ag-chips span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:.85rem}
+.ag-side .btn{margin-top:26px}
+.agenda h2{font-size:var(--s2);line-height:1.08;letter-spacing:-.02em;margin:0 0 24px}
+.ag-list{list-style:none;margin:0;padding:0}
+.ag-list li{display:grid;grid-template-columns:110px 1fr 56px;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+.ag-list li:first-child{border-top:1px solid var(--line)}
+.ag-tm{font-weight:600;color:var(--accent);font-size:.95rem}.ag-tm span{display:block;color:var(--muted);font-weight:400;font-size:.8rem}
+.ag-list h3{margin:0;font-size:clamp(1.2rem,1.7vw,1.5rem);font-weight:600}.ag-list p{margin:6px 0 0;color:var(--muted)}
+.ag-ic{width:56px;height:56px;border-radius:50%;background:#FBF3DF;display:grid;place-items:center}
+.ag-ic svg{width:24px;height:24px;fill:none;stroke:#8A6A1F;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:860px){.agenda{grid-template-columns:1fr}.ag-list li{grid-template-columns:84px 1fr;gap:16px}.ag-ic{display:none}}
 .hm-f{position:relative;margin:0;border-radius:16px;overflow:hidden;flex:0 0 auto}
 .hm-f img{transition:transform .5s ease,filter .4s ease}
 .hm-f figcaption{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;padding:14px;background:linear-gradient(180deg,rgba(21,32,41,0) 25%,rgba(21,32,41,.88));color:#fff;opacity:0;transition:opacity .35s ease;pointer-events:none}
@@ -895,12 +878,15 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 
   <section>
     <div class="wrap">
-      <div class="head rv"><p class="eyebrow">Highlights of the evening</p><h2>An evening at the marina.</h2><p class="lede">Wednesday, 25 November 2026 at ONE°15 Marina, Sentosa. Full agenda to be announced.</p></div>
-      <div class="evening rv">
-        <div class="ev-sky" aria-hidden="true"><span class="ev-sun"></span><span class="ev-moon"></span><i class="ev-star" style="left:72%;top:16%"></i><i class="ev-star" style="left:80%;top:30%"></i><i class="ev-star" style="left:88%;top:12%"></i><i class="ev-star" style="left:94%;top:34%"></i><i class="ev-star" style="left:66%;top:28%"></i></div>
-        <svg class="ev-marina" viewBox="0 0 1140 120" preserveAspectRatio="none" aria-hidden="true"><path d="M60 92V48M60 52l16 32H60"/><path d="M110 92V58M110 62l12 22H110"/><path d="M170 92V40M170 44l18 40H170"/><path d="M240 92V54M240 58l14 26H240"/><path d="M300 92V46M300 50l16 34H300"/><path d="M820 92V52M820 56l14 28H820"/><path d="M880 92V38M880 42l18 42H880"/><path d="M950 92V56M950 60l12 24H950"/><path d="M1010 92V46M1010 50l16 34H1010"/><path d="M1080 92V62M1080 66l10 18H1080"/><path class="w" d="M0 96c40-8 80 8 120 0s80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0 80-8 60 0V120H0z"/></svg>
-        <ol class="ev-line"><li class="ev-stop" style="--i:0"><span class="ev-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12v10H6zM9 9V6h6v3M9 13h6M9 16h4"/></svg></span><small>Arrival</small><h3>Registration</h3><em>from 5.00 PM</em></li><li class="ev-stop" style="--i:1"><span class="ev-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11v8H9l-3 3v-3H4zM15 9h5v8h-2v3l-3-3h-4v-3"/></svg></span><small>Forum</small><h3>Evening Forum</h3></li><li class="ev-stop" style="--i:2"><span class="ev-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8M9 17h6"/></svg></span><small>Ceremony</small><h3>Giving Economy Awards</h3></li><li class="ev-stop" style="--i:3"><span class="ev-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.5A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.5c0 5.1-7 9.5-7 9.5z"/></svg></span><small>Ceremony</small><h3>Pledge Ceremony</h3></li></ol>
-        <div class="ev-axis" aria-hidden="true"><span>5 PM</span><span>Sunset</span><span>9 PM</span></div>
+      <div class="agenda">
+        <aside class="ag-side rv"><p class="eyebrow">Highlights of the evening</p><div class="ag-day">25</div><div class="ag-month">November 2026 · Wednesday</div><p>An evening at ONE°15 Marina, Sentosa, Singapore. Full agenda to be announced.</p><div class="ag-chips"><span>5 PM to 9 PM SGT</span><span>ONE°15 Marina</span></div><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScUXVS332vdoGrFS3Ox98Kimdbjbl-Kr0DgbNB8cnJGO3N27A/viewform" target="_blank" rel="noopener">Register for GEF 2026</a></aside>
+        <div class="rv"><h2>An evening at the marina.</h2>
+        <ol class="ag-list">
+          <li><div class="ag-tm">5.00 PM<span>Arrival</span></div><div><h3>Registration</h3><p>Welcome, badges and networking by the water.</p></div><span class="ag-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12v10H6zM9 9V6h6v3M9 13h6M9 16h4"/></svg></span></li>
+          <li><div class="ag-tm">Evening<span>Forum</span></div><div><h3>Evening Forum</h3><p>Changemakers share insights, journeys and visions.</p></div><span class="ag-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11v8H9l-3 3v-3H4zM15 9h5v8h-2v3l-3-3h-4v-3"/></svg></span></li>
+          <li><div class="ag-tm">Evening<span>Ceremony</span></div><div><h3>Giving Economy Awards</h3><p>Honouring individuals and organisations advancing the SDGs.</p></div><span class="ag-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8M9 17h6"/></svg></span></li>
+          <li><div class="ag-tm">Close<span>Ceremony</span></div><div><h3>Pledge Ceremony</h3><p>A shared commitment to keep giving.</p></div><span class="ag-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.5A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.5c0 5.1-7 9.5-7 9.5z"/></svg></span></li>
+        </ol></div>
       </div>
     </div>
   </section>
