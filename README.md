@@ -19,7 +19,7 @@ This is a static site with no build step. `index.html` holds every page (Home, A
 ## Search and sharing
 
 - Each main page has its own address (`/about/`, `/community/`, `/stories/`, `/contact/`), title, description and canonical link.
-- Open Graph and Twitter tags use `images/share.jpg` (1200x630) for link previews.
+- Open Graph and Twitter tags use `images/share-2026.jpg` (1200x630) for link previews.
 - The home page carries schema.org data for the organisation and the 9th Giving Economy Forum (25 Nov 2026, ONE°15 Marina, Sentosa).
 - `sitemap.xml` and `robots.txt` point search engines at https://www.givingeconomy.org.
 - `CNAME` sets the custom domain to www.givingeconomy.org.
