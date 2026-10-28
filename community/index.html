@@ -754,6 +754,15 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .doc-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .legal .legal-links{display:flex;gap:18px}
 
+
+
+/* Hero slide 1: Save the date at the venue */
+.std-pill{display:inline-block;width:fit-content;justify-self:start;align-self:start;margin:0 0 18px;background:#E9BD29;color:#3E2505;font:700 .82rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;border-radius:6px}
+.std-when{display:flex;flex-wrap:wrap;gap:12px 28px;margin:18px 0 26px;padding-left:16px;border-left:3px solid #E9BD29}
+.std-when span{display:grid;gap:2px;font-size:.95rem;color:#E6EAEB}
+.std-when b{font-size:1.12rem;font-weight:600;color:#fff}
+@media (max-width:860px){.std-when span{color:var(--muted)}.std-when b{color:var(--fg)}}
+
 /* ===== Dark mode (toggle in header; light stays the default) ===== */
 .theme-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
 .theme-btn:hover{background:var(--tint)}
@@ -866,8 +875,8 @@ html[data-theme="dark"]{color-scheme:dark;
   <section class="slider on-sky" aria-roledescription="carousel" aria-label="Highlights">
     <div class="slides">
       <div class="slide sky is-active" data-i="0" aria-roledescription="slide" aria-label="1 of 4">
-        <img src="../images/sg_skyline.jpg" loading="lazy" alt="Singapore skyline at dusk over Marina Bay" style="object-position:58% 50%" title="Photo: Benh LIEU SONG, CC BY-SA 4.0">
-        <div class="wrap slide-copy"><p class="eyebrow">9th Giving Economy Forum · 25 November 2026</p><h1 class="slide-title">We are coming back to <em>Singapore in 2026.</em></h1><p class="slide-lede">Be there. Be inspired. The Forum celebrates the convergence of industries from social impact, startups, philanthropy, nonprofit, corporate and media.</p><div class="hero-cta"><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScUXVS332vdoGrFS3Ox98Kimdbjbl-Kr0DgbNB8cnJGO3N27A/viewform" target="_blank" rel="noopener">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#singapore">Why Singapore</a></div></div>
+        <img src="../images/venue_one15.jpg" loading="lazy" alt="ONE°15 Marina, Sentosa Cove, at dusk, venue of the 9th Giving Economy Forum" style="object-position:62% 45%">
+        <div class="wrap slide-copy"><p class="std-pill">Save the date</p><h1 class="slide-title">9th Giving Economy Forum <em>Singapore 2026.</em></h1><p class="std-when"><span><b>Wednesday, 25 November 2026</b>5 pm to 9 pm SGT</span><span><b>ONE°15 Marina</b>Sentosa, Singapore</span></p><div class="hero-cta"><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScUXVS332vdoGrFS3Ox98Kimdbjbl-Kr0DgbNB8cnJGO3N27A/viewform" target="_blank" rel="noopener">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#singapore">Why Singapore</a></div></div>
       </div><div class="slide" data-i="1" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
         <img src="../images/davao_group.jpg" loading="lazy" alt="Giving Economy Awards 2025 group on stage" style="object-position:50% 40%">
         <div class="wrap slide-copy"><p class="eyebrow">Giving Economy Awards</p><h2 class="slide-title">Nominate your favourite <em>changemaker.</em></h2><p class="slide-lede">Celebrating changemakers making a tangible difference across grassroots initiatives, digital innovation and inclusive philanthropy.</p><div class="hero-cta"><a class="btn btn-primary" href="https://forms.gle/uXBA7wXEDZ21ZuycA" target="_blank" rel="noopener">Nominate now</a><a class="btn btn-glass" href="#community">Meet past awardees</a></div></div>
