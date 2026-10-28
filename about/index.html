@@ -773,6 +773,23 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 @media (max-width:860px){.stat-grid{margin-top:-28px}}
 [data-theme="dark"] .stat-grid{background:#142128!important;box-shadow:0 26px 60px -24px rgba(0,0,0,.6)}
 
+/* ===== Royal palette: deep green kept for buttons, gold carries the accents, warm ivory tints ===== */
+:root{--accent:#005335;--gold-ink:#8C6B1E;--gold-line:#C29A3B;--tint:#FAF7F0;--tint-2:#F8F2E4}
+.eyebrow,.slide-copy .eyebrow,.bighero-copy .eyebrow,.phero .eyebrow,.cs h4,.obj .n,.ms .d,.programme .n,.story small,.pcard small,.ag-tm,.pub .cover small{color:var(--gold-ink)}
+h1 em,h2 em,.slide-title em,.bighero h2 em,.phero h1 em,.ticker span:nth-child(4n+1){color:var(--gold-ink)}
+.quote blockquote::before,.s-text p:first-child::first-letter{color:var(--gold-line)}
+.stat b,.jn b{color:var(--fg)}
+.impact-nums div{border-top-color:var(--gold-line)}
+.jc{border-color:var(--gold-line);color:var(--gold-ink)}
+.st{border-color:var(--gold-line);background:#FBF6EA}.st svg{stroke:var(--gold-ink)}
+.ps div:nth-child(1),.pillar:nth-child(1){border-color:#C29A3B}.ps div:nth-child(3),.pillar:nth-child(3){border-color:#3E2505}
+.ticker i:nth-of-type(3n){background:#C29A3B}.ticker i:nth-of-type(3n+2){background:#E9BD29}
+.ss-dots button.on{background:var(--gold-line)}
+.obj{border-top-color:var(--gold-line)!important}
+.swipe-hint::after{background:var(--gold-line)}
+.link{color:var(--accent);border-bottom-color:var(--gold-line)}
+.btn-primary:hover{background:#3E2505;border-color:#3E2505}
+@media (max-width:860px){.slide.sky .slide-title em{color:#F1C970}}
 /* ===== Dark mode (toggle in header; light stays the default) ===== */
 .theme-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
 .theme-btn:hover{background:var(--tint)}
@@ -780,7 +797,7 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .theme-btn .i-sun{display:none}
 [data-theme="dark"] .theme-btn .i-sun{display:block}[data-theme="dark"] .theme-btn .i-moon{display:none}
 @media (max-width:980px){.theme-btn{width:36px;height:36px}}
-html[data-theme="dark"]{color-scheme:dark;
+html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B;
   --bg:#0D161B; --tint:#142128; --tint-2:#11241D; --fg:#E7EDEA; --muted:#9BA9AF; --line:#24333A;
   --accent:#2DB783; --blue:#3BB3B5; --gold:#E0B85A}
 [data-theme="dark"] body{transition:background .25s,color .25s}
