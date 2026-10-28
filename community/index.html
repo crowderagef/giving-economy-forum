@@ -790,6 +790,52 @@ html[data-theme="dark"]{color-scheme:dark;
 [data-theme="dark"] .doc-head{background:linear-gradient(180deg,var(--tint-2),var(--bg))}
 [data-theme="dark"] .top .brand{box-shadow:0 12px 28px rgba(0,0,0,.5)}
 [data-theme="dark"] img:not(.brand img):not(.q-av){filter:brightness(.92)}
+
+/* ===== Phone refinements ===== */
+.swipe-hint{display:none}
+@media (max-width:980px){
+  .top .wrap{gap:10px}
+  .top .wrap>.btn{display:inline-flex;order:2;margin-left:auto;padding:.62em 1em;font-size:.84rem}
+  .menu-btn{order:3;margin-left:0}
+  .theme-btn{order:4}
+}
+@media (max-width:760px){
+  body{font-size:1rem;line-height:1.65}
+  section{padding-block:52px}
+  footer{margin-top:52px;padding-block:40px 24px}
+  .eyebrow{font-size:.78rem;letter-spacing:.16em}
+  .lede{font-size:1.02rem}
+  /* swipeable card rows instead of long stacks */
+  .objs,.milestones,.pillars{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:84%;gap:14px!important;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:2px 16px 14px;scroll-padding-inline:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .objs::-webkit-scrollbar,.milestones::-webkit-scrollbar,.pillars::-webkit-scrollbar{display:none}
+  .objs>*,.milestones>*,.pillars>*{scroll-snap-align:start}
+  .objs .rv,.milestones .rv,.pillars .rv{opacity:1!important;transform:none!important}
+  .obj{background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:16px;padding:18px}
+  section:not(.tint) .obj{background:var(--tint);border-color:transparent;border-top-color:var(--accent)}
+  .pillar{background:var(--tint);border-radius:16px;padding:0 0 18px;overflow:hidden}
+  .pillar>*:not(img){margin-inline:16px}
+  .pillar>h3:first-child{margin-top:18px}
+  .pillar img{border-radius:0!important;margin-bottom:4px}
+  .swipe-hint{display:flex;align-items:center;gap:8px;margin:-4px 0 10px;font-size:.8rem;color:var(--muted)}
+  .swipe-hint::after{content:"";width:28px;height:2px;border-radius:2px;background:var(--accent);animation:sw 1.6s ease-in-out infinite}
+  @keyframes sw{50%{transform:translateX(8px)}}
+  /* agenda */
+  .ag-day{font-size:3.6rem}.ag-month{font-size:1.08rem}
+  .ag-list li{padding:20px 0}
+  /* footer: two columns, roomy tap targets */
+  .foot{grid-template-columns:1fr 1fr!important;gap:28px 20px}
+  .foot>div:first-child,.foot>div:nth-child(3){grid-column:1/-1}
+  .foot>div:nth-child(3){order:5}
+  .foot h4{font-size:.76rem}
+  .foot ul{gap:2px}
+  .foot ul a{display:inline-block;padding:7px 0}
+  .foot .brand img{width:92px;height:92px}
+  .legal{flex-direction:column;align-items:flex-start;gap:10px}
+  .legal a{display:inline-block;padding:6px 0}
+  .legal .legal-links{gap:22px}
+  .doc-body a,.crumb a{padding-block:6px;display:inline-block}
+}
+@media (prefers-reduced-motion:reduce){.swipe-hint::after{animation:none}}
 </style>
 </head>
 <body>
@@ -935,7 +981,7 @@ html[data-theme="dark"]{color-scheme:dark;
   <section style="padding-top:0">
     <div class="wrap">
       <div class="head rv"><p class="eyebrow">Where impact meets action</p><h2>Three pillars, one movement.</h2></div>
-      <div class="pillars">
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more</p><div class="pillars">
         <article class="pillar rv"><h3>GEF Talks</h3><p>Notable societal changemakers share their insights, journeys and visions for a better world. The talks motivate, educate and ignite the spark of change.</p></article>
         <article class="pillar rv"><h3>GEF Awards</h3><p>Recognising individuals and organisations committed to the UN Sustainable Development Goals: a symbol of appreciation and a motivation to keep striving for positive change.</p></article>
         <article class="pillar rv"><h3>GEF Summit</h3><p>The grand stage for workshops, masterclasses, exhibitions and networking, where visionaries, leaders and changemakers converge.</p></article>
@@ -979,7 +1025,7 @@ html[data-theme="dark"]{color-scheme:dark;
   <section class="tint">
     <div class="wrap">
       <div class="head rv"><p class="eyebrow">Our objectives</p><h2>What drives the Giving Economy.</h2></div>
-      <div class="objs">
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more</p><div class="objs">
         <div class="obj rv"><span class="n">01</span><h3>Celebrating changemakers</h3><p>Honouring individuals and organisations dedicated to improving society and aligned with the UN Sustainable Development Goals. They are the unsung heroes we want to sing about.</p></div>
         <div class="obj rv"><span class="n">02</span><h3>Promoting social impact</h3><p>Not just a stage but a call to action. We believe in the power of storytelling, where stories of change propel others to begin their own journey of transformation.</p></div>
         <div class="obj rv"><span class="n">03</span><h3>Learning and collaboration</h3><p>Workshops, masterclasses and discussions that build networks, share insights and grow a global community dedicated to change-making.</p></div>
@@ -994,7 +1040,7 @@ html[data-theme="dark"]{color-scheme:dark;
   <section>
     <div class="wrap">
       <div class="head rv"><p class="eyebrow">Our history</p><h2>Ignited at the United Nations.</h2></div>
-      <div class="milestones" style="--bg:var(--tint)">
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more</p><div class="milestones" style="--bg:var(--tint)">
         <div class="ms rv" style="background:var(--tint)"><span class="d">17 July 2016 · New York</span><b>The idea is born</b><p>At the UN General Assembly, chief convenor Chet Jainn engaged with global changemakers at the 2016 NOVUS summit, organised by TED Resident and Global Changemaker Kunal Sood.</p></div>
         <div class="ms rv" style="background:var(--tint)"><span class="d">27 November 2018 · Mumbai</span><b>The first summit</b><p>On #GivingTuesday the first Giving Economy Changemakers Summit came to life, the formal inauguration of "The Giving Economy" movement.</p></div>
         <div class="ms rv" style="background:var(--tint)"><span class="d">2019 → 2025</span><b>A seven-year journey</b><p>A series of editions across cities and countries, with the vision of culminating in New York City, possibly at the UN headquarters.</p></div>
@@ -1014,7 +1060,7 @@ html[data-theme="dark"]{color-scheme:dark;
   <section style="padding-top:0">
     <div class="wrap">
       <div class="head rv"><p class="eyebrow">GEC events</p><h2>Where impact meets action.</h2><p class="lede">Three dynamic pillars provide a platform for meaningful dialogue, honour remarkable achievements and offer a collective space for networking and knowledge exchange.</p></div>
-      <div class="pillars">
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more</p><div class="pillars">
         <article class="pillar rv"><img src="../images/kl_speaker.jpg" loading="lazy" alt="A speaker addresses the Giving Economy Forum, Kuala Lumpur 2024"><h3>GEC Talks</h3><p>A symphony of wisdom, passion and innovation, where notable societal changemakers share their insights, journeys and visions. Attendees learn how they too can make a significant impact on society.</p></article>
         <article class="pillar rv"><img src="../images/goa22_award.jpg" loading="lazy" alt="An awardee receives the Individual Philanthropy Award at the Giving Economy Awards 2022, Goa"><h3>GEC Awards</h3><p>Recognising and celebrating the extraordinary work of individuals and organisations committed to the UN Sustainable Development Goals. The unsung heroes receive the acknowledgement they deserve.</p></article>
         <article class="pillar rv"><img src="../images/kl_room.jpg" loading="lazy" alt="Delegates around the tables at the Giving Economy Forum summit, Kuala Lumpur"><h3>GEC Summit</h3><p>A unique gathering with workshops, masterclasses, exhibitions and networking, where attendees learn from world leaders and collaborate with like-minded peers.</p></article>
@@ -1067,7 +1113,7 @@ html[data-theme="dark"]{color-scheme:dark;
   <section style="padding-top:0">
     <div class="wrap">
       <div class="head rv"><p class="eyebrow">Looking ahead</p><h2>Audacious aspirations.</h2><p class="lede">A future where abundance truly starts with giving, leaving a legacy of compassion and progress.</p></div>
-      <div class="objs">
+      <p class="swipe-hint" aria-hidden="true">Swipe to see more</p><div class="objs">
         <div class="obj rv"><span class="n">→</span><h3>A global journey</h3><p>A series of events across the world, culminating in New York City, potentially at the United Nations headquarters.</p></div>
         <div class="obj rv"><span class="n">→</span><h3>Partnerships for the Goals</h3><p>As an embodiment of SDG 17, forging global partnerships and leveraging technology, training and social capital for the causes we champion.</p></div>
         <div class="obj rv"><span class="n">→</span><h3>Purpose with profit</h3><p>Widespread adoption of the Giving Economy, inspiring businesses to embrace purpose-driven strategies alongside profitability.</p></div>
