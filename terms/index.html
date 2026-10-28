@@ -436,7 +436,7 @@ footer{margin-top:clamp(64px,8vw,112px);border-top:1px solid var(--line);padding
 @media (max-width:860px){.slide.sky .slide-copy{width:100%!important;color:var(--fg)}.slide.sky::after{display:none!important}.slide.sky .slide-copy .eyebrow{color:var(--accent)}.slide.sky .slide-title em{color:var(--accent)}.slide.sky .slide-lede{color:#2B3740!important}.slide.sky .btn-glass{color:var(--fg);border-color:var(--fg)}.slider.on-sky .dot span{background:var(--line)}.slider.on-sky .dot span::after{background:var(--fg)}.slider.on-sky .arrow{color:var(--fg);border-color:var(--line);background:var(--bg)}}
 /* phone: skyline slide keeps its copy over the photo */
 @media (max-width:860px){
-  .slide.sky img{position:absolute!important;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:cover;object-position:14% 50%!important}
+  .slide.sky img{position:absolute!important;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:cover;object-position:50% 50%!important}
   .slide.sky::after{display:block!important;z-index:1;background:linear-gradient(180deg,rgba(21,32,41,.25) 0%,rgba(21,32,41,.6) 30%,rgba(21,32,41,.7) 60%,rgba(21,32,41,.88) 100%)!important}
   .slide.sky .slide-copy{color:#FFFFFF;padding-top:150px}
   .slide.sky .slide-title em{color:#F1C970}
@@ -446,10 +446,11 @@ footer{margin-top:clamp(64px,8vw,112px);border-top:1px solid var(--line);padding
   .slider.on-sky .arrow{color:#FFFFFF;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
 }
 /* skyline video over the still photo */
-.slide-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:1;opacity:0;transition:opacity .8s}
-.slide-vid.ready{opacity:1}
+.slide.sky{background:#0D161B}
+.slide-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:1}
 [data-theme="dark"] .slide-vid{filter:brightness(.92)}
-@media (max-width:860px){.slide-vid{object-position:22% 50%}}
+.slide.sky .vp-sm{display:none}
+@media (max-width:860px){.slide.sky .vp-lg{display:none}.slide.sky .vp-sm{display:block}}
 @media (prefers-reduced-motion:reduce){.slide-vid{display:none}}
 /* case studies */
 .impact{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
@@ -883,8 +884,8 @@ html[data-theme="dark"]{color-scheme:dark;
 <div class="view" data-view="home">
   <section class="slider on-sky" aria-roledescription="carousel" aria-label="Highlights">
     <div class="slides">
-      <div class="slide sky is-active" data-i="0" data-dur="9000" aria-roledescription="slide" aria-label="1 of 4">
-        <img src="../images/sg_skyline.jpg" loading="lazy" alt="Singapore skyline at dusk over Marina Bay" style="object-position:58% 50%" title="Photo: Benh LIEU SONG, CC BY-SA 4.0"><video class="slide-vid" muted loop playsinline preload="auto" aria-hidden="true" poster="../images/sg_hero_poster.jpg" data-lg="../images/sg_hero_1080.mp4" data-sm="../images/sg_hero_720.mp4"></video>
+      <div class="slide sky is-active" data-i="0" data-dur="10000" aria-roledescription="slide" aria-label="1 of 4">
+        <img class="vp vp-lg" src="../images/sg_hero_poster.jpg" loading="lazy" alt="Singapore skyline at night over Marina Bay"><img class="vp vp-sm" src="../images/sg_hero_poster_m.jpg" loading="lazy" alt=""><video class="slide-vid" muted loop playsinline autoplay preload="auto" aria-hidden="true" data-lg="../images/sg_night_1080.mp4" data-sm="../images/sg_night_m.mp4"></video>
         <div class="wrap slide-copy"><p class="std-pill">Save the date</p><h1 class="slide-title">9th Giving Economy Forum <em>Singapore 2026.</em></h1><p class="std-when"><span><b>Wednesday, 25 November 2026</b>5 pm to 9 pm SGT</span><span><b>ONE°15 Marina</b>Sentosa, Singapore</span></p><div class="hero-cta"><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScUXVS332vdoGrFS3Ox98Kimdbjbl-Kr0DgbNB8cnJGO3N27A/viewform" target="_blank" rel="noopener">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#singapore">Why Singapore</a></div></div>
       </div><div class="slide" data-i="1" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
         <img src="../images/davao_group.jpg" loading="lazy" alt="Giving Economy Awards 2025 group on stage" style="object-position:50% 40%">
@@ -1456,13 +1457,13 @@ addEventListener('hashchange',route); route();
 /* Slider */
 (()=>{const root=document.querySelector('.slider');if(!root)return;const slides=[...root.querySelectorAll('.slide')],dots=[...root.querySelectorAll('.dot')];let i=0,t=null;const DUR=7000,dur=k=>+(slides[k].dataset.dur||DUR);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function go(n){slides[i].classList.remove('is-active');slides[i].setAttribute('aria-hidden','true');dots[i].classList.remove('is-active');i=(n+slides.length)%slides.length;slides[i].classList.add('is-active');root.classList.toggle('on-sky',slides[i].classList.contains('sky'));slides[i].removeAttribute('aria-hidden');dots[i].classList.remove('is-active');dots[i].style.setProperty('--dur',dur(i)/1000+'s');void dots[i].offsetWidth;dots[i].classList.add('is-active');const v=slides[i].querySelector('.slide-vid');if(v&&v.readyState){v.currentTime=0;v.play().catch(()=>{})}arm()}
+function go(n){slides[i].classList.remove('is-active');slides[i].setAttribute('aria-hidden','true');dots[i].classList.remove('is-active');i=(n+slides.length)%slides.length;slides[i].classList.add('is-active');root.classList.toggle('on-sky',slides[i].classList.contains('sky'));slides[i].removeAttribute('aria-hidden');dots[i].classList.remove('is-active');dots[i].style.setProperty('--dur',dur(i)/1000+'s');void dots[i].offsetWidth;dots[i].classList.add('is-active');const v=slides[i].querySelector('.slide-vid');if(v&&v.paused&&v.src)v.play().catch(()=>{});arm()}
 function arm(){clearTimeout(t);if(reduce||root.classList.contains('paused'))return;t=setTimeout(()=>go(i+1),dur(i))}
 dots.forEach((d,k)=>d.onclick=()=>go(k));document.getElementById('prev').onclick=()=>go(i-1);document.getElementById('next').onclick=()=>go(i+1);
 root.addEventListener('mouseenter',()=>{root.classList.add('paused');clearTimeout(t)});root.addEventListener('mouseleave',()=>{root.classList.remove('paused');arm()});
 let x0=null;root.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});root.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null});
 document.addEventListener('visibilitychange',()=>document.hidden?clearTimeout(t):arm());dots[0].style.setProperty('--dur',dur(0)/1000+'s');arm();
-const v=root.querySelector('.slide-vid');if(v&&!reduce&&!(navigator.connection&&navigator.connection.saveData)){const src=v.dataset[innerWidth<=860?'sm':'lg']||v.dataset.sm;if(src){v.addEventListener('playing',()=>v.classList.add('ready'),{once:true});v.src=src;v.play().catch(()=>{})}}})();
+const v=root.querySelector('.slide-vid');if(v&&!reduce&&!(navigator.connection&&navigator.connection.saveData)){const src=v.dataset[innerWidth<=860?'sm':'lg']||v.dataset.sm;if(src){v.src=src;v.play().catch(()=>{})}}})();
 /* About slideshow */
 (()=>{const f=document.querySelector('.ss');if(!f)return;const im=[...f.querySelectorAll('.ss-box img')],d=[...f.querySelectorAll('.ss-dots button')],cap=document.getElementById('ss-cap');let k=0,t;
 const show=n=>{im[k].classList.remove('on');d[k].classList.remove('on');k=(n+im.length)%im.length;im[k].classList.add('on');d[k].classList.add('on');cap.textContent=im[k].dataset.cap};
