@@ -816,6 +816,7 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .reg-foot{margin:0;padding:10px 24px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
 .reg-foot a{color:var(--accent)}
 body.reg-open{overflow:hidden}
+.confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
 /* Nomination: full-screen four-step form, laid out like the awards' own nomination page */
 .nom-dlg{width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;inset:0;padding:0;border:0;background:var(--tint);color:var(--fg)}
 .nom-dlg[open]{display:block}
@@ -1844,6 +1845,16 @@ const compact=()=>{const o=sel.selectedOptions[0];if(o)o.textContent=flag(o.data
 compact();sel.addEventListener('focus',short);sel.addEventListener('mousedown',short);sel.addEventListener('change',()=>{short();compact()});sel.addEventListener('blur',()=>{short();compact()});
 });
 })();
+/* Confetti in SDG colours for the thank-you screens; skipped when reduced motion is on */
+window.gefConfetti=host=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const c=document.createElement('canvas');c.className='confetti';host.appendChild(c);const x=c.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);
+ const W=()=>c.clientWidth,H=()=>c.clientHeight;const fit=()=>{c.width=W()*dpr;c.height=H()*dpr;x.setTransform(dpr,0,0,dpr,0,0)};fit();
+ const col=['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A','#C29A3B'];
+ const n=W()<640?90:170,ps=[];for(let i=0;i<n;i++){const left=i%2===0;ps.push({x:left?-10:W()+10,y:H()*(.15+Math.random()*.5),vx:(left?1:-1)*(4+Math.random()*7),vy:-(4+Math.random()*7),w:5+Math.random()*6,h:8+Math.random()*8,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:col[i%col.length],t:Math.random()*6})}
+ for(let i=0;i<n/2;i++)ps.push({x:Math.random()*W(),y:-20-Math.random()*H()*.6,vx:(Math.random()-.5)*2,vy:1+Math.random()*2,w:5+Math.random()*5,h:8+Math.random()*7,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:col[i%col.length],t:Math.random()*6});
+ const t0=performance.now();const step=t=>{const e=t-t0;x.clearRect(0,0,W(),H());const fade=e>3200?Math.max(0,1-(e-3200)/1000):1;x.globalAlpha=fade;
+  ps.forEach(p=>{p.vy+=.18;p.vx*=.985;p.vy*=.985;p.t+=.08;p.x+=p.vx+Math.sin(p.t)*.6;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,Math.cos(p.t));x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});
+  if(e<4200)requestAnimationFrame(step);else c.remove()};requestAnimationFrame(step)};
 /* Nominate links open our own four-step form; answers go to the Nominations tab of the GEF Google Sheet */
 (()=>{const d=document.getElementById('nom-dlg');if(!d||typeof d.showModal!=='function')return;
 const f0=document.getElementById('nom-form');if(!f0||!f0.dataset.action)return; /* until the Nominations sheet is connected, Nominate links keep opening the Google Form */
@@ -1881,7 +1892,7 @@ next.onclick=()=>{if(!check(cur))return;if(cur<3){show(cur+1);return}
  done.querySelector('.nd-nominee').textContent=f.elements.c_name.value.trim();
  done.querySelector('.nd-cat').textContent=f.querySelector('input[name=category]:checked').value;
  done.querySelector('.nd-sdg').textContent=f.querySelector('input[name=sdg]:checked').value;
- f.hidden=true;top.hidden=true;done.hidden=false;sc.scrollTop=0};
+ f.hidden=true;top.hidden=true;done.hidden=false;sc.scrollTop=0;window.gefConfetti(d)};
 const reset=keep=>{const me=keep?['n_name','n_org','n_email','n_phone','n_linkedin','n_city'].map(n=>[n,f.elements[n].value]):[];
  const cc=f.querySelector('select[data-for=n_phone]').value;f.reset();me.forEach(([n,v])=>f.elements[n].value=v);
  f.querySelectorAll('select.cc-pick').forEach(s=>{s.value=cc;s.dispatchEvent(new Event('change'))});delete f.elements.c_phone.dataset.touched;
@@ -1909,7 +1920,7 @@ f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
  go.disabled=true;go.textContent='Sending…';
  try{const q=new URLSearchParams(new FormData(f)),cc=document.getElementById('rf-cc');q.set('phone','+'+cc.value+' '+q.get('phone').trim().replace(/^0+/,''));q.set('page',location.href);
   fetch(f.dataset.action,{method:'POST',mode:'no-cors',keepalive:true,body:q}).catch(()=>{if(!navigator.sendBeacon||!navigator.sendBeacon(f.dataset.action,q))fetch(f.dataset.action,{method:'POST',mode:'no-cors',body:q}).catch(()=>{})});
-  f.hidden=true;done.hidden=false;f.reset()}
+  f.hidden=true;done.hidden=false;f.reset();window.gefConfetti(d)}
  catch(x){err.textContent='Something went wrong. Please try again.';err.hidden=false}
  finally{go.disabled=false;go.textContent='Register Now'}});})();
 </script>
