@@ -1466,6 +1466,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
   <form class="reg-form" id="reg-form" data-action="https://script.google.com/macros/s/AKfycbwOZJQm2I6TTjFxq1paMMYjH54U2tI1obnGWwDN84U9g0GqmXU8NB0tenhw-H8PVsRL_A/exec" novalidate>
     <p class="reg-intro">Evening Forum, Giving Economy Awards and Pledge Ceremony, 5 pm to 9 pm SGT.</p>
     <label class="rf"><span>Full Name <i>*</i></span><input name="name" autocomplete="name" required></label>
+    <label class="rf"><span>Email Address <i>*</i></span><input name="email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
     <div class="rf"><label for="rf-phone"><span>Phone Number <i>*</i></span></label><div class="rf-tel"><select id="rf-cc" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="rf-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
     <label class="rf"><span>Where Do You Work? <i>*</i></span><input name="work" autocomplete="organization" placeholder="Name of your company or business" required></label>
     <fieldset class="rf"><legend>How Many People Attending Along With You? <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="guests" value="NA" required> Just me</label><label><input type="radio" name="guests" value="1"> 1</label><label><input type="radio" name="guests" value="2"> 2</label></div></fieldset>
@@ -1621,9 +1622,9 @@ d.addEventListener('click',e=>{if(e.target===d)d.close()});
 d.addEventListener('close',()=>{document.body.classList.remove('reg-open');if(!done.hidden){done.hidden=true;f.hidden=false}});
 f.addEventListener('input',e=>{e.target.classList.remove('bad');const fs=e.target.closest('fieldset');if(fs)fs.classList.remove('bad')});
 f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
- f.querySelectorAll('input:not([type=radio]),textarea').forEach(i=>{const bad=!i.value.trim();i.classList.toggle('bad',bad);if(bad)ok=false});
+ f.querySelectorAll('input:not([type=radio]),textarea').forEach(i=>{const v=i.value.trim(),bad=!v||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));i.classList.toggle('bad',bad);if(bad)ok=false});
  const fs=f.querySelector('fieldset'),r=fs.querySelector('input:checked');fs.classList.toggle('bad',!r);if(!r)ok=false;
- err.hidden=ok;if(!ok){const b=f.querySelector('.bad');if(b)b.scrollIntoView({block:'center',behavior:'smooth'});return}
+ err.hidden=ok;if(!ok){err.textContent=f.querySelector('input[type=email].bad')&&f.querySelectorAll('.bad').length===1?'Please check your email address.':'Please fill in all the fields marked *.';err.hidden=false;const b=f.querySelector('.bad');if(b)b.scrollIntoView({block:'center',behavior:'smooth'});return}
  go.disabled=true;go.textContent='Sending…';
  try{await fetch(f.dataset.action,{method:'POST',mode:'no-cors',body:(()=>{const q=new URLSearchParams(new FormData(f)),cc=document.getElementById('rf-cc');q.set('phone','+'+cc.value+' '+q.get('phone').trim().replace(/^0+/,''));q.set('page',location.href);return q})()});f.hidden=true;done.hidden=false;f.reset()}
  catch(x){err.textContent='Something went wrong. Please try again, or use the Google Forms link below.';err.hidden=false}
