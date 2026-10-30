@@ -780,6 +780,23 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 @media (max-width:760px){.pin26{max-width:none;width:100%;justify-self:stretch}}
 .p26-art .p26-media{transform:translateZ(0)}
 @media (prefers-reduced-motion:reduce){.p26-vid{display:none}}
+/* Registration pop-up (Google Form inside the site) */
+.reg-dlg{width:min(720px,calc(100vw - 32px));height:min(860px,calc(100dvh - 48px));max-width:none;max-height:none;padding:0;border:0;border-radius:20px;background:var(--bg);color:var(--fg);box-shadow:0 40px 100px -20px rgba(21,32,41,.5);overflow:hidden}
+.reg-dlg[open]{display:flex;flex-direction:column}
+.reg-dlg::backdrop{background:rgba(13,22,27,.62);backdrop-filter:blur(3px)}
+.reg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 24px 16px;border-bottom:1px solid var(--line);position:relative}
+.reg-head::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--sdg)}
+.reg-head .eyebrow{margin:0 0 4px}.reg-head h2{margin:0;font-size:clamp(1.3rem,2.4vw,1.7rem)}
+.reg-x{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.6rem;line-height:1;cursor:pointer}
+.reg-x:hover{border-color:var(--fg)}
+.reg-body{position:relative;flex:1;min-height:0;background:#F4F1EA}
+.reg-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.reg-load{position:absolute;inset:0;display:grid;place-items:center;margin:0;color:var(--muted);font-size:.95rem}
+.reg-foot{margin:0;padding:10px 24px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
+.reg-foot a{color:var(--accent)}
+body.reg-open{overflow:hidden}
+@media (max-width:640px){.reg-dlg{width:100vw;height:100dvh;border-radius:0}.reg-head{padding:16px}.reg-foot{padding:10px 16px}}
+[data-theme="dark"] .reg-body{background:#1b2429}
 /* ===== Royal palette: deep green kept for buttons, gold carries the accents, warm ivory tints ===== */
 :root{--accent:#005335;--gold-ink:#8C6B1E;--gold-line:#C29A3B;--tint:#FAF7F0;--tint-2:#F8F2E4}
 .eyebrow,.slide-copy .eyebrow,.bighero-copy .eyebrow,.phero .eyebrow,.cs h4,.obj .n,.ms .d,.programme .n,.story small,.pcard small,.ag-tm,.pub .cover small{color:var(--gold-ink)}
@@ -1423,6 +1440,11 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <div class="legal"><span>© 2026 Giving Economy Forum</span><span class="legal-links"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a></span><span>Powered by <a href="https://www.crowdera.com/" target="_blank" rel="noopener">Crowdera</a></span></div>
   </div>
 </footer>
+<dialog class="reg-dlg" id="reg-dlg" aria-labelledby="reg-dlg-t" data-embed="https://docs.google.com/forms/d/e/1FAIpQLSf83JjZ2S_yFA78FIjMAMgFQiWbYVwc-D4bVjzfZ2nAEnoL8Q/viewform?embedded=true">
+  <div class="reg-head"><div><p class="eyebrow">Wednesday, 25 November 2026 · ONE°15 Marina</p><h2 id="reg-dlg-t">Register for GEF 2026</h2></div><button class="reg-x" type="button" aria-label="Close">&times;</button></div>
+  <div class="reg-body"><p class="reg-load">Loading the registration form…</p><iframe title="GEF 2026 registration form" loading="lazy"></iframe></div>
+  <p class="reg-foot">Trouble with the form? <a href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">Open it in a new tab</a></p>
+</dialog>
 
 <script>
 const AW={
@@ -1539,6 +1561,17 @@ document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
 (()=>{const b=document.getElementById('theme-btn'),r=document.documentElement;if(!b)return;
 const sync=()=>{const d=r.dataset.theme==='dark';b.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');b.setAttribute('aria-pressed',d)};
 b.addEventListener('click',()=>{if(r.dataset.theme==='dark')delete r.dataset.theme;else r.dataset.theme='dark';try{localStorage.setItem('gef-theme',r.dataset.theme||'light')}catch(e){}sync()});sync()})();
+</script>
+<script>
+/* Register links open the Google Form in a pop-up so visitors stay on the site */
+(()=>{const d=document.getElementById('reg-dlg');if(!d||typeof d.showModal!=='function')return;
+const f=d.querySelector('iframe'),href=d.querySelector('.reg-foot a').getAttribute('href');
+const open=()=>{if(!f.src)f.src=d.dataset.embed;d.showModal();document.body.classList.add('reg-open')};
+document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.closest('#reg-dlg')||a.getAttribute('href')!==href)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();open()});
+d.querySelector('.reg-x').onclick=()=>d.close();
+d.addEventListener('click',e=>{if(e.target===d)d.close()});
+d.addEventListener('close',()=>document.body.classList.remove('reg-open'));
+f.addEventListener('load',()=>{const l=d.querySelector('.reg-load');if(l)l.remove()});})();
 </script>
 
 </body>
