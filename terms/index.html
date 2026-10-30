@@ -816,51 +816,144 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .reg-foot{margin:0;padding:10px 24px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
 .reg-foot a{color:var(--accent)}
 body.reg-open{overflow:hidden}
-/* Nomination pop-up: four steps, same shell as the Register pop-up */
-.nom-dlg{width:min(760px,calc(100vw - 32px))}
-.nf-steps{list-style:none;margin:0;padding:12px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-bottom:1px solid var(--line);background:var(--tint)}
-.nf-steps li{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--muted);min-width:0}
-.nf-steps b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);background:var(--bg);font-size:.8rem}
-.nf-steps span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nf-steps li.on{color:var(--fg)}.nf-steps li.on b{background:var(--accent);border-color:var(--accent);color:#fff}
-.nf-steps li.ok b{background:var(--gold-line);border-color:var(--gold-line);color:#fff;font-size:0}.nf-steps li.ok b::after{content:"✓";font-size:.85rem}
-.nom-form{grid-auto-rows:max-content}.nf-step{display:grid;gap:16px;min-width:0;align-content:start;padding:0;margin:0}.nf-nav .btn[hidden]{display:none}.nf-step[hidden],.nf-steps[hidden]{display:none}
-.nf-h{margin:0;font-size:1.3rem}.nf-sub{margin:-10px 0 0;color:var(--muted);font-size:.92rem}
-.nf-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.nf-lbl{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:.92rem}
-.nf-cnt{font-style:normal;font-weight:400;font-size:.78rem;color:var(--muted);white-space:nowrap}
-.nf-hint{color:var(--muted);font-size:.82rem;line-height:1.45}
+/* Nomination: full-screen four-step form, laid out like the awards' own nomination page */
+.nom-dlg{width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;inset:0;padding:0;border:0;background:var(--tint);color:var(--fg)}
+.nom-dlg[open]{display:block}
+.nom-dlg::backdrop{background:rgba(13,22,27,.62)}
+.nf-scroll{height:100%;overflow:auto;display:flex;flex-direction:column}
+.nf-wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+.nf-ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nf-bar{position:sticky;top:0;z-index:3;background:var(--bg);border-bottom:1px solid var(--line)}
+.nf-bar::before{content:"";display:block;height:4px;background:var(--sdg)}
+.nf-bar-in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
+.nf-brand{display:flex;align-items:center;gap:16px;min-width:0}
+.nf-logo{flex:none;width:76px;height:76px;border-radius:16px;background:#fff;display:grid;place-items:center;box-shadow:0 6px 20px -8px rgba(21,32,41,.3);border:1px solid var(--line)}
+.nf-logo img{width:82%;height:auto}
+.nf-ed{margin:0 0 4px;display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;color:var(--gold-ink)}
+.nf-ed span{font:600 .7rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;background:var(--fg);color:var(--bg);padding:5px 8px;border-radius:6px}
+.nf-brand h2{margin:0;font-size:clamp(1.25rem,2.4vw,1.75rem);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;line-height:1.1}
+.nf-tag{margin:4px 0 0;color:var(--muted);font-size:.88rem}
+.nf-chips{display:flex;align-items:center;gap:10px;flex:none}
+.nf-chips>span{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:500;background:var(--bg)}
+.nf-chips .nf-ic{width:16px;height:16px;color:var(--gold-ink)}
+.nf-x{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.6rem;line-height:1;cursor:pointer;margin-left:4px}
+.nf-x:hover{border-color:var(--fg)}
+.nf-main{flex:1;padding-block:28px 40px;display:grid;gap:28px;align-content:start}
+.nf-top{display:grid;gap:24px}.nf-top[hidden]{display:none}
+.nf-hero{position:relative;padding:28px 32px;background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.nf-hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--gold-line),var(--accent))}
+.nf-kick2{display:flex;align-items:center;gap:8px;margin:0 0 12px;font:600 .74rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nf-kick2 .nf-ic{color:var(--gold-ink);width:16px;height:16px}
+.nf-hero h3{margin:0 0 12px;font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.2;max-width:30ch}
+.nf-hero>p{margin:0;color:var(--muted);max-width:75ch;line-height:1.6}
+.nf-facts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:.9rem;font-weight:500}
+.nf-facts span{display:inline-flex;align-items:center;gap:8px}
+.nf-facts i{width:8px;height:8px;border-radius:50%}.nf-facts .d1{background:var(--accent)}.nf-facts .d2{background:var(--gold-line)}
+.nf-conf{margin-left:auto;color:var(--muted);font-weight:400}.nf-conf .nf-ic{color:var(--accent);width:16px;height:16px}
+.nf-steps{list-style:none;margin:0;padding:0 0 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;border-bottom:1px solid var(--line)}
+.nf-steps li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;color:var(--muted);min-width:0;transition:background .2s,box-shadow .2s}
+.nf-steps b{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-size:.85rem}
+.nf-steps span{display:grid;font-weight:600;font-size:.95rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nf-steps small{font:500 .68rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;font-weight:500;opacity:.8}
+.nf-steps li.on{background:var(--bg);color:var(--fg);box-shadow:0 10px 30px -14px rgba(21,32,41,.35);border:1px solid var(--line)}
+.nf-steps li.on b{background:var(--accent);border-color:var(--accent);color:#fff}
+.nf-steps li.ok{background:var(--tint-2);color:var(--fg)}
+.nf-steps li.ok b{background:var(--gold-line);border-color:var(--gold-line);color:#fff;font-size:0}.nf-steps li.ok b::after{content:"✓";font-size:.9rem}
+.nom-form{display:grid;gap:22px;padding:32px 36px;background:var(--bg);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px -30px rgba(21,32,41,.35)}
+.nom-form[hidden]{display:none}
+.nf-step{display:grid;gap:20px;min-width:0;align-content:start;padding:0;margin:0}.nf-step[hidden]{display:none}
+.nf-sh{padding-bottom:18px;border-bottom:1px solid var(--line)}
+.nf-kick{margin:0 0 8px;font:600 .78rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink)}
+.nf-h{margin:0;font-size:clamp(1.35rem,2.4vw,1.8rem)}
+.nf-sub{margin:6px 0 0;color:var(--muted)}
+.nom-form .rf>span:first-child,.nom-form .rf>label>span,.nom-form .rf legend,.nom-form .nf-lbl{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.nom-form .nf-lbl{display:flex;justify-content:space-between;gap:12px}
+.nom-form .nf-lbl em{text-transform:none;letter-spacing:0}
+.nf-in{position:relative;display:block}
+.nf-in .nf-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.nom-form .nf-in input{padding-left:44px}
+.nom-form .rf input:not([type=radio]),.nom-form .rf textarea,.nom-form .rf-tel select{background:var(--tint);border-color:var(--line)}
+.nom-form .rf input:focus,.nom-form .rf textarea:focus{background:var(--bg)}
+.nf-help{color:var(--muted);font-size:.8rem}
+.nom-form .rf>.nf-in{font-weight:400;font-size:1rem}.nom-form .rf>.nf-tip{font-weight:400;font-size:.85rem}
+.nf-help-top{margin-top:-2px}
+.nf-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.nf-cnt{font:400 .75rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);white-space:nowrap;font-style:normal}
+.nf-tip{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--tint);color:var(--muted);font-size:.85rem;line-height:1.5}
+.nf-tip .nf-ic{width:16px;height:16px;margin-top:2px;color:var(--gold-ink)}
+.nf-tip q{font-style:italic}
+.nf-legrow{display:flex!important;justify-content:space-between;align-items:baseline;gap:12px;width:100%;flex-wrap:wrap}
+.nf-legrow a{display:inline-flex;align-items:center;gap:6px;font:600 .74rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:none;letter-spacing:.04em;color:var(--gold-ink);text-decoration:none}
+.nf-legrow a .nf-ic{width:14px;height:14px}
 .nf-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.nf-who,.nf-cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-radius:14px}
-.nf-cats{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));margin-top:6px}
+.nf-who,.nf-cats{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-radius:14px;margin-top:8px}
+.nf-cats{grid-template-columns:repeat(3,1fr)}
 .nf-who label,.nf-cats label{position:relative;display:block;cursor:pointer}
 .nf-who input,.nf-cats input,.nf-sdgs input{position:absolute;opacity:0;pointer-events:none}
-.nf-who span,.nf-cats span{display:grid;gap:4px;height:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);transition:border-color .15s,background .15s}
-.nf-who small,.nf-cats em{color:var(--muted);font-size:.84rem;font-style:normal;line-height:1.45}
-.nf-cats small{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gold-ink)}
-.nf-cats b{font-size:1rem}
-.nf-who input:checked+span,.nf-cats input:checked+span{border-color:var(--accent);background:var(--tint);box-shadow:inset 0 0 0 1px var(--accent)}
+.nf-who>label>span,.nf-cats>label>span{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px 20px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);transition:border-color .15s,background .15s,box-shadow .15s}
+.nf-who label:hover>span,.nf-cats label:hover>span{border-color:var(--gold-line)}
+.nf-who b{font-size:1.05rem;padding-right:30px}.nf-who small{color:var(--muted);font-size:.88rem}
+.nf-who>label>span::after{content:"";position:absolute;top:18px;right:18px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg)}
+.nf-who input:checked+span::after{border:6px solid var(--accent)}
+.nc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
+.nc-ic{width:34px;height:34px;padding:7px;border-radius:9px;background:var(--tint);fill:none;stroke:var(--accent);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nc-top small{font:600 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink);border:1px solid var(--gold-line);border-radius:6px;padding:5px 7px;white-space:nowrap}
+.nf-cats b{font-size:1.02rem}
+.nf-cats em{font-style:normal;color:var(--muted);font-size:.85rem;line-height:1.5;flex:1}
+.nc-sel{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.nc-sel::after{content:"";width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line)}
+.nf-who input:checked+span,.nf-cats input:checked+span{border-color:var(--accent);background:var(--tint-2);box-shadow:inset 0 0 0 1px var(--accent)}
+.nf-cats input:checked+span .nc-sel{color:var(--accent);font-weight:600}
+.nf-cats input:checked+span .nc-sel::after{border:5px solid var(--accent)}
+.nf-cats input:checked+span .nc-ic{background:var(--accent);stroke:#fff}
 .nf-who input:focus-visible+span,.nf-cats input:focus-visible+span,.nf-sdgs input:focus-visible+span{outline:2px solid var(--gold-line);outline-offset:2px}
-.nf-who span::after,.nf-cats span::after{content:"";position:absolute;top:14px;right:14px;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg)}
-.nf-who input:checked+span::after,.nf-cats input:checked+span::after{border:5px solid var(--accent)}
-.nf-who b,.nf-cats b{padding-right:24px}
-.rf.bad .nf-who span,.rf.bad .nf-cats span,.rf.bad .nf-sdgs{border-color:#B3261E}
-.nf-sdg-q{margin-top:6px}
-.nf-sdgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:8px;max-height:236px;overflow:auto;padding:8px;border:1.5px solid var(--line);border-radius:14px;margin-top:8px}
+.rf.bad .nf-who>label>span,.rf.bad .nf-cats>label>span,.rf.bad .nf-sdgs{border-color:#B3261E}
+.nf-q{margin-top:8px}
+.nf-sdgs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:300px;overflow:auto;padding:10px;border:1.5px solid var(--line);border-radius:14px;margin-top:10px}
 .nf-sdgs label{position:relative;cursor:pointer}.nf-sdgs label[hidden]{display:none}
-.nf-sdgs span{display:flex;align-items:center;gap:10px;padding:7px 10px;border:1.5px solid transparent;border-radius:10px;font-size:.86rem;line-height:1.3}
-.nf-sdgs span:hover{background:var(--tint)}
+.nf-sdgs span{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-size:.86rem;line-height:1.3;background:var(--bg)}
+.nf-sdgs span:hover{border-color:var(--gold-line)}
 .nf-sdgs b{flex:none;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:.78rem}
-.nf-sdgs input:checked+span{border-color:var(--accent);background:var(--tint);font-weight:600}
-.nf-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:4px}
-.nf-nav .nf-next{margin-left:auto}
-.nf-note{margin:0;font-size:.8rem;color:var(--muted)}
+.nf-sdgs input:checked+span{border-color:var(--accent);background:var(--tint-2);font-weight:600;box-shadow:inset 0 0 0 1px var(--accent)}
+.nf-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line)}
+.nf-nav .nf-next{margin-left:auto;padding-inline:1.8em}
+.nf-nav .btn[hidden]{display:none}
+.nom-done{display:grid;justify-items:center;text-align:center;gap:16px;padding:20px 0}
+.nom-done[hidden]{display:none}
+.nd-logo{width:110px;height:110px;border-radius:24px}
+.nd-pill{margin:0;padding:8px 16px;border-radius:999px;background:var(--tint-2);color:var(--accent);font-weight:600;font-size:.9rem;border:1px solid rgba(0,83,53,.25)}
+.nom-done h3{margin:0;font-size:clamp(1.8rem,4vw,2.6rem)}
 .nd-name{color:var(--gold-ink)}
-.nd-card{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin:6px 0 0;padding:18px 22px;width:min(100%,480px);text-align:left;background:var(--tint);border-left:4px solid var(--gold-line);border-radius:0 12px 12px 0}
-.nd-card dt{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gold-ink)}
-.nd-card dd{margin:2px 0 0;font-weight:600}.nd-wide{grid-column:1/-1}
-.nd-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-@media (max-width:640px){.nf-steps{padding:10px 16px}.nf-steps li span{display:none}.nf-steps li.on span{display:inline}.nf-steps{grid-template-columns:auto auto auto auto;justify-content:start;gap:10px}.nf-2,.nf-who{grid-template-columns:1fr}.nf-sdgs{max-height:none}}
+.nd-lede{margin:0;max-width:48ch;color:var(--muted);font-size:1.02rem}
+.nd-card{width:min(100%,640px);text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(21,32,41,.35)}
+.nd-card::before{content:"";display:block;height:5px;background:var(--sdg)}
+.nd-head,.nd-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 24px;font-size:.85rem;color:var(--muted)}
+.nd-head{font:600 .78rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+.nd-head span,.nd-foot span{display:inline-flex;align-items:center;gap:6px}
+.nd-head .nf-ic,.nd-foot .nf-ic{width:15px;height:15px;color:var(--gold-ink)}
+.nd-card dl{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin:0;padding:20px 24px}
+.nd-card dt{font:500 .7rem/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.nd-card dd{margin:4px 0 0;font-weight:600;font-size:1.1rem}.nd-cat{color:var(--gold-ink)}.nd-wide{grid-column:1/-1}
+.nd-foot{border-top:1px solid var(--line)}.nd-foot span:first-child{color:var(--accent)}
+.nd-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}
+.nd-btns .nf-ic{width:16px;height:16px}
+.nf-foot{border-top:1px solid var(--line);background:var(--bg);padding:18px 0;font-size:.85rem;color:var(--muted)}
+.nf-foot .nf-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap}
+.nf-foot span{display:inline-flex;align-items:center;gap:8px}.nf-foot .nf-ic{width:16px;height:16px;color:var(--accent)}
+.nf-foot span:not(:first-child){font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem}.nf-foot b{color:var(--fg)}
+@media (max-width:900px){.nf-cats,.nf-sdgs{grid-template-columns:1fr 1fr}.nf-chips>span{display:none}}
+@media (max-width:640px){
+ .nf-wrap{width:calc(100% - 32px)}
+ .nf-bar-in{padding-block:12px}.nf-logo{width:52px;height:52px;border-radius:12px}.nf-tag{display:none}.nf-brand{gap:12px}
+ .nf-main{padding-block:16px 28px;gap:18px}
+ .nf-hero{padding:20px 20px 18px}.nf-hero>p{font-size:.9rem}.nf-conf{margin-left:0}
+ .nf-steps{grid-template-columns:repeat(4,auto);gap:6px;overflow-x:auto;justify-content:start}
+ .nf-steps li{padding:8px 10px}.nf-steps small{display:none}.nf-steps li:not(.on) span{display:none}
+ .nom-form{padding:22px 18px;gap:18px}
+ .nf-2,.nf-who,.nf-cats,.nf-sdgs{grid-template-columns:1fr}.nf-sdgs{max-height:none}
+ .nf-foot .nf-wrap{flex-direction:column;align-items:flex-start;gap:6px}
+ .nd-card dl{grid-template-columns:1fr}
+}
 @media (max-height:820px) and (min-width:641px){.reg-head{padding:14px 24px 12px}.reg-form{gap:12px;padding-top:14px}.rf input:not([type=radio]),.rf textarea{padding:10px 14px}.rf-opts label{padding:7px 14px}.reg-intro{font-size:.85rem}}
 @media (max-width:640px){.reg-dlg{width:100%;height:100%;max-height:none;max-width:none;margin:0;inset:0;border-radius:0}.reg-form,.reg-done{padding:16px}.reg-head{padding:16px}.reg-foot{padding:10px 16px}}
 /* ===== Royal palette: deep green kept for buttons, gold carries the accents, warm ivory tints ===== */
@@ -962,6 +1055,14 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
   .doc-body a,.crumb a{padding-block:6px;display:inline-block}
 }
 @media (prefers-reduced-motion:reduce){.swipe-hint::after{animation:none}}
+/* Royal buttons (v95): gold instead of green, deep ink on hover */
+.btn-primary,[data-theme="dark"] .btn-primary{background:linear-gradient(180deg,#DDBB66 0%,#BC9238 100%);border-color:#B48A33;color:#1F1606;box-shadow:0 8px 20px -10px rgba(140,107,30,.7),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-primary:hover,[data-theme="dark"] .btn-primary:hover{background:#152029;border-color:#C29A3B;color:#F1C970}
+[data-theme="dark"] .btn-primary:hover{background:#0D161B}
+.reg-dlg,.nom-dlg{--accent:#8C6B1E}
+.reg-dlg .rf input:focus,.reg-dlg .rf textarea:focus,.reg-dlg .rf-tel select:focus,.nom-dlg .rf input:focus,.nom-dlg .rf textarea:focus,.nom-dlg .rf-tel select:focus{border-color:var(--gold-line);box-shadow:0 0 0 3px rgba(194,154,59,.2)}
+.reg-dlg .rf-opts label:has(input:checked){background:rgba(194,154,59,.1)}
+[data-theme="dark"] .reg-dlg,[data-theme="dark"] .nom-dlg{--accent:#E0B85A}
 </style>
 </head>
 <body>
@@ -1521,84 +1622,89 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
   </form>
   <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
 </dialog>
-<dialog class="reg-dlg nom-dlg" id="nom-dlg" data-nom="https://forms.gle/uXBA7wXEDZ21ZuycA" aria-labelledby="nom-dlg-t">
-  <div class="reg-head"><div><p class="eyebrow">Giving Economy Awards 2026 · 9th Edition</p><h2 id="nom-dlg-t">Nominate a Changemaker</h2></div><button class="reg-x" type="button" aria-label="Close">&times;</button></div>
-  <ol class="nf-steps" aria-label="Nomination steps">
-    <li class="on"><b>1</b><span>Nominator</span></li><li><b>2</b><span>Nominee</span></li><li><b>3</b><span>Impact</span></li><li><b>4</b><span>Category</span></li>
-  </ol>
-  <form class="reg-form nom-form" id="nom-form" data-action="https://script.google.com/macros/s/AKfycbzCkp0teVw8M3JJ-a22eJv3OIEw48EE7_x8l9lQnZwsr-h5dqyON4VLp7nlPmxT3LXdWg/exec" novalidate>
+<dialog class="nom-dlg" id="nom-dlg" data-nom="https://forms.gle/uXBA7wXEDZ21ZuycA" aria-labelledby="nom-dlg-t">
+ <div class="nf-scroll">
+  <header class="nf-bar"><div class="nf-wrap nf-bar-in">
+   <div class="nf-brand"><span class="nf-logo"><img src="../images/logo.png" loading="lazy" alt="Giving Economy Forum 2026 logo"></span><div><p class="nf-ed"><span>9th Edition</span>Awards 2026</p><h2 id="nom-dlg-t">Giving Economy Awards</h2><p class="nf-tag">Honouring Sustainability &amp; Social Impact across 17 UN SDGs</p></div></div>
+   <div class="nf-chips"><span><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Singapore</span><span><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg>25 Nov 2026</span><button class="nf-x" type="button" aria-label="Close">&times;</button></div>
+  </div></header>
+  <div class="nf-wrap nf-main">
+   <div class="nf-top">
+    <section class="nf-hero">
+     <p class="nf-kick2"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg>Official Nomination Entry</p>
+     <h3>Nominate a Changemaker Driving the UN Sustainable Development Goals</h3>
+     <p>An opportunity to celebrate and recognise individuals and organisations from the business and social world, who pursue the purpose of bringing sustainability to society and solving social problems with their initiatives and efforts in alignment with the 17 UN SDGs.</p>
+     <div class="nf-facts"><span><i class="d1"></i>250+ Changemakers Honoured</span><span><i class="d2"></i>500+ Talks &amp; Webinars</span><span class="nf-conf"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>100% Confidential Evaluation</span></div>
+    </section>
+    <ol class="nf-steps" aria-label="Nomination steps">
+     <li class="on"><b>1</b><span><small>Step 01</small>Nominator</span></li><li><b>2</b><span><small>Step 02</small>Nominee</span></li><li><b>3</b><span><small>Step 03</small>Impact</span></li><li><b>4</b><span><small>Step 04</small>Categories</span></li>
+    </ol>
+   </div>
+   <form class="nom-form" id="nom-form" data-action="https://script.google.com/macros/s/AKfycbzCkp0teVw8M3JJ-a22eJv3OIEw48EE7_x8l9lQnZwsr-h5dqyON4VLp7nlPmxT3LXdWg/exec" novalidate>
     <input type="hidden" name="form" value="nomination">
-
     <section class="nf-step" data-step="1">
-      <p class="reg-intro">An opportunity to celebrate and recognise individuals and organisations from the business and social world, who pursue the purpose of bringing sustainability to society and solving social problems with their initiatives and efforts in alignment with the 17 UN SDGs.</p>
-      <h3 class="nf-h">About You</h3>
-      <p class="nf-sub">Your details, so our jury panel can reach you about this nomination.</p>
-      <label class="rf"><span>Your Full Name <i>*</i></span><input name="n_name" autocomplete="name" required></label>
-      <label class="rf"><span>Your Organisation &amp; Designation</span><input name="n_org" autocomplete="organization-title" placeholder="e.g. Director, Green Future Foundation"></label>
-      <div class="nf-2">
-        <label class="rf"><span>Your Email Address <i>*</i></span><input name="n_email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
-        <div class="rf"><label for="nf-n-phone"><span>Your Mobile Number <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="n_phone" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="nf-n-phone" name="n_phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
-      </div>
-      <div class="nf-2">
-        <label class="rf"><span>Your LinkedIn Profile</span><input name="n_linkedin" type="url" inputmode="url" placeholder="linkedin.com/in/yourname"></label>
-        <label class="rf"><span>Your City</span><input name="n_city" autocomplete="address-level2" placeholder="e.g. Singapore"></label>
-      </div>
+     <header class="nf-sh"><p class="nf-kick">01 / 04 · Nominator Profile</p><h3 class="nf-h">First, Let's Get to Know You</h3><p class="nf-sub">Please share your details so the jury panel can reach you about the nomination.</p></header>
+     <label class="rf nf-f"><span>Your Full Name <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0"/></svg><input name="n_name" placeholder="e.g. Dr Priya Sharma" autocomplete="name" required></span></label>
+     <label class="rf nf-f"><span>Your Organisation &amp; Designation</span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3v17M12 9h8v11M8 8h.01M8 12h.01M8 16h.01M16 13h.01M16 17h.01M2 20h20"/></svg><input name="n_org" placeholder="e.g. Chief Impact Officer, GreenFuture Ventures" autocomplete="organization-title"></span></label>
+     <div class="nf-2">
+      <label class="rf nf-f"><span>Your Email Address <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><input name="n_email" type="email" placeholder="name@organisation.com" autocomplete="email" inputmode="email" required></span><small class="nf-help">Please check your email so we can reach you.</small></label>
+      <div class="rf nf-f"><label for="nf-n-phone"><span>Your Mobile Number <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="n_phone" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="nf-n-phone" name="n_phone" type="tel" inputmode="tel" autocomplete="tel-national" required></div><small class="nf-help">Pick your country code, then your number.</small></div>
+     </div>
+     <div class="nf-2">
+      <label class="rf nf-f"><span>Your LinkedIn Profile</span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3v11H4zM5.5 4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM10 9h3v1.6c.6-1 1.7-1.8 3.4-1.8 3 0 3.6 2 3.6 4.6V20h-3v-5.8c0-1.3-.2-2.6-1.9-2.6s-2.1 1.3-2.1 2.6V20h-3z"/></svg><input name="n_linkedin" type="url" placeholder="linkedin.com/in/username" inputmode="url"></span></label>
+      <label class="rf nf-f"><span>Your Current City</span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><input name="n_city" placeholder="e.g. Singapore, London, Mumbai" autocomplete="address-level2"></span></label>
+     </div>
     </section>
-
     <section class="nf-step" data-step="2" hidden>
-      <h3 class="nf-h">Who Are You Nominating?</h3>
-      <p class="nf-sub">Nominate yourself, or put forward a colleague, partner, founder or community champion.</p>
-      <fieldset class="rf"><legend class="nf-vh">Who are you nominating? <i>*</i></legend><div class="nf-who">
-        <label><input type="radio" name="who" value="Self" required><span><b>Myself</b><small>My own initiative or leadership</small></span></label>
-        <label><input type="radio" name="who" value="Someone else"><span><b>Someone Else</b><small>A person or organisation I know</small></span></label>
-      </div></fieldset>
-      <label class="rf"><span>Name of Nominee <i>*</i></span><input name="c_name" placeholder="Full name of the person or organisation" required></label>
-      <label class="rf"><span>Nominee's Organisation &amp; Designation <i>*</i></span><input name="c_org" placeholder="e.g. Founder &amp; CEO, SolarWave" required></label>
-      <div class="nf-2">
-        <label class="rf"><span>Nominee's Email Address <i>*</i></span><input name="c_email" type="email" inputmode="email" required></label>
-        <div class="rf"><label for="nf-c-phone"><span>Nominee's Mobile Number <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="c_phone" aria-label="Nominee country code"><option value="65">🇸🇬 +65</option></select><input id="nf-c-phone" name="c_phone" type="tel" inputmode="tel" required></div></div>
-      </div>
-      <div class="nf-2">
-        <label class="rf"><span>Nominee's LinkedIn Profile</span><input name="c_linkedin" type="url" inputmode="url" placeholder="linkedin.com/in/nominee"></label>
-        <label class="rf"><span>Nominee's City <i>*</i></span><input name="c_city" placeholder="e.g. Singapore" required></label>
-      </div>
+     <header class="nf-sh"><p class="nf-kick">02 / 04 · Candidate Information</p><h3 class="nf-h">Who Are You Nominating?</h3><p class="nf-sub">Select whether this is a self-nomination or on behalf of a partner, leader or organisation.</p></header>
+     <fieldset class="rf"><legend>Who Are You Nominating? <i>*</i></legend><div class="nf-who">
+      <label><input type="radio" name="who" value="Self" required><span><b>Yourself</b><small>Nominate your own initiative or leadership</small></span></label>
+      <label><input type="radio" name="who" value="Someone else"><span><b>Someone Else</b><small>Colleague, partner, founder or community champion</small></span></label>
+     </div></fieldset>
+     <label class="rf nf-f"><span>Name of Nominee <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0"/></svg><input name="c_name" placeholder="Full name of the person or organisation" required></span></label>
+     <label class="rf nf-f"><span>Nominee's Organisation &amp; Designation <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3v17M12 9h8v11M8 8h.01M8 12h.01M8 16h.01M16 13h.01M16 17h.01M2 20h20"/></svg><input name="c_org" placeholder="e.g. Founder &amp; CEO, SolarWave Tech" required></span></label>
+     <div class="nf-2">
+      <label class="rf nf-f"><span>Email ID of Nominee <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg><input name="c_email" type="email" placeholder="nominee@domain.com" inputmode="email" required></span><small class="nf-help">Direct email where the nominee can receive the recognition notice.</small></label>
+      <div class="rf nf-f"><label for="nf-c-phone"><span>Mobile Number of Nominee <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="c_phone" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="nf-c-phone" name="c_phone" type="tel" inputmode="tel" required></div><small class="nf-help">Direct mobile or WhatsApp number.</small></div>
+     </div>
+     <div class="nf-2">
+      <label class="rf nf-f"><span>LinkedIn Profile of Nominee</span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3v11H4zM5.5 4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM10 9h3v1.6c.6-1 1.7-1.8 3.4-1.8 3 0 3.6 2 3.6 4.6V20h-3v-5.8c0-1.3-.2-2.6-1.9-2.6s-2.1 1.3-2.1 2.6V20h-3z"/></svg><input name="c_linkedin" type="url" placeholder="linkedin.com/in/nominee" inputmode="url"></span></label>
+      <label class="rf nf-f"><span>Nominee's Current City <i>*</i></span><span class="nf-in"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><input name="c_city" placeholder="e.g. Singapore, Dubai, New York" required></span></label>
+     </div>
     </section>
-
     <section class="nf-step" data-step="3" hidden>
-      <h3 class="nf-h">Tell Us About Their Work</h3>
-      <p class="nf-sub">The change the nominee has made, and any recognition received so far.</p>
-      <label class="rf"><span class="nf-lbl"><span>What Makes the Nominee's Work Unique? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Share numbers where you can, such as communities reached, lives touched or policy changed, and what sets the approach apart.</small><textarea name="unique" rows="6" maxlength="5000" required></textarea></label>
-      <label class="rf"><span class="nf-lbl"><span>Has the Nominee Won Awards in the Past? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Fellowships, national or state honours, media features or community citations. If none yet, write "First-time nominee".</small><textarea name="awards" rows="4" maxlength="3000" required></textarea></label>
+     <header class="nf-sh"><p class="nf-kick">03 / 04 · Impact &amp; Track Record</p><h3 class="nf-h">Tell Us About the Nominee's Contribution</h3><p class="nf-sub">The core innovation, measurable outcomes for society, and past recognition.</p></header>
+     <label class="rf nf-f"><span class="nf-lbl"><span>What Makes the Nominee's Work Unique? <i>*</i></span><em class="nf-cnt">0 characters</em></span><span class="nf-tip"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Highlight measurable results (e.g. communities engaged, clean energy generated, policy influenced) and what sets this approach apart.</span></span><textarea name="unique" rows="6" maxlength="5000" placeholder="Describe the key innovation, grassroots model, quantifiable impact or systemic change this initiative achieved…" required></textarea></label>
+     <label class="rf nf-f"><span class="nf-lbl"><span>Has the Nominee Won Awards in the Past? <i>*</i></span><em class="nf-cnt">0 characters</em></span><span class="nf-tip"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Include fellowships, state or national honours, or community citations. If none yet, enter <q>First-time nominee</q>.</span></span><textarea name="awards" rows="4" maxlength="3000" placeholder="List any prior recognitions, fellowships or media features, or write 'First-time nominee'…" required></textarea></label>
     </section>
-
     <section class="nf-step" data-step="4" hidden>
-      <h3 class="nf-h">Award Category and SDG</h3>
-      <p class="nf-sub">Choose the award category and the UN Sustainable Development Goal this work supports most.</p>
-      <fieldset class="rf"><legend>Award Category <i>*</i></legend><div class="nf-cats">
-        <label><input type="radio" name="category" value="Corporate Philanthropy" required><span><small>Enterprise &amp; CSR</small><b>Corporate Philanthropy</b><em>Excellence in corporate social responsibility, ESG and institutional giving with measurable social return.</em></span></label>
-        <label><input type="radio" name="category" value="Individual Philanthropy"><span><small>Patrons &amp; Donors</small><b>Individual Philanthropy</b><em>Honouring donors, family offices and patrons driving change through personal wealth and time.</em></span></label>
-        <label><input type="radio" name="category" value="Kindness"><span><small>Humanitarian</small><b>Kindness</b><em>Recognising humanitarian acts, empathy ambassadors and grassroots kindness movements inspiring communities.</em></span></label>
-        <label><input type="radio" name="category" value="Charity"><span><small>Nonprofit &amp; Aid</small><b>Charity</b><em>Nonprofits, charitable trusts and front-line organisations providing vital relief to underserved groups.</em></span></label>
-        <label><input type="radio" name="category" value="Volunteerism"><span><small>Community Champions</small><b>Volunteerism</b><em>Volunteer champions giving their time and expertise on the ground to uplift communities.</em></span></label>
-      </div></fieldset>
-      <fieldset class="rf"><legend>Primary UN Sustainable Development Goal <i>*</i></legend>
-        <input class="nf-sdg-q" type="search" placeholder="Search by keyword or number, e.g. climate, poverty, 13" aria-label="Search goals">
-        <div class="nf-sdgs"></div>
-      </fieldset>
-      <label class="rf"><span class="nf-lbl"><span>Why Should the Nominee Win This Award? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Your reasons, plus any supporting links: website, reports, articles or videos.</small><textarea name="why" rows="5" maxlength="5000" required></textarea></label>
+     <header class="nf-sh"><p class="nf-kick">04 / 04 · Categories &amp; UN SDG Alignment</p><h3 class="nf-h">Category Selection &amp; Final Details</h3><p class="nf-sub">Choose the award category, the primary UN Sustainable Development Goal, and share supporting links.</p></header>
+     <fieldset class="rf"><legend>Award Category <i>*</i></legend><div class="nf-cats"><label><input type="radio" name="category" value="Corporate Philanthropy" required><span><span class="nc-top"><svg class="nc-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg><small>Enterprise &amp; CSR</small></span><b>Corporate Philanthropy</b><em>Excellence in corporate social responsibility, ESG and institutional giving with measurable social return.</em><span class="nc-sel">Select</span></span></label><label><input type="radio" name="category" value="Individual Philanthropy"><span><span class="nc-top"><svg class="nc-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg><small>High Impact Patrons</small></span><b>Individual Philanthropy</b><em>Honouring visionary donors, family offices and patrons driving change through personal wealth and time.</em><span class="nc-sel">Select</span></span></label><label><input type="radio" name="category" value="Kindness"><span><span class="nc-top"><svg class="nc-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg><small>Humanitarian</small></span><b>Kindness</b><em>Recognising humanitarian acts, empathy ambassadors and grassroots kindness movements inspiring communities.</em><span class="nc-sel">Select</span></span></label><label><input type="radio" name="category" value="Charity"><span><span class="nc-top"><svg class="nc-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14h4l3 2h5a2 2 0 0 0 0-4h-3M7 14v6H3M14 9.5 16.5 7a2.2 2.2 0 0 1 3 3L16 13.5"/></svg><small>Nonprofit &amp; Aid</small></span><b>Charity</b><em>Nonprofits, charitable trusts and front-line aid organisations providing vital relief to underserved groups.</em><span class="nc-sel">Select</span></span></label><label><input type="radio" name="category" value="Volunteerism"><span><span class="nc-top"><svg class="nc-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><small>Community Champions</small></span><b>Volunteerism</b><em>Unsung volunteer champions dedicating hours and expertise on the ground to uplift communities.</em><span class="nc-sel">Select</span></span></label></div></fieldset>
+     <fieldset class="rf"><legend class="nf-legrow"><span>Primary UN Sustainable Development Goal (SDG) <i>*</i></span><a href="https://sdgs.un.org/goals" target="_blank" rel="noopener">Learn about the 17 UN SDGs<svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a></legend>
+      <small class="nf-help nf-help-top">Select the primary goal this initiative champions.</small>
+      <span class="nf-in nf-q"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="nf-sdg-q" type="search" placeholder="Search goals by keyword or number (e.g. climate, poverty, 13)" aria-label="Search goals"></span>
+      <div class="nf-sdgs"></div>
+     </fieldset>
+     <label class="rf nf-f"><span class="nf-lbl"><span>Why Should the Nominee Win This Award? Supporting Links <i>*</i></span><em class="nf-cnt">0 characters</em></span><span class="nf-tip"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Share your reasons, plus any website, portfolio, reports, articles or videos.</span></span><textarea name="why" rows="5" maxlength="5000" placeholder="Highlight compelling reasons, impact numbers, or paste links (reports, articles, website, YouTube)…" required></textarea></label>
     </section>
-
     <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
     <div class="nf-nav"><button class="btn btn-line nf-back" type="button" hidden>&larr; Back</button><button class="btn btn-primary nf-next" type="button">Continue to Nominee &rarr;</button></div>
-    <p class="nf-note">Your information will not be shared with any third party. Nominations close on 20 November 2026.</p>
-  </form>
-  <div class="reg-done nom-done" hidden>
-    <div class="rd-tick" aria-hidden="true">✓</div>
+   </form>
+   <div class="nom-done" hidden>
+    <span class="nf-logo nd-logo"><img src="../images/logo.png" loading="lazy" alt=""></span>
+    <p class="nd-pill">✓ Nomination Successfully Recorded</p>
     <h3>Thank You<span class="nd-c">, </span><span class="nd-name"></span>!</h3>
-    <p>We have received your nomination and sent a copy to your email. Our jury panel will be in touch if they need anything more.</p>
-    <dl class="nd-card"><div><dt>Nominee</dt><dd class="nd-nominee"></dd></div><div><dt>Award Category</dt><dd class="nd-cat"></dd></div><div class="nd-wide"><dt>Primary UN SDG</dt><dd class="nd-sdg"></dd></div></dl>
-    <div class="nd-btns"><button class="btn btn-primary nd-again" type="button">Nominate Another Changemaker</button><button class="btn btn-line rd-close" type="button">Close</button></div>
+    <p class="nd-lede">Your nomination has been submitted to the Giving Economy Forum jury panel, and a copy is on its way to your email.</p>
+    <div class="nd-card">
+     <div class="nd-head"><span>Official Receipt · GEF-2026</span><span><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Singapore</span></div>
+     <dl><div><dt>Nominated Candidate</dt><dd class="nd-nominee"></dd></div><div><dt>Award Category</dt><dd class="nd-cat"></dd></div><div class="nd-wide"><dt>Primary UN SDG</dt><dd class="nd-sdg"></dd></div></dl>
+     <div class="nd-foot"><span><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Saved securely</span><span>Nominations close 20 November 2026</span></div>
+    </div>
+    <div class="nd-btns"><button class="btn btn-primary nd-again" type="button"><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v5h5"/></svg>Submit Another Nomination</button><a class="btn btn-line" href="https://sdgs.un.org/goals" target="_blank" rel="noopener">Explore the UN SDGs<svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a></div>
+   </div>
   </div>
+  <footer class="nf-foot"><div class="nf-wrap"><span><svg class="nf-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>Your information will not be shared with any third party</span><span>The 9th Giving Economy Forum 2026 · Singapore</span><span>Deadline: <b>20 November 2026</b></span></div></footer>
+ </div>
 </dialog>
 
 <script>
@@ -1746,10 +1852,10 @@ const SDG=[['No Poverty','#E5243B'],['Zero Hunger','#DDA63A'],['Good Health and 
 const box=f.querySelector('.nf-sdgs');
 box.innerHTML=SDG.map(([n,c],i)=>'<label><input type="radio" name="sdg" value="SDG '+(i+1)+' – '+n+'"'+(i?'':' required')+'><span><b style="background:'+c+'">'+(i+1)+'</b>'+n+'</span></label>').join('');
 f.querySelector('.nf-sdg-q').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();box.querySelectorAll('label').forEach((l,i)=>{l.hidden=!!q&&!(String(i+1)===q||l.textContent.toLowerCase().includes(q))})});
-const NEXT=['Continue to Nominee','Continue to Impact','Continue to Category','Submit Nomination'];
+const NEXT=['Continue to Nominee','Continue to Impact Story','Continue to Categories &amp; SDG','Submit Nomination'],sc=d.querySelector('.nf-scroll'),top=d.querySelector('.nf-top');
 let cur=0;
 const show=k=>{cur=k;steps.forEach((s,i)=>s.hidden=i!==k);dots.forEach((li,i)=>{li.classList.toggle('on',i===k);li.classList.toggle('ok',i<k)});
- back.hidden=k===0;next.innerHTML=NEXT[k]+(k<3?' &rarr;':'');err.hidden=true;f.scrollTop=0};
+ back.hidden=k===0;next.innerHTML=NEXT[k]+(k<3?' &rarr;':'');err.hidden=true;if(sc.scrollTop>top.offsetTop)sc.scrollTop=top.offsetTop};
 const okEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 const check=k=>{let ok=true,mail=false;const s=steps[k];
  s.querySelectorAll('input:not([type=radio]):not([type=search]),textarea').forEach(i=>{const v=i.value.trim();let bad=i.required&&!v;if(!bad&&v&&i.type==='email'&&!okEmail(v)){bad=true;mail=true}i.classList.toggle('bad',bad);if(bad)ok=false});
@@ -1774,17 +1880,16 @@ next.onclick=()=>{if(!check(cur))return;if(cur<3){show(cur+1);return}
  done.querySelector('.nd-nominee').textContent=f.elements.c_name.value.trim();
  done.querySelector('.nd-cat').textContent=f.querySelector('input[name=category]:checked').value;
  done.querySelector('.nd-sdg').textContent=f.querySelector('input[name=sdg]:checked').value;
- f.hidden=true;d.querySelector('.nf-steps').hidden=true;done.hidden=false;done.scrollTop=0};
+ f.hidden=true;top.hidden=true;done.hidden=false;sc.scrollTop=0};
 const reset=keep=>{const me=keep?['n_name','n_org','n_email','n_phone','n_linkedin','n_city'].map(n=>[n,f.elements[n].value]):[];
  const cc=f.querySelector('select[data-for=n_phone]').value;f.reset();me.forEach(([n,v])=>f.elements[n].value=v);
  f.querySelectorAll('select.cc-pick').forEach(s=>{s.value=cc;s.dispatchEvent(new Event('change'))});delete f.elements.c_phone.dataset.touched;
  f.querySelectorAll('.nf-cnt').forEach(c=>c.textContent='0 characters');box.querySelectorAll('label').forEach(l=>l.hidden=false);
- done.hidden=true;f.hidden=false;d.querySelector('.nf-steps').hidden=false;show(keep?1:0)};
+ done.hidden=true;f.hidden=false;top.hidden=false;show(keep?1:0)};
 done.querySelector('.nd-again').onclick=()=>reset(true);
 const open=()=>{d.showModal();document.body.classList.add('reg-open');setTimeout(()=>{const i=steps[cur].querySelector('input:not([type=hidden])');if(i&&!f.hidden&&matchMedia('(hover:hover)').matches)i.focus()},50)};
 document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.closest('#nom-dlg')||a.getAttribute('href')!==href)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();open()});
-d.querySelector('.reg-x').onclick=()=>d.close();done.querySelector('.rd-close').onclick=()=>d.close();
-d.addEventListener('click',e=>{if(e.target===d)d.close()});
+d.querySelector('.nf-x').onclick=()=>d.close();
 d.addEventListener('close',()=>{document.body.classList.remove('reg-open');if(!done.hidden)reset(false)});
 show(0);})();
 /* Register links open our own one-step form; answers go to the GEF registrations Google Sheet */
