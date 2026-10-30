@@ -1461,7 +1461,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <div class="legal"><span>© 2026 Giving Economy Forum</span><span class="legal-links"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Use</a></span><span>Powered by <a href="https://www.crowdera.com/" target="_blank" rel="noopener">Crowdera</a></span></div>
   </div>
 </footer>
-<dialog class="reg-dlg" id="reg-dlg" aria-labelledby="reg-dlg-t">
+<dialog class="reg-dlg" id="reg-dlg" data-reg="https://forms.gle/2dKDecWRbnphj6idA" aria-labelledby="reg-dlg-t">
   <div class="reg-head"><div><p class="eyebrow">Wednesday, 25 November 2026 · ONE°15 Marina</p><h2 id="reg-dlg-t">Register for GEF 2026</h2></div><button class="reg-x" type="button" aria-label="Close">&times;</button></div>
   <form class="reg-form" id="reg-form" data-action="https://script.google.com/macros/s/AKfycbwOZJQm2I6TTjFxq1paMMYjH54U2tI1obnGWwDN84U9g0GqmXU8NB0tenhw-H8PVsRL_A/exec" novalidate>
     <p class="reg-intro">Evening Forum, Giving Economy Awards and Pledge Ceremony, 5 pm to 9 pm SGT.</p>
@@ -1475,7 +1475,6 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <button class="btn btn-primary rf-go" type="submit">Register Now</button>
   </form>
   <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
-  <p class="reg-foot">Prefer Google Forms? <a href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">Register there instead</a></p>
 </dialog>
 
 <script>
@@ -1614,7 +1613,7 @@ compact();sel.addEventListener('focus',short);sel.addEventListener('mousedown',s
 })();
 /* Register links open our own one-step form; answers go to the GEF registrations Google Sheet */
 (()=>{const d=document.getElementById('reg-dlg');if(!d||typeof d.showModal!=='function')return;
-const href=d.querySelector('.reg-foot a').getAttribute('href'),f=document.getElementById('reg-form'),done=d.querySelector('.reg-done'),err=f.querySelector('.rf-err'),go=f.querySelector('.rf-go');
+const href=d.dataset.reg,f=document.getElementById('reg-form'),done=d.querySelector('.reg-done'),err=f.querySelector('.rf-err'),go=f.querySelector('.rf-go');
 const open=()=>{d.showModal();document.body.classList.add('reg-open');setTimeout(()=>{const i=f.querySelector('input');if(i&&!f.hidden&&matchMedia('(hover:hover)').matches)i.focus()},50)};
 document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.closest('#reg-dlg')||a.getAttribute('href')!==href)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();open()});
 d.querySelector('.reg-x').onclick=()=>d.close();d.querySelector('.rd-close').onclick=()=>d.close();
@@ -1629,7 +1628,7 @@ f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
  try{const q=new URLSearchParams(new FormData(f)),cc=document.getElementById('rf-cc');q.set('phone','+'+cc.value+' '+q.get('phone').trim().replace(/^0+/,''));q.set('page',location.href);
   fetch(f.dataset.action,{method:'POST',mode:'no-cors',keepalive:true,body:q}).catch(()=>{if(!navigator.sendBeacon||!navigator.sendBeacon(f.dataset.action,q))fetch(f.dataset.action,{method:'POST',mode:'no-cors',body:q}).catch(()=>{})});
   f.hidden=true;done.hidden=false;f.reset()}
- catch(x){err.textContent='Something went wrong. Please try again, or use the Google Forms link below.';err.hidden=false}
+ catch(x){err.textContent='Something went wrong. Please try again.';err.hidden=false}
  finally{go.disabled=false;go.textContent='Register Now'}});})();
 </script>
 
