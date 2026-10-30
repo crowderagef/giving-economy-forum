@@ -1,6 +1,6 @@
 # Giving Economy Forum website
 
-The website of the Giving Economy Forum (GEF), powered by Crowdera.
+The website of the Giving Economy Forum, powered by Crowdera.
 
 This is a static site with no build step. `index.html` holds every page (Home, About Us, The Community, Stories of Change, Contact). Pages switch by URL hash, for example `#about`. All photos and the logo live in `images/`.
 
