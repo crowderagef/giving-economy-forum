@@ -816,6 +816,51 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .reg-foot{margin:0;padding:10px 24px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
 .reg-foot a{color:var(--accent)}
 body.reg-open{overflow:hidden}
+/* Nomination pop-up: four steps, same shell as the Register pop-up */
+.nom-dlg{width:min(760px,calc(100vw - 32px))}
+.nf-steps{list-style:none;margin:0;padding:12px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-bottom:1px solid var(--line);background:var(--tint)}
+.nf-steps li{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--muted);min-width:0}
+.nf-steps b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);background:var(--bg);font-size:.8rem}
+.nf-steps span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nf-steps li.on{color:var(--fg)}.nf-steps li.on b{background:var(--accent);border-color:var(--accent);color:#fff}
+.nf-steps li.ok b{background:var(--gold-line);border-color:var(--gold-line);color:#fff;font-size:0}.nf-steps li.ok b::after{content:"✓";font-size:.85rem}
+.nf-step{display:grid;gap:16px;min-width:0}.nf-step[hidden],.nf-steps[hidden]{display:none}
+.nf-h{margin:0;font-size:1.3rem}.nf-sub{margin:-10px 0 0;color:var(--muted);font-size:.92rem}
+.nf-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.nf-lbl{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:.92rem}
+.nf-cnt{font-style:normal;font-weight:400;font-size:.78rem;color:var(--muted);white-space:nowrap}
+.nf-hint{color:var(--muted);font-size:.82rem;line-height:1.45}
+.nf-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.nf-who,.nf-cats{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-radius:14px}
+.nf-cats{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));margin-top:6px}
+.nf-who label,.nf-cats label{position:relative;display:block;cursor:pointer}
+.nf-who input,.nf-cats input,.nf-sdgs input{position:absolute;opacity:0;pointer-events:none}
+.nf-who span,.nf-cats span{display:grid;gap:4px;height:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);transition:border-color .15s,background .15s}
+.nf-who small,.nf-cats em{color:var(--muted);font-size:.84rem;font-style:normal;line-height:1.45}
+.nf-cats small{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gold-ink)}
+.nf-cats b{font-size:1rem}
+.nf-who input:checked+span,.nf-cats input:checked+span{border-color:var(--accent);background:var(--tint);box-shadow:inset 0 0 0 1px var(--accent)}
+.nf-who input:focus-visible+span,.nf-cats input:focus-visible+span,.nf-sdgs input:focus-visible+span{outline:2px solid var(--gold-line);outline-offset:2px}
+.nf-who span::after,.nf-cats span::after{content:"";position:absolute;top:14px;right:14px;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg)}
+.nf-who input:checked+span::after,.nf-cats input:checked+span::after{border:5px solid var(--accent)}
+.nf-who b,.nf-cats b{padding-right:24px}
+.rf.bad .nf-who span,.rf.bad .nf-cats span,.rf.bad .nf-sdgs{border-color:#B3261E}
+.nf-sdg-q{margin-top:6px}
+.nf-sdgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:8px;max-height:236px;overflow:auto;padding:8px;border:1.5px solid var(--line);border-radius:14px;margin-top:8px}
+.nf-sdgs label{position:relative;cursor:pointer}.nf-sdgs label[hidden]{display:none}
+.nf-sdgs span{display:flex;align-items:center;gap:10px;padding:7px 10px;border:1.5px solid transparent;border-radius:10px;font-size:.86rem;line-height:1.3}
+.nf-sdgs span:hover{background:var(--tint)}
+.nf-sdgs b{flex:none;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:.78rem}
+.nf-sdgs input:checked+span{border-color:var(--accent);background:var(--tint);font-weight:600}
+.nf-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:4px}
+.nf-nav .nf-next{margin-left:auto}
+.nf-note{margin:0;font-size:.8rem;color:var(--muted)}
+.nd-name{color:var(--gold-ink)}
+.nd-card{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin:6px 0 0;padding:18px 22px;width:min(100%,480px);text-align:left;background:var(--tint);border-left:4px solid var(--gold-line);border-radius:0 12px 12px 0}
+.nd-card dt{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gold-ink)}
+.nd-card dd{margin:2px 0 0;font-weight:600}.nd-wide{grid-column:1/-1}
+.nd-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+@media (max-width:640px){.nf-steps{padding:10px 16px}.nf-steps li span{display:none}.nf-steps li.on span{display:inline}.nf-steps{grid-template-columns:auto auto auto auto;justify-content:start;gap:10px}.nf-2,.nf-who{grid-template-columns:1fr}.nf-sdgs{max-height:none}}
 @media (max-height:820px) and (min-width:641px){.reg-head{padding:14px 24px 12px}.reg-form{gap:12px;padding-top:14px}.rf input:not([type=radio]),.rf textarea{padding:10px 14px}.rf-opts label{padding:7px 14px}.reg-intro{font-size:.85rem}}
 @media (max-width:640px){.reg-dlg{width:100%;height:100%;max-height:none;max-width:none;margin:0;inset:0;border-radius:0}.reg-form,.reg-done{padding:16px}.reg-head{padding:16px}.reg-foot{padding:10px 16px}}
 /* ===== Royal palette: deep green kept for buttons, gold carries the accents, warm ivory tints ===== */
@@ -1467,7 +1512,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <p class="reg-intro">Evening Forum, Giving Economy Awards and Pledge Ceremony, 5 pm to 9 pm SGT.</p>
     <label class="rf"><span>Full Name <i>*</i></span><input name="name" autocomplete="name" required></label>
     <label class="rf"><span>Email Address <i>*</i></span><input name="email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
-    <div class="rf"><label for="rf-phone"><span>Phone Number <i>*</i></span></label><div class="rf-tel"><select id="rf-cc" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="rf-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
+    <div class="rf"><label for="rf-phone"><span>Phone Number <i>*</i></span></label><div class="rf-tel"><select id="rf-cc" class="cc-pick" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="rf-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
     <label class="rf"><span>Where Do You Work? <i>*</i></span><input name="work" autocomplete="organization" placeholder="Name of your company or business" required></label>
     <fieldset class="rf"><legend>How Many People Attending Along With You? <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="guests" value="NA" required> Just me</label><label><input type="radio" name="guests" value="1"> 1</label><label><input type="radio" name="guests" value="2"> 2</label></div></fieldset>
     <label class="rf"><span>City <i>*</i></span><input name="city" autocomplete="address-level2" placeholder="e.g. Singapore" required></label>
@@ -1475,6 +1520,85 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <button class="btn btn-primary rf-go" type="submit">Register Now</button>
   </form>
   <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
+</dialog>
+<dialog class="reg-dlg nom-dlg" id="nom-dlg" data-nom="https://forms.gle/uXBA7wXEDZ21ZuycA" aria-labelledby="nom-dlg-t">
+  <div class="reg-head"><div><p class="eyebrow">Giving Economy Awards 2026 · 9th Edition</p><h2 id="nom-dlg-t">Nominate a Changemaker</h2></div><button class="reg-x" type="button" aria-label="Close">&times;</button></div>
+  <ol class="nf-steps" aria-label="Nomination steps">
+    <li class="on"><b>1</b><span>Nominator</span></li><li><b>2</b><span>Nominee</span></li><li><b>3</b><span>Impact</span></li><li><b>4</b><span>Category</span></li>
+  </ol>
+  <form class="reg-form nom-form" id="nom-form" data-action="" novalidate>
+    <input type="hidden" name="form" value="nomination">
+
+    <section class="nf-step" data-step="1">
+      <p class="reg-intro">An opportunity to celebrate and recognise individuals and organisations from the business and social world, who pursue the purpose of bringing sustainability to society and solving social problems with their initiatives and efforts in alignment with the 17 UN SDGs.</p>
+      <h3 class="nf-h">About You</h3>
+      <p class="nf-sub">Your details, so our jury panel can reach you about this nomination.</p>
+      <label class="rf"><span>Your Full Name <i>*</i></span><input name="n_name" autocomplete="name" required></label>
+      <label class="rf"><span>Your Organisation &amp; Designation</span><input name="n_org" autocomplete="organization-title" placeholder="e.g. Director, Green Future Foundation"></label>
+      <div class="nf-2">
+        <label class="rf"><span>Your Email Address <i>*</i></span><input name="n_email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
+        <div class="rf"><label for="nf-n-phone"><span>Your Mobile Number <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="n_phone" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="nf-n-phone" name="n_phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
+      </div>
+      <div class="nf-2">
+        <label class="rf"><span>Your LinkedIn Profile</span><input name="n_linkedin" type="url" inputmode="url" placeholder="linkedin.com/in/yourname"></label>
+        <label class="rf"><span>Your City</span><input name="n_city" autocomplete="address-level2" placeholder="e.g. Singapore"></label>
+      </div>
+    </section>
+
+    <section class="nf-step" data-step="2" hidden>
+      <h3 class="nf-h">Who Are You Nominating?</h3>
+      <p class="nf-sub">Nominate yourself, or put forward a colleague, partner, founder or community champion.</p>
+      <fieldset class="rf"><legend class="nf-vh">Who are you nominating? <i>*</i></legend><div class="nf-who">
+        <label><input type="radio" name="who" value="Self" required><span><b>Myself</b><small>My own initiative or leadership</small></span></label>
+        <label><input type="radio" name="who" value="Someone else"><span><b>Someone Else</b><small>A person or organisation I know</small></span></label>
+      </div></fieldset>
+      <label class="rf"><span>Name of Nominee <i>*</i></span><input name="c_name" placeholder="Full name of the person or organisation" required></label>
+      <label class="rf"><span>Nominee's Organisation &amp; Designation <i>*</i></span><input name="c_org" placeholder="e.g. Founder &amp; CEO, SolarWave" required></label>
+      <div class="nf-2">
+        <label class="rf"><span>Nominee's Email Address <i>*</i></span><input name="c_email" type="email" inputmode="email" required></label>
+        <div class="rf"><label for="nf-c-phone"><span>Nominee's Mobile Number <i>*</i></span></label><div class="rf-tel"><select class="cc-pick" data-for="c_phone" aria-label="Nominee country code"><option value="65">🇸🇬 +65</option></select><input id="nf-c-phone" name="c_phone" type="tel" inputmode="tel" required></div></div>
+      </div>
+      <div class="nf-2">
+        <label class="rf"><span>Nominee's LinkedIn Profile</span><input name="c_linkedin" type="url" inputmode="url" placeholder="linkedin.com/in/nominee"></label>
+        <label class="rf"><span>Nominee's City <i>*</i></span><input name="c_city" placeholder="e.g. Singapore" required></label>
+      </div>
+    </section>
+
+    <section class="nf-step" data-step="3" hidden>
+      <h3 class="nf-h">Tell Us About Their Work</h3>
+      <p class="nf-sub">The change the nominee has made, and any recognition received so far.</p>
+      <label class="rf"><span class="nf-lbl"><span>What Makes the Nominee's Work Unique? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Share numbers where you can, such as communities reached, lives touched or policy changed, and what sets the approach apart.</small><textarea name="unique" rows="6" maxlength="5000" required></textarea></label>
+      <label class="rf"><span class="nf-lbl"><span>Has the Nominee Won Awards in the Past? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Fellowships, national or state honours, media features or community citations. If none yet, write "First-time nominee".</small><textarea name="awards" rows="4" maxlength="3000" required></textarea></label>
+    </section>
+
+    <section class="nf-step" data-step="4" hidden>
+      <h3 class="nf-h">Award Category and SDG</h3>
+      <p class="nf-sub">Choose the award category and the UN Sustainable Development Goal this work supports most.</p>
+      <fieldset class="rf"><legend>Award Category <i>*</i></legend><div class="nf-cats">
+        <label><input type="radio" name="category" value="Corporate Philanthropy" required><span><small>Enterprise &amp; CSR</small><b>Corporate Philanthropy</b><em>Excellence in corporate social responsibility, ESG and institutional giving with measurable social return.</em></span></label>
+        <label><input type="radio" name="category" value="Individual Philanthropy"><span><small>Patrons &amp; Donors</small><b>Individual Philanthropy</b><em>Honouring donors, family offices and patrons driving change through personal wealth and time.</em></span></label>
+        <label><input type="radio" name="category" value="Kindness"><span><small>Humanitarian</small><b>Kindness</b><em>Recognising humanitarian acts, empathy ambassadors and grassroots kindness movements inspiring communities.</em></span></label>
+        <label><input type="radio" name="category" value="Charity"><span><small>Nonprofit &amp; Aid</small><b>Charity</b><em>Nonprofits, charitable trusts and front-line organisations providing vital relief to underserved groups.</em></span></label>
+        <label><input type="radio" name="category" value="Volunteerism"><span><small>Community Champions</small><b>Volunteerism</b><em>Volunteer champions giving their time and expertise on the ground to uplift communities.</em></span></label>
+      </div></fieldset>
+      <fieldset class="rf"><legend>Primary UN Sustainable Development Goal <i>*</i></legend>
+        <input class="nf-sdg-q" type="search" placeholder="Search by keyword or number, e.g. climate, poverty, 13" aria-label="Search goals">
+        <div class="nf-sdgs"></div>
+      </fieldset>
+      <label class="rf"><span class="nf-lbl"><span>Why Should the Nominee Win This Award? <i>*</i></span><em class="nf-cnt">0 characters</em></span><small class="nf-hint">Your reasons, plus any supporting links: website, reports, articles or videos.</small><textarea name="why" rows="5" maxlength="5000" required></textarea></label>
+    </section>
+
+    <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
+    <div class="nf-nav"><button class="btn btn-line nf-back" type="button" hidden>&larr; Back</button><button class="btn btn-primary nf-next" type="button">Continue to Nominee &rarr;</button></div>
+    <p class="nf-note">Your information will not be shared with any third party. Nominations close on 20 November 2026.</p>
+  </form>
+  <div class="reg-done nom-done" hidden>
+    <div class="rd-tick" aria-hidden="true">✓</div>
+    <h3>Thank You<span class="nd-c">, </span><span class="nd-name"></span>!</h3>
+    <p>We have received your nomination and sent a copy to your email. Our jury panel will be in touch if they need anything more.</p>
+    <dl class="nd-card"><div><dt>Nominee</dt><dd class="nd-nominee"></dd></div><div><dt>Award Category</dt><dd class="nd-cat"></dd></div><div class="nd-wide"><dt>Primary UN SDG</dt><dd class="nd-sdg"></dd></div></dl>
+    <div class="nd-btns"><button class="btn btn-primary nd-again" type="button">Nominate Another Changemaker</button><button class="btn btn-line rd-close" type="button">Close</button></div>
+  </div>
 </dialog>
 
 <script>
@@ -1595,22 +1719,74 @@ b.addEventListener('click',()=>{if(r.dataset.theme==='dark')delete r.dataset.the
 </script>
 <script>
 /* Country codes for the phone field; preselected from the visitor's time zone or browser language (no lookup service) */
-(()=>{const sel=document.getElementById('rf-cc');if(!sel)return;
+(()=>{const sels=document.querySelectorAll('select.cc-pick');if(!sels.length)return;
 const CC="AC247,AD376,AE971,AF93,AG1,AI1,AL355,AM374,AO244,AR54,AS1,AT43,AU61,AW297,AX358,AZ994,BA387,BB1,BD880,BE32,BF226,BG359,BH973,BI257,BJ229,BL590,BM1,BN673,BO591,BQ599,BR55,BS1,BT975,BW267,BY375,BZ501,CA1,CC61,CD243,CF236,CG242,CH41,CI225,CK682,CL56,CM237,CN86,CO57,CR506,CU53,CV238,CW599,CX61,CY357,CZ420,DE49,DJ253,DK45,DM1,DO1,DZ213,EC593,EE372,EG20,EH212,ER291,ES34,ET251,FI358,FJ679,FK500,FM691,FO298,FR33,GA241,GB44,GD1,GE995,GF594,GG44,GH233,GI350,GL299,GM220,GN224,GP590,GQ240,GR30,GT502,GU1,GW245,GY592,HK852,HN504,HR385,HT509,HU36,ID62,IE353,IL972,IM44,IN91,IO246,IQ964,IR98,IS354,IT39,JE44,JM1,JO962,JP81,KE254,KG996,KH855,KI686,KM269,KN1,KP850,KR82,KW965,KY1,KZ7,LA856,LB961,LC1,LI423,LK94,LR231,LS266,LT370,LU352,LV371,LY218,MA212,MC377,MD373,ME382,MF590,MG261,MH692,MK389,ML223,MM95,MN976,MO853,MP1,MQ596,MR222,MS1,MT356,MU230,MV960,MW265,MX52,MY60,MZ258,NA264,NC687,NE227,NF672,NG234,NI505,NL31,NO47,NP977,NR674,NU683,NZ64,OM968,PA507,PE51,PF689,PG675,PH63,PK92,PL48,PM508,PR1,PS970,PT351,PW680,PY595,QA974,RE262,RO40,RS381,RU7,RW250,SA966,SB677,SC248,SD249,SE46,SG65,SH290,SI386,SJ47,SK421,SL232,SM378,SN221,SO252,SR597,SS211,ST239,SV503,SX1,SY963,SZ268,TA290,TC1,TD235,TG228,TH66,TJ992,TK690,TL670,TM993,TN216,TO676,TR90,TT1,TV688,TW886,TZ255,UA380,UG256,US1,UY598,UZ998,VA39,VC1,VE58,VG1,VI1,VN84,VU678,WF681,WS685,XK383,YE967,YT262,ZA27,ZM260,ZW263";
 const TZC={"Europe/Andorra":"AD","Asia/Dubai":"AE","Asia/Kabul":"AF","America/Antigua":"AG","America/Anguilla":"AI","Europe/Tirane":"AL","Asia/Yerevan":"AM","Africa/Luanda":"AO","Antarctica/McMurdo":"AQ","Antarctica/Casey":"AQ","Antarctica/Davis":"AQ","Antarctica/DumontDUrville":"AQ","Antarctica/Mawson":"AQ","Antarctica/Palmer":"AQ","Antarctica/Rothera":"AQ","Antarctica/Syowa":"AQ","Antarctica/Troll":"AQ","Antarctica/Vostok":"AQ","America/Argentina/Buenos_Aires":"AR","America/Argentina/Cordoba":"AR","America/Argentina/Salta":"AR","America/Argentina/Jujuy":"AR","America/Argentina/Tucuman":"AR","America/Argentina/Catamarca":"AR","America/Argentina/La_Rioja":"AR","America/Argentina/San_Juan":"AR","America/Argentina/Mendoza":"AR","America/Argentina/San_Luis":"AR","America/Argentina/Rio_Gallegos":"AR","America/Argentina/Ushuaia":"AR","Pacific/Pago_Pago":"AS","Europe/Vienna":"AT","Australia/Lord_Howe":"AU","Antarctica/Macquarie":"AU","Australia/Hobart":"AU","Australia/Melbourne":"AU","Australia/Sydney":"AU","Australia/Broken_Hill":"AU","Australia/Brisbane":"AU","Australia/Lindeman":"AU","Australia/Adelaide":"AU","Australia/Darwin":"AU","Australia/Perth":"AU","Australia/Eucla":"AU","America/Aruba":"AW","Europe/Mariehamn":"AX","Asia/Baku":"AZ","Europe/Sarajevo":"BA","America/Barbados":"BB","Asia/Dhaka":"BD","Europe/Brussels":"BE","Africa/Ouagadougou":"BF","Europe/Sofia":"BG","Asia/Bahrain":"BH","Africa/Bujumbura":"BI","Africa/Porto-Novo":"BJ","America/St_Barthelemy":"BL","Atlantic/Bermuda":"BM","Asia/Brunei":"BN","America/La_Paz":"BO","America/Kralendijk":"BQ","America/Noronha":"BR","America/Belem":"BR","America/Fortaleza":"BR","America/Recife":"BR","America/Araguaina":"BR","America/Maceio":"BR","America/Bahia":"BR","America/Sao_Paulo":"BR","America/Campo_Grande":"BR","America/Cuiaba":"BR","America/Santarem":"BR","America/Porto_Velho":"BR","America/Boa_Vista":"BR","America/Manaus":"BR","America/Eirunepe":"BR","America/Rio_Branco":"BR","America/Nassau":"BS","Asia/Thimphu":"BT","Africa/Gaborone":"BW","Europe/Minsk":"BY","America/Belize":"BZ","America/St_Johns":"CA","America/Halifax":"CA","America/Glace_Bay":"CA","America/Moncton":"CA","America/Goose_Bay":"CA","America/Blanc-Sablon":"CA","America/Toronto":"CA","America/Iqaluit":"CA","America/Atikokan":"CA","America/Winnipeg":"CA","America/Resolute":"CA","America/Rankin_Inlet":"CA","America/Regina":"CA","America/Swift_Current":"CA","America/Edmonton":"CA","America/Cambridge_Bay":"CA","America/Inuvik":"CA","America/Vancouver":"CA","America/Creston":"CA","America/Dawson_Creek":"CA","America/Fort_Nelson":"CA","America/Whitehorse":"CA","America/Dawson":"CA","Indian/Cocos":"CC","Africa/Kinshasa":"CD","Africa/Lubumbashi":"CD","Africa/Bangui":"CF","Africa/Brazzaville":"CG","Europe/Zurich":"CH","Africa/Abidjan":"CI","Pacific/Rarotonga":"CK","America/Santiago":"CL","America/Coyhaique":"CL","America/Punta_Arenas":"CL","Pacific/Easter":"CL","Africa/Douala":"CM","Asia/Shanghai":"CN","Asia/Urumqi":"CN","America/Bogota":"CO","America/Costa_Rica":"CR","America/Havana":"CU","Atlantic/Cape_Verde":"CV","America/Curacao":"CW","Indian/Christmas":"CX","Asia/Nicosia":"CY","Asia/Famagusta":"CY","Europe/Prague":"CZ","Europe/Berlin":"DE","Europe/Busingen":"DE","Africa/Djibouti":"DJ","Europe/Copenhagen":"DK","America/Dominica":"DM","America/Santo_Domingo":"DO","Africa/Algiers":"DZ","America/Guayaquil":"EC","Pacific/Galapagos":"EC","Europe/Tallinn":"EE","Africa/Cairo":"EG","Africa/El_Aaiun":"EH","Africa/Asmara":"ER","Europe/Madrid":"ES","Africa/Ceuta":"ES","Atlantic/Canary":"ES","Africa/Addis_Ababa":"ET","Europe/Helsinki":"FI","Pacific/Fiji":"FJ","Atlantic/Stanley":"FK","Pacific/Chuuk":"FM","Pacific/Pohnpei":"FM","Pacific/Kosrae":"FM","Atlantic/Faroe":"FO","Europe/Paris":"FR","Africa/Libreville":"GA","Europe/London":"GB","America/Grenada":"GD","Asia/Tbilisi":"GE","America/Cayenne":"GF","Europe/Guernsey":"GG","Africa/Accra":"GH","Europe/Gibraltar":"GI","America/Nuuk":"GL","America/Danmarkshavn":"GL","America/Scoresbysund":"GL","America/Thule":"GL","Africa/Banjul":"GM","Africa/Conakry":"GN","America/Guadeloupe":"GP","Africa/Malabo":"GQ","Europe/Athens":"GR","Atlantic/South_Georgia":"GS","America/Guatemala":"GT","Pacific/Guam":"GU","Africa/Bissau":"GW","America/Guyana":"GY","Asia/Hong_Kong":"HK","America/Tegucigalpa":"HN","Europe/Zagreb":"HR","America/Port-au-Prince":"HT","Europe/Budapest":"HU","Asia/Jakarta":"ID","Asia/Pontianak":"ID","Asia/Makassar":"ID","Asia/Jayapura":"ID","Europe/Dublin":"IE","Asia/Jerusalem":"IL","Europe/Isle_of_Man":"IM","Asia/Kolkata":"IN","Indian/Chagos":"IO","Asia/Baghdad":"IQ","Asia/Tehran":"IR","Atlantic/Reykjavik":"IS","Europe/Rome":"IT","Europe/Jersey":"JE","America/Jamaica":"JM","Asia/Amman":"JO","Asia/Tokyo":"JP","Africa/Nairobi":"KE","Asia/Bishkek":"KG","Asia/Phnom_Penh":"KH","Pacific/Tarawa":"KI","Pacific/Kanton":"KI","Pacific/Kiritimati":"KI","Indian/Comoro":"KM","America/St_Kitts":"KN","Asia/Pyongyang":"KP","Asia/Seoul":"KR","Asia/Kuwait":"KW","America/Cayman":"KY","Asia/Almaty":"KZ","Asia/Qyzylorda":"KZ","Asia/Qostanay":"KZ","Asia/Aqtobe":"KZ","Asia/Aqtau":"KZ","Asia/Atyrau":"KZ","Asia/Oral":"KZ","Asia/Vientiane":"LA","Asia/Beirut":"LB","America/St_Lucia":"LC","Europe/Vaduz":"LI","Asia/Colombo":"LK","Africa/Monrovia":"LR","Africa/Maseru":"LS","Europe/Vilnius":"LT","Europe/Luxembourg":"LU","Europe/Riga":"LV","Africa/Tripoli":"LY","Africa/Casablanca":"MA","Europe/Monaco":"MC","Europe/Chisinau":"MD","Europe/Podgorica":"ME","America/Marigot":"MF","Indian/Antananarivo":"MG","Pacific/Majuro":"MH","Pacific/Kwajalein":"MH","Europe/Skopje":"MK","Africa/Bamako":"ML","Asia/Yangon":"MM","Asia/Ulaanbaatar":"MN","Asia/Hovd":"MN","Asia/Macau":"MO","Pacific/Saipan":"MP","America/Martinique":"MQ","Africa/Nouakchott":"MR","America/Montserrat":"MS","Europe/Malta":"MT","Indian/Mauritius":"MU","Indian/Maldives":"MV","Africa/Blantyre":"MW","America/Mexico_City":"MX","America/Cancun":"MX","America/Merida":"MX","America/Monterrey":"MX","America/Matamoros":"MX","America/Chihuahua":"MX","America/Ciudad_Juarez":"MX","America/Ojinaga":"MX","America/Mazatlan":"MX","America/Bahia_Banderas":"MX","America/Hermosillo":"MX","America/Tijuana":"MX","Asia/Kuala_Lumpur":"MY","Asia/Kuching":"MY","Africa/Maputo":"MZ","Africa/Windhoek":"NA","Pacific/Noumea":"NC","Africa/Niamey":"NE","Pacific/Norfolk":"NF","Africa/Lagos":"NG","America/Managua":"NI","Europe/Amsterdam":"NL","Europe/Oslo":"NO","Asia/Kathmandu":"NP","Pacific/Nauru":"NR","Pacific/Niue":"NU","Pacific/Auckland":"NZ","Pacific/Chatham":"NZ","Asia/Muscat":"OM","America/Panama":"PA","America/Lima":"PE","Pacific/Tahiti":"PF","Pacific/Marquesas":"PF","Pacific/Gambier":"PF","Pacific/Port_Moresby":"PG","Pacific/Bougainville":"PG","Asia/Manila":"PH","Asia/Karachi":"PK","Europe/Warsaw":"PL","America/Miquelon":"PM","Pacific/Pitcairn":"PN","America/Puerto_Rico":"PR","Asia/Gaza":"PS","Asia/Hebron":"PS","Europe/Lisbon":"PT","Atlantic/Madeira":"PT","Atlantic/Azores":"PT","Pacific/Palau":"PW","America/Asuncion":"PY","Asia/Qatar":"QA","Indian/Reunion":"RE","Europe/Bucharest":"RO","Europe/Belgrade":"RS","Europe/Kaliningrad":"RU","Europe/Moscow":"RU","Europe/Simferopol":"UA","Europe/Kirov":"RU","Europe/Volgograd":"RU","Europe/Astrakhan":"RU","Europe/Saratov":"RU","Europe/Ulyanovsk":"RU","Europe/Samara":"RU","Asia/Yekaterinburg":"RU","Asia/Omsk":"RU","Asia/Novosibirsk":"RU","Asia/Barnaul":"RU","Asia/Tomsk":"RU","Asia/Novokuznetsk":"RU","Asia/Krasnoyarsk":"RU","Asia/Irkutsk":"RU","Asia/Chita":"RU","Asia/Yakutsk":"RU","Asia/Khandyga":"RU","Asia/Vladivostok":"RU","Asia/Ust-Nera":"RU","Asia/Magadan":"RU","Asia/Sakhalin":"RU","Asia/Srednekolymsk":"RU","Asia/Kamchatka":"RU","Asia/Anadyr":"RU","Africa/Kigali":"RW","Asia/Riyadh":"SA","Pacific/Guadalcanal":"SB","Indian/Mahe":"SC","Africa/Khartoum":"SD","Europe/Stockholm":"SE","Asia/Singapore":"SG","Atlantic/St_Helena":"SH","Europe/Ljubljana":"SI","Arctic/Longyearbyen":"SJ","Europe/Bratislava":"SK","Africa/Freetown":"SL","Europe/San_Marino":"SM","Africa/Dakar":"SN","Africa/Mogadishu":"SO","America/Paramaribo":"SR","Africa/Juba":"SS","Africa/Sao_Tome":"ST","America/El_Salvador":"SV","America/Lower_Princes":"SX","Asia/Damascus":"SY","Africa/Mbabane":"SZ","America/Grand_Turk":"TC","Africa/Ndjamena":"TD","Indian/Kerguelen":"TF","Africa/Lome":"TG","Asia/Bangkok":"TH","Asia/Dushanbe":"TJ","Pacific/Fakaofo":"TK","Asia/Dili":"TL","Asia/Ashgabat":"TM","Africa/Tunis":"TN","Pacific/Tongatapu":"TO","Europe/Istanbul":"TR","America/Port_of_Spain":"TT","Pacific/Funafuti":"TV","Asia/Taipei":"TW","Africa/Dar_es_Salaam":"TZ","Europe/Kyiv":"UA","Africa/Kampala":"UG","Pacific/Midway":"UM","Pacific/Wake":"UM","America/New_York":"US","America/Detroit":"US","America/Kentucky/Louisville":"US","America/Kentucky/Monticello":"US","America/Indiana/Indianapolis":"US","America/Indiana/Vincennes":"US","America/Indiana/Winamac":"US","America/Indiana/Marengo":"US","America/Indiana/Petersburg":"US","America/Indiana/Vevay":"US","America/Chicago":"US","America/Indiana/Tell_City":"US","America/Indiana/Knox":"US","America/Menominee":"US","America/North_Dakota/Center":"US","America/North_Dakota/New_Salem":"US","America/North_Dakota/Beulah":"US","America/Denver":"US","America/Boise":"US","America/Phoenix":"US","America/Los_Angeles":"US","America/Anchorage":"US","America/Juneau":"US","America/Sitka":"US","America/Metlakatla":"US","America/Yakutat":"US","America/Nome":"US","America/Adak":"US","Pacific/Honolulu":"US","America/Montevideo":"UY","Asia/Samarkand":"UZ","Asia/Tashkent":"UZ","Europe/Vatican":"VA","America/St_Vincent":"VC","America/Caracas":"VE","America/Tortola":"VG","America/St_Thomas":"VI","Asia/Ho_Chi_Minh":"VN","Pacific/Efate":"VU","Pacific/Wallis":"WF","Pacific/Apia":"WS","Asia/Aden":"YE","Indian/Mayotte":"YT","Africa/Johannesburg":"ZA","Africa/Lusaka":"ZM","Africa/Harare":"ZW","Asia/Calcutta":"IN","Asia/Saigon":"VN","Asia/Katmandu":"NP","Asia/Rangoon":"MM","Europe/Kiev":"UA","America/Buenos_Aires":"AR","Asia/Dacca":"BD","Asia/Ujung_Pandang":"ID","Pacific/Truk":"FM","Atlantic/Faeroe":"FO"};
 const flag=r=>r.replace(/./g,c=>String.fromCodePoint(127397+c.charCodeAt(0)));
 let dn=null;try{dn=new Intl.DisplayNames([navigator.language||'en'],{type:'region'})}catch(e){}
 const list=CC.split(',').map(x=>{const r=x.slice(0,2),c=x.slice(2);let n=r;try{n=dn?dn.of(r):r}catch(e){}return{r,c,n}}).sort((a,b)=>a.n.localeCompare(b.n));
-sel.innerHTML=list.map(o=>'<option value="'+o.c+'" data-r="'+o.r+'">'+flag(o.r)+' '+o.n+' (+'+o.c+')</option>').join('');
 let guess='';try{guess=TZC[Intl.DateTimeFormat().resolvedOptions().timeZone]||''}catch(e){}
 if(!guess){const m=(navigator.language||'').match(/-([A-Z]{2})$/i);if(m)guess=m[1].toUpperCase()}
-const pick=r=>{const o=sel.querySelector('option[data-r="'+r+'"]');if(o){sel.value=o.value;o.selected=true;return true}};
+sels.forEach(sel=>{
+sel.innerHTML=list.map(o=>'<option value="'+o.c+'" data-r="'+o.r+'">'+flag(o.r)+' '+o.n+' (+'+o.c+')</option>').join('');
+const pick=r=>{const o=sel.querySelector('option[data-r="'+r+'"]');if(o){sel.value=o.value;o.selected=o.defaultSelected=true;return true}};
 pick(guess)||pick('SG');
 const short=()=>{[...sel.options].forEach(o=>{o.textContent=o.dataset.full||o.textContent})};
 [...sel.options].forEach(o=>{o.dataset.full=o.textContent});
 const compact=()=>{const o=sel.selectedOptions[0];if(o)o.textContent=flag(o.dataset.r)+' +'+o.value};
 compact();sel.addEventListener('focus',short);sel.addEventListener('mousedown',short);sel.addEventListener('change',()=>{short();compact()});sel.addEventListener('blur',()=>{short();compact()});
+});
 })();
+/* Nominate links open our own four-step form; answers go to the Nominations tab of the GEF Google Sheet */
+(()=>{const d=document.getElementById('nom-dlg');if(!d||typeof d.showModal!=='function')return;
+const f0=document.getElementById('nom-form');if(!f0||!f0.dataset.action)return; /* until the Nominations sheet is connected, Nominate links keep opening the Google Form */
+const href=d.dataset.nom,f=f0,done=d.querySelector('.nom-done'),err=f.querySelector('.rf-err'),
+steps=[...f.querySelectorAll('.nf-step')],dots=[...d.querySelectorAll('.nf-steps li')],back=f.querySelector('.nf-back'),next=f.querySelector('.nf-next');
+const SDG=[['No Poverty','#E5243B'],['Zero Hunger','#DDA63A'],['Good Health and Well-being','#4C9F38'],['Quality Education','#C5192D'],['Gender Equality','#FF3A21'],['Clean Water and Sanitation','#26BDE2'],['Affordable and Clean Energy','#FCC30B'],['Decent Work and Economic Growth','#A21942'],['Industry, Innovation and Infrastructure','#FD6925'],['Reduced Inequalities','#DD1367'],['Sustainable Cities and Communities','#FD9D24'],['Responsible Consumption and Production','#BF8B2E'],['Climate Action','#3F7E44'],['Life Below Water','#0A97D9'],['Life on Land','#56C02B'],['Peace, Justice and Strong Institutions','#00689D'],['Partnerships for the Goals','#19486A']];
+const box=f.querySelector('.nf-sdgs');
+box.innerHTML=SDG.map(([n,c],i)=>'<label><input type="radio" name="sdg" value="SDG '+(i+1)+' – '+n+'"'+(i?'':' required')+'><span><b style="background:'+c+'">'+(i+1)+'</b>'+n+'</span></label>').join('');
+f.querySelector('.nf-sdg-q').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();box.querySelectorAll('label').forEach((l,i)=>{l.hidden=!!q&&!(String(i+1)===q||l.textContent.toLowerCase().includes(q))})});
+const NEXT=['Continue to Nominee','Continue to Impact','Continue to Category','Submit Nomination'];
+let cur=0;
+const show=k=>{cur=k;steps.forEach((s,i)=>s.hidden=i!==k);dots.forEach((li,i)=>{li.classList.toggle('on',i===k);li.classList.toggle('ok',i<k)});
+ back.hidden=k===0;next.innerHTML=NEXT[k]+(k<3?' &rarr;':'');err.hidden=true;f.scrollTop=0};
+const okEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+const check=k=>{let ok=true,mail=false;const s=steps[k];
+ s.querySelectorAll('input:not([type=radio]):not([type=search]),textarea').forEach(i=>{const v=i.value.trim();let bad=i.required&&!v;if(!bad&&v&&i.type==='email'&&!okEmail(v)){bad=true;mail=true}i.classList.toggle('bad',bad);if(bad)ok=false});
+ s.querySelectorAll('fieldset').forEach(fs=>{const r=fs.querySelector('input[type=radio]');if(!r)return;const bad=!fs.querySelector('input:checked');fs.classList.toggle('bad',bad);if(bad)ok=false});
+ if(!ok){err.textContent=mail&&s.querySelectorAll('.bad').length===1?'Please check the email address.':'Please fill in all the fields marked *.';err.hidden=false;const b=s.querySelector('.bad');if(b)b.scrollIntoView({block:'center',behavior:'smooth'})}else err.hidden=true;
+ return ok};
+/* Nominating yourself fills the nominee details from step 1 */
+f.querySelectorAll('input[name=who]').forEach(r=>r.addEventListener('change',()=>{if(r.value!=='Self')return;
+ [['n_name','c_name'],['n_org','c_org'],['n_email','c_email'],['n_phone','c_phone'],['n_linkedin','c_linkedin'],['n_city','c_city']].forEach(([a,b])=>{const t=f.elements[b];if(!t.value.trim())t.value=f.elements[a].value});
+ const ca=f.querySelector('select[data-for=n_phone]'),cb=f.querySelector('select[data-for=c_phone]');if(!f.elements.c_phone.dataset.touched){cb.value=ca.value;cb.dispatchEvent(new Event('change'))}}));
+f.elements.c_phone.addEventListener('input',e=>e.target.dataset.touched=1);
+f.querySelectorAll('textarea').forEach(t=>{const c=t.closest('.rf').querySelector('.nf-cnt');t.addEventListener('input',()=>{c.textContent=t.value.length+' characters'})});
+f.addEventListener('input',e=>{e.target.classList.remove('bad');const fs=e.target.closest('fieldset');if(fs)fs.classList.remove('bad')});
+f.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type!=='search'){e.preventDefault();next.click()}else if(e.key==='Enter'&&e.target.type==='search')e.preventDefault()});
+back.onclick=()=>show(cur-1);
+const phone=n=>{const v=f.elements[n].value.trim().replace(/^0+/,'');return v?'+'+f.querySelector('select[data-for='+n+']').value+' '+v:''};
+next.onclick=()=>{if(!check(cur))return;if(cur<3){show(cur+1);return}
+ const q=new URLSearchParams(new FormData(f));q.set('n_phone',phone('n_phone'));q.set('c_phone',phone('c_phone'));q.set('page',location.href);
+ const a=f.dataset.action;if(a[0]!=='#')fetch(a,{method:'POST',mode:'no-cors',keepalive:true,body:q}).catch(()=>{if(!navigator.sendBeacon||!navigator.sendBeacon(a,q))fetch(a,{method:'POST',mode:'no-cors',body:q}).catch(()=>{})});
+ const first=f.elements.n_name.value.trim().split(/\s+/)[0];
+ done.querySelector('.nd-name').textContent=first;done.querySelector('.nd-c').hidden=!first;
+ done.querySelector('.nd-nominee').textContent=f.elements.c_name.value.trim();
+ done.querySelector('.nd-cat').textContent=f.querySelector('input[name=category]:checked').value;
+ done.querySelector('.nd-sdg').textContent=f.querySelector('input[name=sdg]:checked').value;
+ f.hidden=true;d.querySelector('.nf-steps').hidden=true;done.hidden=false;done.scrollTop=0};
+const reset=keep=>{const me=keep?['n_name','n_org','n_email','n_phone','n_linkedin','n_city'].map(n=>[n,f.elements[n].value]):[];
+ const cc=f.querySelector('select[data-for=n_phone]').value;f.reset();me.forEach(([n,v])=>f.elements[n].value=v);
+ f.querySelectorAll('select.cc-pick').forEach(s=>{s.value=cc;s.dispatchEvent(new Event('change'))});delete f.elements.c_phone.dataset.touched;
+ f.querySelectorAll('.nf-cnt').forEach(c=>c.textContent='0 characters');box.querySelectorAll('label').forEach(l=>l.hidden=false);
+ done.hidden=true;f.hidden=false;d.querySelector('.nf-steps').hidden=false;show(keep?1:0)};
+done.querySelector('.nd-again').onclick=()=>reset(true);
+const open=()=>{d.showModal();document.body.classList.add('reg-open');setTimeout(()=>{const i=steps[cur].querySelector('input:not([type=hidden])');if(i&&!f.hidden&&matchMedia('(hover:hover)').matches)i.focus()},50)};
+document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.closest('#nom-dlg')||a.getAttribute('href')!==href)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();open()});
+d.querySelector('.reg-x').onclick=()=>d.close();done.querySelector('.rd-close').onclick=()=>d.close();
+d.addEventListener('click',e=>{if(e.target===d)d.close()});
+d.addEventListener('close',()=>{document.body.classList.remove('reg-open');if(!done.hidden)reset(false)});
+show(0);})();
 /* Register links open our own one-step form; answers go to the GEF registrations Google Sheet */
 (()=>{const d=document.getElementById('reg-dlg');if(!d||typeof d.showModal!=='function')return;
 const href=d.dataset.reg,f=document.getElementById('reg-form'),done=d.querySelector('.reg-done'),err=f.querySelector('.rf-err'),go=f.querySelector('.rf-go');
