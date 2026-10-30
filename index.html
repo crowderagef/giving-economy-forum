@@ -1626,7 +1626,9 @@ f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
  const fs=f.querySelector('fieldset'),r=fs.querySelector('input:checked');fs.classList.toggle('bad',!r);if(!r)ok=false;
  err.hidden=ok;if(!ok){err.textContent=f.querySelector('input[type=email].bad')&&f.querySelectorAll('.bad').length===1?'Please check your email address.':'Please fill in all the fields marked *.';err.hidden=false;const b=f.querySelector('.bad');if(b)b.scrollIntoView({block:'center',behavior:'smooth'});return}
  go.disabled=true;go.textContent='Sending…';
- try{await fetch(f.dataset.action,{method:'POST',mode:'no-cors',body:(()=>{const q=new URLSearchParams(new FormData(f)),cc=document.getElementById('rf-cc');q.set('phone','+'+cc.value+' '+q.get('phone').trim().replace(/^0+/,''));q.set('page',location.href);return q})()});f.hidden=true;done.hidden=false;f.reset()}
+ try{const q=new URLSearchParams(new FormData(f)),cc=document.getElementById('rf-cc');q.set('phone','+'+cc.value+' '+q.get('phone').trim().replace(/^0+/,''));q.set('page',location.href);
+  fetch(f.dataset.action,{method:'POST',mode:'no-cors',keepalive:true,body:q}).catch(()=>{if(!navigator.sendBeacon||!navigator.sendBeacon(f.dataset.action,q))fetch(f.dataset.action,{method:'POST',mode:'no-cors',body:q}).catch(()=>{})});
+  f.hidden=true;done.hidden=false;f.reset()}
  catch(x){err.textContent='Something went wrong. Please try again, or use the Google Forms link below.';err.hidden=false}
  finally{go.disabled=false;go.textContent='Register Now'}});})();
 </script>
