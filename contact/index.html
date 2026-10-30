@@ -781,7 +781,7 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .p26-art .p26-media{transform:translateZ(0)}
 @media (prefers-reduced-motion:reduce){.p26-vid{display:none}}
 /* Registration pop-up (Google Form inside the site) */
-.reg-dlg{width:min(600px,calc(100vw - 32px));max-height:calc(100dvh - 48px);max-width:none;max-height:none;padding:0;border:0;border-radius:20px;background:var(--bg);color:var(--fg);box-shadow:0 40px 100px -20px rgba(21,32,41,.5);overflow:hidden}
+.reg-dlg{width:min(600px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-radius:20px;background:var(--bg);color:var(--fg);box-shadow:0 40px 100px -20px rgba(21,32,41,.5);overflow:hidden}
 .reg-dlg[open]{display:flex;flex-direction:column}
 .reg-dlg::backdrop{background:rgba(13,22,27,.62);backdrop-filter:blur(3px)}
 .reg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 24px 16px;border-bottom:1px solid var(--line);position:relative}
@@ -811,7 +811,8 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .reg-foot{margin:0;padding:10px 24px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line)}
 .reg-foot a{color:var(--accent)}
 body.reg-open{overflow:hidden}
-@media (max-width:640px){.reg-dlg{width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.reg-form,.reg-done{padding:16px}.reg-head{padding:16px}.reg-foot{padding:10px 16px}}
+@media (max-height:820px) and (min-width:641px){.reg-head{padding:14px 24px 12px}.reg-form{gap:12px;padding-top:14px}.rf input:not([type=radio]),.rf textarea{padding:10px 14px}.rf-opts label{padding:7px 14px}.reg-intro{font-size:.85rem}}
+@media (max-width:640px){.reg-dlg{width:100%;height:100%;max-height:none;max-width:none;margin:0;inset:0;border-radius:0}.reg-form,.reg-done{padding:16px}.reg-head{padding:16px}.reg-foot{padding:10px 16px}}
 /* ===== Royal palette: deep green kept for buttons, gold carries the accents, warm ivory tints ===== */
 :root{--accent:#005335;--gold-ink:#8C6B1E;--gold-line:#C29A3B;--tint:#FAF7F0;--tint-2:#F8F2E4}
 .eyebrow,.slide-copy .eyebrow,.bighero-copy .eyebrow,.phero .eyebrow,.cs h4,.obj .n,.ms .d,.programme .n,.story small,.pcard small,.ag-tm,.pub .cover small{color:var(--gold-ink)}
