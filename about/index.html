@@ -1767,7 +1767,7 @@ f.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&
 back.onclick=()=>show(cur-1);
 const phone=n=>{const v=f.elements[n].value.trim().replace(/^0+/,'');return v?'+'+f.querySelector('select[data-for='+n+']').value+' '+v:''};
 next.onclick=()=>{if(!check(cur))return;if(cur<3){show(cur+1);return}
- const q=new URLSearchParams(new FormData(f));q.set('n_phone',phone('n_phone'));q.set('c_phone',phone('c_phone'));q.set('page',location.href);
+ const q=new URLSearchParams(new FormData(f));q.set('n_phone',phone('n_phone'));q.set('c_phone',phone('c_phone'));q.set('page',location.href);try{q.set('tz',Intl.DateTimeFormat().resolvedOptions().timeZone||'')}catch(x){}
  const a=f.dataset.action;if(a[0]!=='#')fetch(a,{method:'POST',mode:'no-cors',keepalive:true,body:q}).catch(()=>{if(!navigator.sendBeacon||!navigator.sendBeacon(a,q))fetch(a,{method:'POST',mode:'no-cors',body:q}).catch(()=>{})});
  const first=f.elements.n_name.value.trim().split(/\s+/)[0];
  done.querySelector('.nd-name').textContent=first;done.querySelector('.nd-c').hidden=!first;
