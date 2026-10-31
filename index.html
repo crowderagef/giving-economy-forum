@@ -23,6 +23,24 @@
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "name": "Giving Economy Forum", "url": "https://www.givingeconomy.org/", "logo": "https://www.givingeconomy.org/images/logo.png", "address": {"@type": "PostalAddress", "streetAddress": "160 Robinson Road, #14-04", "postalCode": "068914", "addressLocality": "Singapore", "addressCountry": "SG"}, "telephone": "+65 8904 1562", "sameAs": ["https://www.linkedin.com/company/givingeconomyforum", "https://www.instagram.com/givingeconomyforum/", "https://www.facebook.com/GivingEconomyChangemaker/"]}, {"@context": "https://schema.org", "@type": "Event", "name": "9th Giving Economy Forum", "description": "Evening Forum, Giving Economy Awards and Pledge Ceremony.", "startDate": "2026-11-25T17:00:00+08:00", "endDate": "2026-11-25T21:00:00+08:00", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "ONE°15 Marina, Sentosa", "address": {"@type": "PostalAddress", "addressLocality": "Sentosa", "addressCountry": "SG"}}, "image": ["https://www.givingeconomy.org/images/share-2026.jpg"], "url": "https://www.givingeconomy.org/", "organizer": {"@type": "Organization", "name": "Giving Economy Forum", "url": "https://www.givingeconomy.org/"}, "offers": {"@type": "Offer", "url": "https://forms.gle/2dKDecWRbnphj6idA", "availability": "https://schema.org/InStock"}}]</script>
+<link rel="canonical" href="https://www.givingeconomy.org/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#006341">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Giving Economy Forum">
+<meta property="og:title" content="Giving Economy Forum · Celebrating changemakers · Singapore 2026">
+<meta property="og:description" content="The Giving Economy Forum celebrates changemakers across social impact, startups, philanthropy, nonprofit, corporate and media. 9th edition: 25 November 2026, ONE°15 Marina, Sentosa, Singapore.">
+<meta property="og:url" content="https://www.givingeconomy.org/">
+<meta property="og:image" content="https://www.givingeconomy.org/images/share-2026.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_SG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Giving Economy Forum · Celebrating changemakers · Singapore 2026">
+<meta name="twitter:description" content="The Giving Economy Forum celebrates changemakers across social impact, startups, philanthropy, nonprofit, corporate and media. 9th edition: 25 November 2026, ONE°15 Marina, Sentosa, Singapore.">
+<meta name="twitter:image" content="https://www.givingeconomy.org/images/share-2026.jpg">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "name": "Giving Economy Forum", "url": "https://www.givingeconomy.org/", "logo": "https://www.givingeconomy.org/images/logo.png", "address": {"@type": "PostalAddress", "streetAddress": "160 Robinson Road, #14-04", "postalCode": "068914", "addressLocality": "Singapore", "addressCountry": "SG"}, "telephone": "+65 8904 1562", "sameAs": ["https://www.linkedin.com/company/givingeconomyforum", "https://www.instagram.com/givingeconomyforum/", "https://www.facebook.com/GivingEconomyChangemaker/"]}, {"@context": "https://schema.org", "@type": "Event", "name": "9th Giving Economy Forum", "description": "Evening Forum, Giving Economy Awards and Pledge Ceremony.", "startDate": "2026-11-25T17:00:00+08:00", "endDate": "2026-11-25T21:00:00+08:00", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "ONE°15 Marina, Sentosa", "address": {"@type": "PostalAddress", "addressLocality": "Sentosa", "addressCountry": "SG"}}, "image": ["https://www.givingeconomy.org/images/share-2026.jpg"], "url": "https://www.givingeconomy.org/", "organizer": {"@type": "Organization", "name": "Giving Economy Forum", "url": "https://www.givingeconomy.org/"}, "offers": {"@type": "Offer", "url": "https://forms.gle/2dKDecWRbnphj6idA", "availability": "https://schema.org/InStock"}}]</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1904,7 +1922,9 @@ const open=()=>{d.showModal();document.body.classList.add('reg-open');setTimeout
 document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.closest('#nom-dlg')||a.getAttribute('href')!==href)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;e.preventDefault();open()});
 d.querySelector('.nf-x').onclick=()=>d.close();
 d.addEventListener('close',()=>{document.body.classList.remove('reg-open');if(!done.hidden)reset(false)});
-show(0);})();
+show(0);
+const deep=re=>{if(!re.test(location.pathname))return;open();d.addEventListener('close',()=>history.replaceState(null,'','/'+location.hash),{once:true})};
+deep(/^\/nominate\/?$/);})();
 /* Register links open our own one-step form; answers go to the registrations Google Sheet */
 (()=>{const d=document.getElementById('reg-dlg');if(!d||typeof d.showModal!=='function')return;
 const href=d.dataset.reg,f=document.getElementById('reg-form'),done=d.querySelector('.reg-done'),err=f.querySelector('.rf-err'),go=f.querySelector('.rf-go');
@@ -1913,6 +1933,8 @@ document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a|
 d.querySelector('.reg-x').onclick=()=>d.close();d.querySelector('.rd-close').onclick=()=>d.close();
 d.addEventListener('click',e=>{if(e.target===d)d.close()});
 d.addEventListener('close',()=>{document.body.classList.remove('reg-open');if(!done.hidden){done.hidden=true;f.hidden=false}});
+const deep=re=>{if(!re.test(location.pathname))return;open();d.addEventListener('close',()=>history.replaceState(null,'','/'+location.hash),{once:true})};
+deep(/^\/(rsvp|register)\/?$/);
 f.addEventListener('input',e=>{e.target.classList.remove('bad');const fs=e.target.closest('fieldset');if(fs)fs.classList.remove('bad')});
 f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
  f.querySelectorAll('input:not([type=radio]),textarea').forEach(i=>{const v=i.value.trim(),bad=!v||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));i.classList.toggle('bad',bad);if(bad)ok=false});
