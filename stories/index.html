@@ -1065,6 +1065,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 .reg-dlg .rf input:focus,.reg-dlg .rf textarea:focus,.reg-dlg .rf-tel select:focus,.nom-dlg .rf input:focus,.nom-dlg .rf textarea:focus,.nom-dlg .rf-tel select:focus{border-color:var(--gold-line);box-shadow:0 0 0 3px rgba(194,154,59,.2)}
 .reg-dlg .rf-opts label:has(input:checked){background:rgba(194,154,59,.1)}
 [data-theme="dark"] .reg-dlg,[data-theme="dark"] .nom-dlg{--accent:#E0B85A}
+.reg-done .rd-cal{display:inline-flex;align-items:center;gap:8px;margin:0;padding:9px 16px;border-radius:12px;background:#FAF3E2;border:1px solid #E8D6A8;color:#5E4712;font-size:14px;line-height:1.4;max-width:100%}.reg-done .rd-cal::before{content:'';flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M16 3v4M8 3v4M3 11h18'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M16 3v4M8 3v4M3 11h18'/%3E%3C/svg%3E") center/contain no-repeat}[data-theme="dark"] .reg-done .rd-cal{background:#2A2414;border-color:#5E4A1C;color:#F1D58F}
 </style>
 </head>
 <body>
@@ -1622,7 +1623,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
     <button class="btn btn-primary rf-go" type="submit">Register Now</button>
   </form>
-  <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
+  <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><p class="rd-cal">A confirmation email with a calendar invite is on its way to your inbox.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
 </dialog>
 <dialog class="nom-dlg" id="nom-dlg" data-nom="https://forms.gle/uXBA7wXEDZ21ZuycA" aria-labelledby="nom-dlg-t">
  <div class="nf-scroll">
