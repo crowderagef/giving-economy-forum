@@ -1919,8 +1919,10 @@ window.showPost=id=>{const i=posts.findIndex(p=>p.id===id);if(i<0)return false;c
 $('p-copy').addEventListener('click',()=>{const u=$('p-copy').dataset.url;const done=()=>{$('p-ok').textContent='Link copied'};try{navigator.clipboard.writeText(u).then(done,done)}catch(e){done()}});
 })();
 const VIEWS=['home','about','community','stories','blog','contact','privacy','terms'];
+const CLEAN=/(^|\.)givingeconomy\.org$|^localhost$|^127\./.test(location.hostname),DEEP=/^\/(rsvp|register|nominate)\/?$/;
 function route(){
   let h=location.hash.slice(1); let anchor=null;
+  if(!h&&CLEAN&&!DEEP.test(location.pathname))h=location.pathname.replace(/^\/|\/$/g,'')||'home';
   if(h==='nominate'||h==='singapore'){anchor=h;h='home'} else if(h==='awardees'){anchor=h;h='community'}
   if(h==='changemakers')h='stories';if(h==='blogs'||h==='news')h='blog';let sid=null,pid=null; if(h.startsWith('story/')){sid=decodeURIComponent(h.slice(6));h='story'} else if(h.startsWith('blog/')){pid=decodeURIComponent(h.slice(5));h='post'}
   if(h==='post'&&!(pid&&window.showPost&&showPost(pid)))h='blog';
@@ -1930,9 +1932,10 @@ function route(){
   const mh=h==='story'?'stories':h==='post'?'blog':h;document.querySelectorAll('.menu a').forEach(a=>{if(a.getAttribute('href')==='#'+mh)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   const el=anchor&&document.querySelector('[data-view="'+h+'"] [id="'+anchor+'"]');
   if(el)el.scrollIntoView(); else window.scrollTo(0,0);
+  if(CLEAN&&!anchor){const u=h==='home'?'/':h==='post'?'/blog/'+pid+'/':h==='story'?'/#story/'+encodeURIComponent(sid):'/'+h+'/';if(u!==location.pathname+location.hash&&!(DEEP.test(location.pathname)&&h==='home'&&!location.hash))history.replaceState(history.state,'',u)}
   document.title=h==='home'?"Giving Economy Forum \u00b7 Celebrating changemakers \u00b7 Singapore 2026":(h==='story'?document.getElementById('s-name').textContent:h==='post'?document.getElementById('p-title').textContent:({privacy:'Privacy Policy',terms:'Terms of Use'}[h]||document.querySelector('.menu a[href="#'+h+'"]').textContent))+' · Giving Economy Forum';
 }
-addEventListener('hashchange',route); route();
+addEventListener('hashchange',route);addEventListener('popstate',()=>{if(!location.hash)route()}); route();
 /* Slider */
 (()=>{const root=document.querySelector('.slider');if(!root)return;const slides=[...root.querySelectorAll('.slide')],dots=[...root.querySelectorAll('.dot')];let i=0,t=null;const DUR=7000,dur=k=>+(slides[k].dataset.dur||DUR);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
