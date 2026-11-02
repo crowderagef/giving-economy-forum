@@ -18,9 +18,14 @@ This is a static site with no build step. `index.html` holds every page (Home, A
 
 ## Search and sharing
 
-- Each main page has its own address (`/about/`, `/community/`, `/stories/`, `/contact/`), title, description and canonical link.
+- Each main page has its own address (`/about/`, `/community/`, `/stories/`, `/blog/`, `/contact/`), title, description and canonical link.
 - Open Graph and Twitter tags use `images/share-2026.jpg` (1200x630) for link previews.
 - The home page carries schema.org data for the organisation and the 9th Giving Economy Forum (25 Nov 2026, ONE°15 Marina, Sentosa).
 - `sitemap.xml` and `robots.txt` point search engines at https://www.givingeconomy.org.
 - `CNAME` sets the custom domain to www.givingeconomy.org.
 - After DNS is live, add the site in Google Search Console and submit `https://www.givingeconomy.org/sitemap.xml`.
+
+## Blog
+
+- The Blog lives at `/blog/` (`#blog`), and each post at `/blog/<post-id>/` (`#blog/<post-id>`), with its own title, description and share image for link previews.
+- Posts are kept in `posts.json` in the build source. Each post has an id, title, date, tag, excerpt and body (paragraphs, headings, lists, quotes, images and buttons). Add a post there and rebuild; the listing, post page and sitemap update by themselves.
