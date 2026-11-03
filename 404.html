@@ -1162,14 +1162,15 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 @media (max-width:350px){.top .brand{padding:6px 7px}.top .brand img{width:52px;height:52px}.top .wrap>.btn{padding:.5em .6em;font-size:.76rem}.top .menu-btn{padding:6px 8px}}
 
 /* Phone menu: three-line icon, turns into a cross when open */
-.top .menu-btn{width:40px;height:40px;padding:0;display:grid;place-items:center;flex-shrink:0;border-radius:50%}
+.top .menu-btn{width:40px;height:40px;padding:0;place-items:center;flex-shrink:0;border-radius:50%}
 .menu-btn .hb{position:relative;width:18px;height:14px;display:block}
 .menu-btn .hb i{position:absolute;left:0;width:100%;height:2px;border-radius:2px;background:currentColor;transition:transform .25s ease,opacity .2s ease,top .25s ease}
 .menu-btn .hb i:nth-child(1){top:0}.menu-btn .hb i:nth-child(2){top:6px}.menu-btn .hb i:nth-child(3){top:12px}
 .menu-btn[aria-expanded="true"] .hb i:nth-child(1){top:6px;transform:rotate(45deg)}
 .menu-btn[aria-expanded="true"] .hb i:nth-child(2){opacity:0}
 .menu-btn[aria-expanded="true"] .hb i:nth-child(3){top:6px;transform:rotate(-45deg)}
-@media (max-width:980px){.top .menu-btn{width:36px;height:36px}}
+@media (max-width:980px){.top .menu-btn{width:36px;height:36px;display:grid}}
+@media (min-width:981px) and (max-width:1200px){.top .wrap{gap:12px}.menu a{padding:8px 9px;font-size:.86rem}.menu a{white-space:nowrap}.top .wrap>.btn{padding:.65em 1em;font-size:.84rem;white-space:nowrap}.top .brand img{width:96px;height:96px}}
 @media (max-width:480px){.top .menu-btn{width:32px;height:32px;padding:0}}
 </style>
 </head>
