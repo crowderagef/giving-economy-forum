@@ -14,6 +14,7 @@ This is a static site with no build step. `index.html` holds every page (Home, A
 ## Photo credits
 
 - Singapore skyline at dusk (home page hero): Benh LIEU SONG, via Wikimedia Commons, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Chef at a flaming wok (blog post "The Chef and the Men Who Refused to Stay Down"): JimmysWG, via Wikimedia Commons, licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 - All other photos: Giving Economy Forum and Crowdera event photography.
 
 ## Search and sharing
@@ -28,4 +29,4 @@ This is a static site with no build step. `index.html` holds every page (Home, A
 ## Blog
 
 - The Blog lives at `/blog/` (`#blog`), and each post at `/blog/<post-id>/` (`#blog/<post-id>`), with its own title, description and share image for link previews.
-- Posts are kept in `posts.json` in the build source. Each post has an id, title, date, tag, excerpt and body (paragraphs, headings, lists, quotes, images and buttons). Add a post there and rebuild; the listing, post page and sitemap update by themselves.
+- Posts are kept in `posts.json` in the build source. Each post has an id, title, date, tag, excerpt and body (paragraphs, headings, lists, quotes, images, YouTube videos and buttons). Add a post there and rebuild; the listing, post page and sitemap update by themselves.
