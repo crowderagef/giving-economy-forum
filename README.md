@@ -14,7 +14,6 @@ This is a static site with no build step. `index.html` holds every page (Home, A
 ## Photo credits
 
 - Singapore skyline at dusk (home page hero): Benh LIEU SONG, via Wikimedia Commons, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-- Hands held in a circle (blog post "The Chef and the Men Who Refused to Stay Down"): Wylly Suhendra, via Unsplash.
 - All other photos: Giving Economy Forum and Crowdera event photography.
 
 ## Search and sharing
