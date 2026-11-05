@@ -1689,7 +1689,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 </div>
 <!-- ============ PRIVACY ============ -->
 <div class="view" data-view="privacy" hidden>
-  <section class="doc-head"><div class="wrap"><p class="eyebrow">Legal</p><h1>Privacy Policy</h1><p class="updated">Last updated: 28 October 2026</p></div></section>
+  <section class="doc-head"><div class="wrap"><p class="eyebrow">Legal</p><h1>Privacy Policy</h1><p class="updated">Last updated: 5 November 2026</p></div></section>
   <section style="padding-top:28px"><div class="wrap doc-body">
 <p>This Privacy Policy explains how the Giving Economy Forum ("we", "us") handles personal data in connection with this website, www.givingeconomy.org, and our events, including the Giving Economy Forum, the Giving Economy Awards and the Pledge Ceremony. We aim to handle personal data in line with Singapore's Personal Data Protection Act 2012 (PDPA).</p>
 <h2>1. Information we collect</h2>
@@ -1697,7 +1697,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 <li><b>Information you give us.</b> When you register for an event, nominate a changemaker or contact us, we collect what you provide, such as your name, email address, phone number, organisation, role, and nomination details.</li>
 <li><b>Awardee and nominee information.</b> For people nominated for or honoured at the Giving Economy Awards, we may hold their name, organisation, photograph, biography and a description of their work.</li>
 <li><b>Event photos and video.</b> Our events are photographed and filmed. Images of attendees, speakers and awardees may be used to report on and promote the Forum.</li>
-<li><b>Technical information.</b> When you visit the website, our hosting and font providers automatically receive standard technical data such as your IP address, browser type and the pages requested.</li>
+<li><b>Technical information.</b> When you visit the website, our hosting, font and analytics providers automatically receive standard technical data such as your IP address, browser type, device, approximate location and the pages you view.</li>
 </ul>
 <h2>2. How we use it</h2>
 <ul>
@@ -1708,11 +1708,12 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 <li>To keep the website secure and working properly.</li>
 </ul>
 <h2>3. Cookies</h2>
-<p>This website does not set its own cookies and does not use advertising or analytics trackers. Third-party services we link to or embed, described below, may use cookies under their own policies.</p>
+<p>This website does not use advertising cookies. We use Google Analytics to count visits and understand how people use the website, for example which pages and blog posts are read, how far a post is read, which videos are played, and when someone opens or sends the RSVP or nomination form. Google Analytics sets its own cookies for this. It does not tell us who you are, and we do not use it to show you ads. If your browser sends a Global Privacy Control signal, analytics is switched off for you. You can also block or delete cookies in your browser settings, or install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out add-on</a>. Third-party services we link to or embed, described below, may use cookies under their own policies.</p>
 <h2>4. Third-party services</h2>
 <ul>
 <li><b>Google Forms</b> handles event registration and award nominations. Information you submit there is processed by Google under the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
 <li><b>Google Fonts</b> supplies the typefaces on this website, so your browser connects to Google's servers when pages load.</li>
+<li><b>Google Analytics</b> measures visits and how the website is used, as described under Cookies. Google processes this data under the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
 <li><b>GitHub Pages</b> hosts this website and may log visitor IP addresses for security and operations under the <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
 <li><b>Social media.</b> Links to LinkedIn, Instagram and Facebook take you to those platforms, where their own privacy policies apply.</li>
 </ul>
@@ -1732,7 +1733,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 </div>
 <!-- ============ TERMS ============ -->
 <div class="view" data-view="terms" hidden>
-  <section class="doc-head"><div class="wrap"><p class="eyebrow">Legal</p><h1>Terms of Use</h1><p class="updated">Last updated: 28 October 2026</p></div></section>
+  <section class="doc-head"><div class="wrap"><p class="eyebrow">Legal</p><h1>Terms of Use</h1><p class="updated">Last updated: 5 November 2026</p></div></section>
   <section style="padding-top:28px"><div class="wrap doc-body">
 <p>These Terms of Use apply to your use of www.givingeconomy.org (the "website"), operated by the Giving Economy Forum ("we", "us"). By using the website, you agree to these terms. If you do not agree, please do not use the website.</p>
 <h2>1. About the website</h2>
@@ -2149,5 +2150,52 @@ f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
  finally{go.disabled=false;go.textContent='RSVP Now'}});})();
 </script>
 
+<!-- analytics:start -->
+<script>
+/* Analytics (Google Analytics 4). Runs only on www.givingeconomy.org, never in previews,
+   and stays off for visitors whose browser sends Global Privacy Control. */
+(()=>{const ID='';
+if(!ID||!/(^|\.)givingeconomy\.org$/.test(location.hostname)||navigator.globalPrivacyControl)return;
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;
+gtag('js',new Date());gtag('config',ID,{send_page_view:false});
+const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
+const ev=(n,p)=>gtag('event',n,p||{});
+const vpath=()=>{const h=location.hash.slice(1);return h&&!/^(nominate|singapore|awardees)$/.test(h)?'/'+h.replace(/\/?$/,'/'):location.pathname};
+const view=()=>{const v=document.querySelector('.view:not([hidden])');return v?v.dataset.view:''};
+const postId=()=>{const m=vpath().match(/^\/blog\/([^/]+)\/$/);return m?decodeURIComponent(m[1]):''};
+const postTitle=()=>(document.getElementById('p-title')||{}).textContent||'';
+/* Page views: one per page or blog post the visitor opens */
+let last='',marks=[],seen=new Set();
+function pv(){const p=vpath();if(p===last)return;last=p;marks=[25,50,75,100];seen=new Set();
+ const d={page_location:location.origin+p,page_path:p,page_title:document.title};
+ if(view()==='post'){d.content_type='blog_post';d.post_id=postId();d.post_title=postTitle()}
+ ev('page_view',d)}
+addEventListener('hashchange',()=>setTimeout(pv,0));addEventListener('popstate',()=>setTimeout(pv,0));pv();
+/* Blog reading depth: 25, 50, 75 and 100 percent of the post text */
+let tk=0;addEventListener('scroll',()=>{if(tk||view()!=='post')return;tk=setTimeout(()=>{tk=0;const a=document.getElementById('p-text');if(view()!=='post'||!a||!marks.length)return;
+ const r=a.getBoundingClientRect();if(!r.height)return;const pc=Math.max(0,Math.min(100,(innerHeight-r.top)/Math.max(1,r.height)*100));
+ while(marks.length&&pc>=marks[0]){ev('blog_read',{percent:marks.shift(),post_id:postId(),post_title:postTitle()})}},250)},{passive:true});
+/* Blog videos: counts a play when the visitor clicks into a YouTube video */
+addEventListener('blur',()=>setTimeout(()=>{const f=document.activeElement;if(!f||f.tagName!=='IFRAME'||!f.closest('.p-vid')||seen.has(f.src))return;seen.add(f.src);
+ ev('video_play',{video_title:f.title,post_id:postId(),post_title:postTitle()})},0));
+/* Clicks: what the visitor pressed and where */
+let cta='';const where=el=>{const s=el.closest('section,header,footer,aside,dialog');return view()+(s&&s.className?' / '+String(s.className).split(' ')[0]:'')};
+document.addEventListener('click',e=>{const el=e.target.closest('a,button');if(!el)return;
+ const t=(el.textContent||el.getAttribute('aria-label')||'').trim().replace(/\s+/g,' ').slice(0,60),href=el.getAttribute('href')||'';
+ cta={text:t,location:where(el)};
+ const net=el.dataset.net;if(net&&el.closest('#p-share')){ev('share',{method:{li:'LinkedIn',fb:'Facebook',x:'X',wa:'WhatsApp'}[net]||net,content_type:'blog_post',item_id:postId(),post_title:postTitle()});return}
+ if(el.id==='p-copy'){ev('share',{method:'Copy link',content_type:'blog_post',item_id:postId(),post_title:postTitle()});return}
+ if(el.dataset.copy){ev('contact_click',{method:'Copy email'});return}
+ if(/^mailto:/.test(href))ev('contact_click',{method:'Email'});else if(/^tel:/.test(href))ev('contact_click',{method:'Phone'});
+ else if(/^https?:/.test(href)&&!/forms\.gle\/(2dKDecWRbnphj6idA|uXBA7wXEDZ21ZuycA)/.test(href)&&el.hostname&&!/(^|\.)givingeconomy\.org$/.test(el.hostname))ev('outbound_click',{link_url:el.href,link_text:t,page_area:cta.location});
+ else if(view()==='blog'||view()==='home'){const m=href.match(/^#blog\/(.+)$/);if(m){const h=el.querySelector('h2,h3,h4');ev('select_content',{content_type:'blog_post',item_id:decodeURIComponent(m[1]),link_text:h?h.textContent.trim():t,page_area:cta.location})}}},true);
+/* RSVP and nomination forms: opened, and sent */
+const watch=(id,name)=>{const d=document.getElementById(id);if(!d)return;const done=d.querySelector('.'+id.slice(0,3)+'-done');
+ new MutationObserver(()=>{if(d.open)ev(name+'_open',{button_text:cta.text||'(link)',page_area:cta.location||view()})}).observe(d,{attributes:true,attributeFilter:['open']});
+ if(done)new MutationObserver(()=>{if(!done.hidden)ev(name+'_submit',{page_area:cta.location||view()})}).observe(done,{attributes:true,attributeFilter:['hidden']})};
+watch('reg-dlg','rsvp');watch('nom-dlg','nominate');
+})();
+</script>
+<!-- analytics:end -->
 </body>
 </html>
