@@ -813,7 +813,7 @@ h1 em,h2 em{font-style:normal;color:var(--accent-2)}
 .rf-opts input{accent-color:var(--accent);margin:0}
 .rf-err{margin:0;color:#B3261E;font-size:.9rem}
 .rf-tel{display:flex;gap:8px}
-.rf select.rf-sel{width:100%;font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}.rf select.rf-sel:focus{outline:none;border-color:var(--gold-line);box-shadow:0 0 0 3px rgba(194,154,59,.2)}.rf select.rf-sel.bad{border-color:#c0392b}.rf-tel select{flex:none;width:118px;font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:0 10px;cursor:pointer}
+.rf-org[hidden]{display:none}.rf small{font-weight:400;color:var(--muted,#6b7280)}.rf select.rf-sel{width:100%;font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}.rf select.rf-sel:focus{outline:none;border-color:var(--gold-line);box-shadow:0 0 0 3px rgba(194,154,59,.2)}.rf select.rf-sel.bad{border-color:#c0392b}.rf-tel select{flex:none;width:118px;font:inherit;font-size:1rem;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:0 10px;cursor:pointer}
 .rf-tel select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,83,53,.12)}
 .rf-tel input{flex:1;min-width:0}
 .rf>label>span{font-weight:600;font-size:.92rem}
@@ -1789,8 +1789,8 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <label class="rf"><span>Full Name <i>*</i></span><input name="name" autocomplete="name" required></label>
     <label class="rf"><span>Email Address <i>*</i></span><input name="email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
     <div class="rf"><label for="rf-phone"><span>Phone Number <i>*</i></span></label><div class="rf-tel"><select id="rf-cc" class="cc-pick" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="rf-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
-    <label class="rf"><span>In What Capacity Are You Attending? <i>*</i></span><select name="capacity" class="rf-sel" required><option value="" selected disabled>Please choose one</option><option>Charity Representative</option><option>Donor / Philanthropist</option><option>Corporate / CSR</option><option>Volunteer</option><option>Media</option><option>Guest</option><option>Other</option></select></label>
-    <label class="rf"><span>Which Charity Do You Represent? <i>*</i></span><input name="work" autocomplete="organization" placeholder="Name of the charity or organisation" required></label>
+    <label class="rf"><span>In What Capacity Are You Attending? <i>*</i></span><select name="capacity" class="rf-sel" required><option value="" selected disabled>Please choose one</option><option>Charity</option><option>Donor / Philanthropist</option><option>Corporate / CSR</option><option>Media</option><option>Other</option></select></label>
+    <label class="rf rf-org" hidden><span>Which Charity Do You Represent? <i>*</i></span><input name="work" autocomplete="organization" placeholder="Name of the charity"></label>
     <fieldset class="rf"><legend>How Many People Attending Along With You? <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="guests" value="NA" required> Just me</label><label><input type="radio" name="guests" value="1"> 1</label><label><input type="radio" name="guests" value="2"> 2</label></div></fieldset>
     <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
     <button class="btn btn-primary rf-go" type="submit">RSVP Now</button>
@@ -2139,8 +2139,11 @@ const deep=re=>{if(!re.test(location.pathname))return;open();d.addEventListener(
 deep(/^\/(rsvp|register)\/?$/);
 f.addEventListener('input',e=>{e.target.classList.remove('bad');const fs=e.target.closest('fieldset');if(fs)fs.classList.remove('bad')});
 f.addEventListener('change',e=>e.target.classList.remove('bad'));
+const org=f.querySelector('.rf-org'),cap=f.elements.capacity,ORG={'Charity':['Which Charity Do You Represent?','Name of the charity'],'Donor / Philanthropist':['Which Family Office or Foundation Do You Represent?','Name of the family office or foundation, or Individual'],'Corporate / CSR':['Which Company Do You Represent?','Name of the company'],'Media':['Which Media Organisation Do You Represent?','Name of the publication or channel'],'Other':['Which Organisation Do You Represent?','Leave blank if none']};
+const syncOrg=()=>{const o=ORG[cap.value],w=org.querySelector('input');org.hidden=!o;if(!o)return;const opt=cap.value==='Other';org.querySelector('span').innerHTML=o[0]+(opt?' <small>(optional)</small>':' <i>*</i>');w.placeholder=o[1];if(opt){w.dataset.opt='1';w.classList.remove('bad')}else delete w.dataset.opt};
+cap.addEventListener('change',syncOrg);f.addEventListener('reset',()=>setTimeout(syncOrg));
 f.addEventListener('submit',async e=>{e.preventDefault();let ok=true;
- f.querySelectorAll('input:not([type=radio]),textarea,select.rf-sel').forEach(i=>{const v=i.value.trim(),bad=!v||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));i.classList.toggle('bad',bad);if(bad)ok=false});
+ f.querySelectorAll('input:not([type=radio]),textarea,select.rf-sel').forEach(i=>{const v=i.value.trim(),bad=!i.closest('[hidden]')&&!i.dataset.opt&&(!v||(i.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)));i.classList.toggle('bad',bad);if(bad)ok=false});
  const fs=f.querySelector('fieldset'),r=fs.querySelector('input:checked');fs.classList.toggle('bad',!r);if(!r)ok=false;
  err.hidden=ok;if(!ok){err.textContent=f.querySelector('input[type=email].bad')&&f.querySelectorAll('.bad').length===1?'Please check your email address.':'Please fill in all the fields marked *.';err.hidden=false;const b=f.querySelector('.bad');if(b)b.scrollIntoView({block:'center',behavior:'smooth'});return}
  go.disabled=true;go.textContent='Sending…';
