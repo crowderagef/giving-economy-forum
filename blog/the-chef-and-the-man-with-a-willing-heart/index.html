@@ -1232,7 +1232,19 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 .cch-cta .btn{white-space:nowrap}
 @media (max-width:860px){.cch-card{grid-template-columns:88px minmax(0,1fr)}.cch-ph{width:88px;height:88px}.cch-cta{grid-column:1/-1}}
 @media (max-width:520px){.cch-card{grid-template-columns:1fr}.cch-ph{width:84px;height:84px}}
+/* portrait:css */
+.cc-spk{grid-template-columns:168px minmax(0,1fr);gap:28px;align-items:center;padding:24px 28px 24px 24px}
+.cc-ph{width:168px;height:224px;border-radius:12px;border:0;object-fit:cover;object-position:50% 0;background:#fff;box-shadow:0 10px 28px -14px rgba(21,32,41,.35)}
+.cch-card{grid-template-columns:104px minmax(0,1fr) auto}
+.cch-ph{width:104px;height:138px;border-radius:10px;border:0;object-fit:cover;object-position:50% 0;background:#fff;box-shadow:0 8px 22px -12px rgba(21,32,41,.35)}
+@media (max-width:860px){.cch-card{grid-template-columns:88px minmax(0,1fr)}.cch-ph{width:88px;height:117px}}
+@media (max-width:520px){.cc-spk{grid-template-columns:1fr;gap:16px}.cc-ph{width:132px;height:176px}.cch-card{grid-template-columns:1fr}.cch-ph{width:96px;height:128px}}
 /* conclave-home:end */
+
+/* rsvp-cc-note */
+.reg-cc{margin:0;padding:10px 14px;border-radius:12px;background:#FAF3E2;border:1px solid #E8D6A8;color:#5E4712;font-size:.86rem;line-height:1.5}
+.reg-cc a{color:#8C6B1E;font-weight:600;white-space:nowrap}
+[data-theme="dark"] .reg-cc{background:#2A2414;border-color:#5E4A1C;color:#F1D58F}[data-theme="dark"] .reg-cc a{color:#F1C970}
 </style>
 </head>
 <body>
@@ -1303,7 +1315,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 
   <section class="cc-home" aria-labelledby="cch-h">
     <div class="wrap"><div class="cch-card">
-      <img class="cch-ph" src="/images/villars_poulsen.jpg" alt="Villars Poulsen" loading="lazy" width="600" height="600">
+      <img class="cch-ph" src="/images/villars_poulsen_portrait.jpg" alt="Villars Poulsen" loading="lazy" width="600" height="800">
       <div class="cch-t"><p class="eyebrow">Corporate Conclave · Wednesday, 25 November 2026 · 3:00 PM</p><h2 id="cch-h">Corporate Leadership <em>Dialogue</em></h2>
       <p>How can businesses advance the SDGs 2030 and beyond through community engagement, employee engagement and responsible ESG practices? Villars Poulsen, International Development Adviser, opens the dialogue at ONE°15 Marina, Sentosa.</p></div>
       <div class="cch-cta"><a class="btn btn-primary" href="#corporateconclave">Reserve Your Seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
@@ -1760,7 +1772,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
         <div style="display:grid;gap:12px"><p class="eyebrow" style="margin:0">The Conversation</p>
         <p class="cc-q">How can businesses advance the Sustainable Development Goals (SDGs) 2030 and beyond through meaningful community engagement, stronger employee engagement, and responsible ESG practices?</p>
         <p>Explore how corporate leadership can drive sustainability, build strategic partnerships, and create lasting value for people, communities and the planet.</p></div>
-        <div class="cc-spk"><img class="cc-ph" src="/images/villars_poulsen.jpg" alt="Villars Poulsen" loading="lazy" width="600" height="600"><div class="cc-spk-t"><span class="eyebrow">Opening the Dialogue</span><b>Villars Poulsen</b><span class="cc-role">International Development Adviser</span><p>Villars Poulsen is a Danish adviser on strategic governance and institutional development. He brings more than 25 years of experience, including coordinating work across UN agencies and leading civil society programmes around the world.</p></div></div>
+        <div class="cc-spk"><img class="cc-ph" src="/images/villars_poulsen_portrait.jpg" alt="Villars Poulsen" loading="lazy" width="600" height="800"><div class="cc-spk-t"><span class="eyebrow">Opening the Dialogue</span><b>Villars Poulsen</b><span class="cc-role">International Development Adviser</span><p>Villars Poulsen is a Danish adviser on strategic governance and institutional development. He brings more than 25 years of experience, including coordinating work across UN agencies and leading civil society programmes around the world.</p></div></div>
         <div class="cc-when"><div><span class="eyebrow">Date &amp; Time</span><b>Wednesday, 25 November 2026<br>3:00 PM SGT</b></div><div><span class="eyebrow">Venue</span><b>ONE°15 Marina<br>Sentosa, Singapore</b></div></div>
         <p class="cc-help">For any questions, please reach Bala Shetty at <a href="tel:+6598175928">+65 9817 5928</a>.</p>
       </div>
@@ -1772,7 +1784,8 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
           <label class="rf"><span>Email Address <i>*</i></span><input name="email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
           <div class="rf"><label for="cc-phone"><span>Mobile Number <small>(optional)</small></span></label><div class="rf-tel"><select id="cc-cc" class="cc-pick" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="cc-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" data-opt="1"></div></div>
           <fieldset class="rf"><legend>I Am Attending As <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="type" value="Corporate Professional" required> Corporate Professional</label><label><input type="radio" name="type" value="Student"> Student</label><label><input type="radio" name="type" value="Other"> Other</label></div></fieldset>
-          <label class="rf cc-x" data-for="Corporate Professional" hidden><span>Your Position <i>*</i></span><input name="position" autocomplete="organization-title" placeholder="e.g. Head of Sustainability, ABC Pte Ltd"></label>
+          <label class="rf cc-x" data-for="Corporate Professional" hidden><span>Company Name <i>*</i></span><input name="company" autocomplete="organization" placeholder="e.g. ABC Pte Ltd"></label>
+          <label class="rf cc-x" data-for="Corporate Professional" hidden><span>Your Position <i>*</i></span><input name="position" autocomplete="organization-title" placeholder="e.g. Head of Sustainability"></label>
           <label class="rf cc-x" data-for="Student" hidden><span>University or School Name <i>*</i></span><input name="school" autocomplete="organization" placeholder="e.g. National University of Singapore"></label>
           <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
           <button class="btn btn-primary rf-go" type="submit">Reserve My Seat</button>
@@ -1890,6 +1903,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <fieldset class="rf"><legend>How Many People Attending Along With You? <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="guests" value="NA" required> Just me</label><label><input type="radio" name="guests" value="1"> 1</label><label><input type="radio" name="guests" value="2"> 2</label></div></fieldset>
     <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
     <button class="btn btn-primary rf-go" type="submit">RSVP Now</button>
+    <p class="reg-cc">Want to register for the <b>Corporate Conclave</b>? The Corporate Leadership Dialogue is at 3:00 PM SGT on the same day, before the Forum. <a href="#corporateconclave" onclick="event.preventDefault();this.closest('dialog').close();setTimeout(()=>{location.hash='corporateconclave'},30)">Reserve your seat here</a></p>
   </form>
   <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><p class="rd-cal">A confirmation email with a calendar invite is on its way to your inbox.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
 </dialog>
