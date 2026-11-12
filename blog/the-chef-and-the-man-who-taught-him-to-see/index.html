@@ -1894,7 +1894,6 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
   <div class="reg-head"><div><p class="eyebrow">Wednesday, 25 November 2026 · ONE°15 Marina</p><h2 id="reg-dlg-t">RSVP for the 2026 Forum</h2></div><button class="reg-x" type="button" aria-label="Close">&times;</button></div>
   <form class="reg-form" id="reg-form" data-action="https://script.google.com/macros/s/AKfycbwOZJQm2I6TTjFxq1paMMYjH54U2tI1obnGWwDN84U9g0GqmXU8NB0tenhw-H8PVsRL_A/exec" novalidate>
     <p class="reg-intro">Evening Forum, Giving Economy Awards and Pledge Ceremony, 5 pm to 9 pm SGT.</p>
-    <p class="reg-cc">Want to register for the <b>Corporate Conclave</b>? The Corporate Leadership Dialogue is at 3:00 PM SGT on the same day, before the Forum. <a href="#corporateconclave" onclick="this.closest('dialog').close()">Reserve your seat here</a></p>
     <label class="rf"><span>Full Name <i>*</i></span><input name="name" autocomplete="name" required></label>
     <label class="rf"><span>Email Address <i>*</i></span><input name="email" type="email" autocomplete="email" inputmode="email" placeholder="We'll send your confirmation here" required></label>
     <div class="rf"><label for="rf-phone"><span>Phone Number <i>*</i></span></label><div class="rf-tel"><select id="rf-cc" class="cc-pick" aria-label="Country code"><option value="65">🇸🇬 +65</option></select><input id="rf-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" required></div></div>
@@ -1904,6 +1903,7 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <fieldset class="rf"><legend>How Many People Attending Along With You? <i>*</i></legend><div class="rf-opts"><label><input type="radio" name="guests" value="NA" required> Just me</label><label><input type="radio" name="guests" value="1"> 1</label><label><input type="radio" name="guests" value="2"> 2</label></div></fieldset>
     <p class="rf-err" role="alert" hidden>Please fill in all the fields marked *.</p>
     <button class="btn btn-primary rf-go" type="submit">RSVP Now</button>
+    <p class="reg-cc">Want to register for the <b>Corporate Conclave</b>? The Corporate Leadership Dialogue is at 3:00 PM SGT on the same day, before the Forum. <a href="#corporateconclave" onclick="event.preventDefault();this.closest('dialog').close();setTimeout(()=>{location.hash='corporateconclave'},30)">Reserve your seat here</a></p>
   </form>
   <div class="reg-done" hidden><div class="rd-tick" aria-hidden="true">✓</div><h3>You're Registered!</h3><p>Thank you. We look forward to welcoming you at ONE°15 Marina, Sentosa on Wednesday, 25 November 2026.</p><p class="rd-cal">A confirmation email with a calendar invite is on its way to your inbox.</p><button class="btn btn-line rd-close" type="button">Close</button></div>
 </dialog>
