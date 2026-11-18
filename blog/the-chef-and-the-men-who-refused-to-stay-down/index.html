@@ -1249,6 +1249,32 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 
 /* cc-home-moved */
 .cc-home{padding-block:0 clamp(56px,7vw,96px)}
+
+/* speakers-home:css */
+.spk-home .head{max-width:760px}
+.spk-lede{color:var(--muted);margin:14px 0 0;max-width:66ch}
+.spk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,28px);margin-top:clamp(28px,4vw,44px)}
+.spk-card{display:grid;grid-template-columns:168px minmax(0,1fr);gap:24px;align-items:start;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.spk-card::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,#DDBB66,#BC9238)}
+.spk-ph{width:168px;height:224px;border-radius:12px;object-fit:cover;object-position:50% 0;background:#fff;box-shadow:0 10px 28px -14px rgba(21,32,41,.35)}
+.spk-t{display:grid;gap:8px;min-width:0}
+.spk-t p{margin:0}
+.spk-role{font:600 .72rem/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink,#8C6B1E)}
+.spk-t h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,2.2vw,1.75rem);letter-spacing:-.01em;margin:2px 0 0}
+.spk-org{font-weight:500;font-size:.92rem}
+.spk-t>p:not(.spk-role):not(.spk-org),.spk-more p{color:var(--muted);font-size:.94rem;line-height:1.6}
+.spk-more{margin-top:4px}
+.spk-more summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--gold-ink,#8C6B1E);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.spk-more summary::-webkit-details-marker{display:none}
+.spk-more summary::after{content:"+";font-size:1.1rem;line-height:1}
+.spk-more[open] summary::after{content:"\2212"}
+.spk-more p{margin:10px 0 0}
+.spk-li{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.88rem;font-weight:500;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--gold)}
+.spk-li svg{width:15px;height:15px}
+.spk-cta{margin-top:clamp(24px,3vw,36px);text-align:center}
+@media (max-width:980px){.spk-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.spk-card{grid-template-columns:1fr;gap:16px}.spk-ph{width:150px;height:200px}}
+/* speakers-home:end */
 </style>
 </head>
 <body>
@@ -1385,6 +1411,44 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
           <li><div class="ag-tm">Close<span>Ceremony</span></div><div><h3>Pledge Ceremony</h3><p>Rooted in the principles of Giving First and Giving Forward.</p></div><span class="ag-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.5A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.5c0 5.1-7 9.5-7 9.5z"/></svg></span></li>
         </ol></div>
       </div>
+    </div>
+  </section>
+
+  <section class="tint spk-home" id="speakers" aria-labelledby="spk-h">
+    <div class="wrap">
+      <div class="head rv"><p class="eyebrow">Giving Economy Forum 2026 · Speakers</p><h2 id="spk-h">Meet Our <em>Speakers</em></h2>
+      <p class="spk-lede">Every conversation at this year's Forum connects back to the 17 Sustainable Development Goals. Here are the first voices joining us at ONE°15 Marina on Wednesday, 25 November. More speakers to be announced.</p></div>
+      <div class="spk-grid">
+        <article class="spk-card">
+          <img class="spk-ph" src="/images/spk_audrey_ong.jpg" alt="Audrey Ong" loading="lazy" width="540" height="720">
+          <div class="spk-t">
+            <p class="spk-role">Speaker · AI and Philanthropy</p>
+            <h3>Audrey Ong</h3>
+            <p class="spk-org">President (Chair), Singapore Gymnastics</p>
+            <p>Audrey is an enterprise innovator and a leader in AI driven transformation, known for guiding organisations through complex change, strategic renewal and technology adoption. She will speak on AI and philanthropy.</p>
+            <details class="spk-more"><summary>Read Full Profile</summary>
+              <p>Audrey serves as President (Chair) of the Board at Singapore Gymnastics, an IPC-registered non-profit and National Sports Association, providing stewardship on governance, risk and strategic growth that supports Singapore's goals of medalling on the world stage for gymnastics.</p>
+              <p>Her contributions to Singapore's digital economy have been nationally recognised. She is an honoree of the Singapore 100 Women in Tech list (Singapore Computer Society and IMDA, 2025) and was profiled in The Business Times as one of the top women driving digital transformation across listed and multinational companies. She is also a member of the SG Digital Leaders Programme 2026 by IMDA, which recognises future leaders in the technology and media sector.</p>
+              <a class="spk-li" href="https://www.linkedin.com/in/audrey-ong-ozi/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4z"/></svg>LinkedIn</a>
+            </details>
+          </div>
+        </article>
+        <article class="spk-card">
+          <img class="spk-ph" src="/images/spk_tarun_deo.jpg" alt="Tarun Deo" loading="lazy" width="360" height="480">
+          <div class="spk-t">
+            <p class="spk-role">Moderator</p>
+            <h3>Tarun Deo</h3>
+            <p class="spk-org">Founder and Managing Director, Progressive Communications</p>
+            <p>Tarun has more than 25 years' experience in public relations across Asia Pacific and has lived and worked in India, Hong Kong and Singapore. He will moderate the conversations at this year's Forum.</p>
+            <details class="spk-more"><summary>Read Full Profile</summary>
+              <p>He has consulted with companies across many sectors, working with well-known brands including Zespri, Dole Sunshine Company, McDonald's, Mastercard, Porsche, Twitter and FairPrice, helping them nurture their brands and reputation in today's "always on" world.</p>
+              <p>He was previously at Golin, serving as Managing Director of Singapore and Southeast Asia. Before that he spent more than five years as a Managing Director of FleishmanHillard Asia, and ten years with Text 100 building their business in India and Southeast Asia. He started his career at Perfect Relations in New Delhi.</p>
+              <p>Tarun holds a Bachelor's degree in Commerce from Shri Ram College of Commerce, University of Delhi. He is an avid sports fan and a keen golfer, and lives in Singapore.</p>
+            </details>
+          </div>
+        </article>
+      </div>
+      <div class="spk-cta"><a class="btn btn-primary" href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">RSVP Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
