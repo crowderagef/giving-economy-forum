@@ -1280,6 +1280,24 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 .spk-home+section{padding-top:clamp(64px,8vw,112px)!important}
 @media (max-width:760px){.spk-home+section{padding-top:52px!important}}
 @media (max-width:520px){.spk-more-note{letter-spacing:.12em;gap:10px;font-size:.74rem}.spk-more-note::before,.spk-more-note::after{width:22px}}
+.spk-open{all:unset;cursor:pointer;margin-top:4px;font-weight:600;font-size:.88rem;color:var(--gold-ink,#8C6B1E);display:inline-flex;align-items:center;gap:6px;justify-self:start}
+.spk-open::after{content:"+";font-size:1.1rem;line-height:1}
+.spk-open:hover{text-decoration:underline;text-underline-offset:4px}
+.spk-open:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
+.spk-dlg{width:min(720px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 48px);margin:auto;padding:0;border:0;border-radius:20px;background:var(--bg);color:var(--fg);box-shadow:0 40px 100px -20px rgba(21,32,41,.5);overflow:hidden}
+.spk-dlg[open]{display:flex;flex-direction:column}
+.spk-dlg::before{content:"";flex:none;height:4px;background:linear-gradient(90deg,#DDBB66,#BC9238)}
+.spk-dlg::backdrop{background:rgba(13,22,27,.62);backdrop-filter:blur(3px)}
+.spk-dlg-b{overflow:auto;padding:clamp(22px,4vw,40px)}
+.spk-dlg-top{display:grid;grid-template-columns:132px minmax(0,1fr);gap:24px;align-items:end;padding-right:36px}
+.spk-dlg-top img{width:132px;height:176px;border-radius:12px;object-fit:cover;object-position:50% 0;box-shadow:0 10px 28px -14px rgba(21,32,41,.35)}
+.spk-dlg-top p{margin:0}.spk-dlg-top h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;margin:6px 0 6px}
+.spk-dlg-bio{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.spk-dlg-bio p{color:var(--muted);font-size:.97rem;line-height:1.7;margin:0 0 14px}
+.spk-x{all:unset;cursor:pointer;position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--fg)}
+.spk-x svg{width:18px;height:18px}.spk-x:hover{background:var(--line)}
+.spk-x:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:520px){.spk-dlg-top{grid-template-columns:96px minmax(0,1fr);gap:16px}.spk-dlg-top img{width:96px;height:128px}}
 /* speakers-home:end */
 </style>
 </head>
@@ -1432,13 +1450,17 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
             <h3>Audrey Ong</h3>
             <p class="spk-org">President (Chair), Singapore Gymnastics</p>
             <p>Audrey is an enterprise innovator and a leader in AI driven transformation, known for guiding organisations through complex change, strategic renewal and technology adoption. She will speak on AI and philanthropy.</p>
-            <details class="spk-more"><summary>Read Full Profile</summary>
-              <p>Audrey serves as President (Chair) of the Board at Singapore Gymnastics, an IPC-registered non-profit and National Sports Association, providing stewardship on governance, risk and strategic growth that supports Singapore's goals of medalling on the world stage for gymnastics.</p>
-              <p>Her contributions to Singapore's digital economy have been nationally recognised. She is an honoree of the Singapore 100 Women in Tech list (Singapore Computer Society and IMDA, 2025) and was profiled in The Business Times as one of the top women driving digital transformation across listed and multinational companies. She is also a member of the SG Digital Leaders Programme 2026 by IMDA, which recognises future leaders in the technology and media sector.</p>
-              <a class="spk-li" href="https://www.linkedin.com/in/audrey-ong-ozi/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4z"/></svg>LinkedIn</a>
-            </details>
+            <button type="button" class="spk-open" data-dlg="spk-audrey-ong" aria-haspopup="dialog">Read Full Profile</button>
           </div>
         </article>
+        <dialog class="spk-dlg" id="spk-audrey-ong" aria-labelledby="spk-audrey-ong-h">
+          <button type="button" class="spk-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <div class="spk-dlg-b"><div class="spk-dlg-top"><img src="/images/spk_audrey_ong.jpg" alt="Audrey Ong" width="270" height="360"><div><p class="spk-role">Speaker · AI and Philanthropy</p><h3 id="spk-audrey-ong-h">Audrey Ong</h3><p class="spk-org">President (Chair), Singapore Gymnastics</p></div></div>
+          <div class="spk-dlg-bio"><p>Audrey is an enterprise innovator and a leader in AI driven transformation, known for guiding organisations through complex change, strategic renewal and technology adoption. She will speak on AI and philanthropy.</p>
+              <p>Audrey serves as President (Chair) of the Board at Singapore Gymnastics, an IPC-registered non-profit and National Sports Association, providing stewardship on governance, risk and strategic growth that supports Singapore's goals of medalling on the world stage for gymnastics.</p>
+              <p>Her contributions to Singapore's digital economy have been nationally recognised. She is an honoree of the Singapore 100 Women in Tech list (Singapore Computer Society and IMDA, 2025) and was profiled in The Business Times as one of the top women driving digital transformation across listed and multinational companies. She is also a member of the SG Digital Leaders Programme 2026 by IMDA, which recognises future leaders in the technology and media sector.</p>
+              <a class="spk-li" href="https://www.linkedin.com/in/audrey-ong-ozi/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4z"/></svg>LinkedIn</a></div></div>
+        </dialog>
         <article class="spk-card">
           <img class="spk-ph" src="/images/spk_tarun_deo.jpg" alt="Tarun Deo" loading="lazy" width="360" height="480">
           <div class="spk-t">
@@ -1446,13 +1468,17 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
             <h3>Tarun Deo</h3>
             <p class="spk-org">Founder and Managing Director, Progressive Communications</p>
             <p>Tarun has more than 25 years' experience in public relations across Asia Pacific and has lived and worked in India, Hong Kong and Singapore. He will moderate the conversations at this year's Forum.</p>
-            <details class="spk-more"><summary>Read Full Profile</summary>
-              <p>He has consulted with companies across many sectors, working with well-known brands including Zespri, Dole Sunshine Company, McDonald's, Mastercard, Porsche, Twitter and FairPrice, helping them nurture their brands and reputation in today's "always on" world.</p>
-              <p>He was previously at Golin, serving as Managing Director of Singapore and Southeast Asia. Before that he spent more than five years as a Managing Director of FleishmanHillard Asia, and ten years with Text 100 building their business in India and Southeast Asia. He started his career at Perfect Relations in New Delhi.</p>
-              <p>Tarun holds a Bachelor's degree in Commerce from Shri Ram College of Commerce, University of Delhi. He is an avid sports fan and a keen golfer, and lives in Singapore.</p>
-            </details>
+            <button type="button" class="spk-open" data-dlg="spk-tarun-deo" aria-haspopup="dialog">Read Full Profile</button>
           </div>
         </article>
+        <dialog class="spk-dlg" id="spk-tarun-deo" aria-labelledby="spk-tarun-deo-h">
+          <button type="button" class="spk-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <div class="spk-dlg-b"><div class="spk-dlg-top"><img src="/images/spk_tarun_deo.jpg" alt="Tarun Deo" width="270" height="360"><div><p class="spk-role">Moderator</p><h3 id="spk-tarun-deo-h">Tarun Deo</h3><p class="spk-org">Founder and Managing Director, Progressive Communications</p></div></div>
+          <div class="spk-dlg-bio"><p>Tarun has more than 25 years' experience in public relations across Asia Pacific and has lived and worked in India, Hong Kong and Singapore. He will moderate the conversations at this year's Forum.</p>
+              <p>He has consulted with companies across many sectors, working with well-known brands including Zespri, Dole Sunshine Company, McDonald's, Mastercard, Porsche, Twitter and FairPrice, helping them nurture their brands and reputation in today's "always on" world.</p>
+              <p>He was previously at Golin, serving as Managing Director of Singapore and Southeast Asia. Before that he spent more than five years as a Managing Director of FleishmanHillard Asia, and ten years with Text 100 building their business in India and Southeast Asia. He started his career at Perfect Relations in New Delhi.</p>
+              <p>Tarun holds a Bachelor's degree in Commerce from Shri Ram College of Commerce, University of Delhi. He is an avid sports fan and a keen golfer, and lives in Singapore.</p></div></div>
+        </dialog>
       </div>
       <p class="spk-more-note">More Speakers To Be Unveiled</p>
       <div class="spk-cta"><a class="btn btn-primary" href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">RSVP Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
@@ -2406,5 +2432,6 @@ watch('reg-dlg','rsvp');watch('nom-dlg','nominate');
 })();
 </script>
 <!-- analytics:end -->
+<script>/* speakers-popup:js */(function(){document.addEventListener('click',function(e){var b=e.target.closest('.spk-open');if(b){var d=document.getElementById(b.dataset.dlg);if(d&&d.showModal){d.showModal();}return}var x=e.target.closest('.spk-x');if(x){x.closest('dialog').close();return}if(e.target.classList&&e.target.classList.contains('spk-dlg')){e.target.close()}});})();</script>
 </body>
 </html>
