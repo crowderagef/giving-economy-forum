@@ -1307,11 +1307,42 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
 @media (min-width:861px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.spk-card{grid-template-columns:1fr;gap:18px;align-content:start}.spk-ph{width:132px;height:176px}}
 /* speakers-home:end */
 </style>
+<style>/* countdown:css */
+.cd-bar{background:#152029;color:#F1E3B8;font:500 .9rem/1.3 var(--sans);border-bottom:1px solid rgba(194,154,59,.5)}
+.cd-bar .wrap{display:flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding-top:6px;padding-bottom:6px;flex-wrap:wrap;text-align:center}
+.cd-bar .cd-tag{background:linear-gradient(135deg,#DDBB66,#BC9238);color:#2A1C05;font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:4px}
+.cd-bar .cd-clock{font-variant-numeric:tabular-nums;font-weight:700;color:#E9BD29;letter-spacing:.02em}
+.cd-bar .cd-dot{width:8px;height:8px;border-radius:50%;background:#E9BD29;box-shadow:0 0 0 0 rgba(233,189,41,.7);animation:cdp 1.6s infinite}
+@keyframes cdp{70%{box-shadow:0 0 0 8px rgba(233,189,41,0)}100%{box-shadow:0 0 0 0 rgba(233,189,41,0)}}
+.cd-bar a.cd-link{color:#E9BD29;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.cd-bar .cd-show-sm{display:none}@media (max-width:640px){.cd-bar .cd-show-sm{display:inline}}
+.cd-bar [data-show]{display:none}.cd-bar[data-state=soon] [data-show~=soon],.cd-bar[data-state=live] [data-show~=live],.cd-bar[data-state=done] [data-show~=done]{display:inline}
+.cd-bar[data-state=done]{display:none}
+@media (max-width:640px){.cd-bar{font-size:.82rem}.cd-bar .wrap{gap:8px 10px;min-height:40px}.cd-bar .cd-hide-sm{display:none!important}.cd-bar .cd-tag{font-size:.66rem;padding:4px 8px}}
+</style>
+<style>/* countdown:css */
+.cd-hero{display:flex;gap:12px;align-items:stretch;margin:4px 0 6px}
+.cd-hero .cd-u{min-width:92px;padding:14px 12px 10px;border-radius:10px;background:rgba(10,18,24,.55);border:1px solid rgba(233,189,41,.55);backdrop-filter:blur(6px);text-align:center;color:#fff}
+.cd-hero .cd-u b{display:block;font:700 2.6rem/1 var(--sans);font-variant-numeric:tabular-nums;color:#F1C970}
+.cd-hero .cd-u span{display:block;margin-top:6px;font:600 .7rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#E7EDEA}
+.cd-hero .cd-sep{align-self:center;font:700 2rem/1 var(--sans);color:#F1C970;opacity:.7}
+.cd-hero-wrap [data-show]{display:none}.cd-hero-wrap[data-state=soon] [data-show~=soon]{display:flex}.cd-hero-wrap[data-state=live] [data-show~=live]{display:block}.cd-hero-wrap[data-state=done] [data-show~=done]{display:block}
+.cd-live{font:600 1.15rem/1.4 var(--sans);color:#fff}.cd-live i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#E9BD29;margin-right:10px;vertical-align:middle;animation:cdp 1.6s infinite}
+@keyframes cdp{0%{box-shadow:0 0 0 0 rgba(233,189,41,.7)}70%{box-shadow:0 0 0 10px rgba(233,189,41,0)}100%{box-shadow:0 0 0 0 rgba(233,189,41,0)}}
+.cd-cap{font:500 .95rem/1.4 var(--sans);color:#E7EDEA;margin:0}
+@media (max-width:640px){.cd-hero{gap:8px}.cd-hero .cd-u{min-width:0;flex:1;padding:10px 6px 8px}.cd-hero .cd-u b{font-size:1.9rem}.cd-hero .cd-u span{font-size:.6rem;letter-spacing:.12em}.cd-hero .cd-sep{display:none}}
+</style>
 </head>
 <body>
 
 
 <header class="top">
+<div class="cd-bar" data-cd role="status"><div class="wrap">
+<span class="cd-tag" data-show="soon">It's Today</span><span class="cd-dot" data-show="live"></span><span class="cd-tag" data-show="live">Happening Now</span>
+<span data-show="soon"><span class="cd-hide-sm">The 9th Giving Economy Forum begins at 5 PM SGT, in </span><span class="cd-show-sm">5 PM SGT · </span><b class="cd-clock" data-txt>0h 00m 00s</b></span>
+<span data-show="live">Fireside Chat, Giving Economy Awards &amp; Festival<span class="cd-hide-sm"> at ONE°15 Marina, Sentosa</span></span>
+<a class="cd-link cd-hide-sm" data-show="soon" href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">RSVP</a>
+</div></div>
   <div class="wrap">
     <a class="brand" href="#home" aria-label="Giving Economy Forum home">
       <img src="/images/logo.png" loading="lazy" alt="Giving Economy Forum 2026 logo">
@@ -1338,7 +1369,8 @@ html[data-theme="dark"]{color-scheme:dark;--gold-ink:#E0B85A;--gold-line:#C29A3B
     <div class="slides">
       <div class="slide sky is-active" data-i="0" data-dur="10000" aria-roledescription="slide" aria-label="1 of 5">
         <img class="vp vp-lg" src="/images/sg_hero_poster.jpg" loading="lazy" alt="Singapore skyline at night over Marina Bay"><img class="vp vp-sm" src="/images/sg_hero_poster_m.jpg" loading="lazy" alt=""><video class="slide-vid" muted loop playsinline autoplay preload="auto" aria-hidden="true" data-lg="/images/sg_night_1080.mp4" data-sm="/images/sg_night_m.mp4"></video>
-        <div class="wrap slide-copy"><p class="std-pill">Save the date</p><h1 class="slide-title">9th Giving Economy Forum <em>Singapore 2026</em></h1><p class="std-when"><span><b>Wednesday, 25 November 2026</b>5 pm to 9 pm SGT</span><span><b>ONE°15 Marina</b>Sentosa, Singapore</span></p><div class="hero-cta"><a class="btn btn-primary" href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">RSVP Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#singapore">Why Singapore</a></div></div>
+        <div class="wrap slide-copy"><p class="std-pill">It's Today!</p><h1 class="slide-title">9th Giving Economy Forum <em>Singapore 2026</em></h1><div class="cd-hero-wrap" data-cd><p class="cd-cap" data-show="soon">Registration opens at 5 PM SGT. See you in</p><div class="cd-hero" data-show="soon"><div class="cd-u"><b data-h>00</b><span>Hours</span></div><span class="cd-sep">:</span><div class="cd-u"><b data-m>00</b><span>Minutes</span></div><span class="cd-sep">:</span><div class="cd-u"><b data-s>00</b><span>Seconds</span></div></div><p class="cd-live" data-show="live"><i></i>Happening now at ONE°15 Marina: Fireside Chat, Giving Economy Awards &amp; Giving Economy Festival</p><p class="cd-live" data-show="done">Thank you for being with us tonight. See you next year!</p></div>
+<p class="std-when"><span><b>Wednesday, 25 November 2026</b>5 pm to 9 pm SGT</span><span><b>ONE°15 Marina</b>Sentosa, Singapore</span></p><div class="hero-cta"><a class="btn btn-primary" href="https://forms.gle/2dKDecWRbnphj6idA" target="_blank" rel="noopener">RSVP Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#singapore">Why Singapore</a></div></div>
       </div><div class="slide" data-i="1" aria-roledescription="slide" aria-label="2 of 5" aria-hidden="true">
         <img src="/images/kl_hall.jpg" loading="lazy" alt="Guests at round tables during a Giving Economy Forum session" style="object-position:50% 55%">
         <div class="wrap slide-copy"><p class="eyebrow">Corporate Conclave · 25 November, 3:00 PM</p><h2 class="slide-title">Corporate Leadership <em>Dialogue</em></h2><p class="slide-lede">Business for a more inclusive and sustainable world. Opened by Villars Poulsen, International Development Adviser.</p><div class="hero-cta"><a class="btn btn-primary" href="#corporateconclave">Reserve Your Seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-glass" href="#corporateconclave">Learn More</a></div></div>
@@ -2461,5 +2493,12 @@ watch('reg-dlg','rsvp');watch('nom-dlg','nominate');
 </script>
 <!-- analytics:end -->
 <script>/* speakers-popup:js */(function(){document.addEventListener('click',function(e){var b=e.target.closest('.spk-open');if(b){var d=document.getElementById(b.dataset.dlg);if(d&&d.showModal){d.showModal();}return}var x=e.target.closest('.spk-x');if(x){x.closest('dialog').close();return}if(e.target.classList&&e.target.classList.contains('spk-dlg')){e.target.close()}});})();</script>
+<script>/* countdown:js */(function(){var S=Date.UTC(2026,10,25,9,0,0),E=Date.UTC(2026,10,25,13,0,0),q=window.__cdq||(location.search.match(/[?&]cd=(\w+)/)||[])[1];
+function now(){return q==='live'?S+1:q==='done'?E+1:Date.now()}
+function p(n){return (n<10?'0':'')+n}
+function tick(){var t=now(),st=t<S?'soon':t<E?'live':'done',d=Math.max(0,Math.floor((S-t)/1000)),h=Math.floor(d/3600),m=Math.floor(d%3600/60),s=d%60;
+document.querySelectorAll('[data-cd]').forEach(function(el){el.setAttribute('data-state',st);var a=el.querySelector('[data-h]'),b=el.querySelector('[data-m]'),c=el.querySelector('[data-s]');if(a)a.textContent=p(h);if(b)b.textContent=p(m);if(c)c.textContent=p(s);var tx=el.querySelector('[data-txt]');if(tx)tx.textContent=h+'h '+p(m)+'m '+p(s)+'s'});
+if(st!=='done')setTimeout(tick,1000-(Date.now()%1000))}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',tick);else tick()})();</script>
 </body>
 </html>
